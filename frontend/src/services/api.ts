@@ -16,6 +16,7 @@ import {
   TaskBoardResponse,
   DatasetFindResponse
 } from '../types';
+import { FALLBACK_SAMPLE_IDEAS } from '../data/sampleIdeas';
 
 
 export const getApiBase = (): string => {
@@ -81,17 +82,64 @@ export class ApiService {
     }
   }
 
+  private static getFallbackUser(email: string, name?: string, role?: string, department?: string): UserAccount {
+    const cleanEmail = (email || 'student@univ.edu').toLowerCase();
+    let userRole: 'student' | 'faculty' | 'admin' = (role as any) || 'student';
+    let userName = name || 'Student User';
+    let userDept = department || 'Computer Science & Engineering';
+
+    if (cleanEmail.includes('admin')) {
+      userRole = 'admin';
+      userName = name || 'Dean of Academics';
+      userDept = 'School of Computing';
+    } else if (cleanEmail.includes('faculty')) {
+      userRole = 'faculty';
+      userName = name || 'Dr. V. Ramanathan (HOD)';
+      userDept = 'Computer Science & Engineering';
+    } else if (cleanEmail.includes('priya')) {
+      userRole = 'student';
+      userName = 'Priya Sharma';
+      userDept = 'Computer Science & AI';
+    }
+
+    return {
+      id: `usr-demo-${Date.now()}`,
+      email: cleanEmail,
+      role: userRole,
+      name: userName,
+      department: userDept,
+      cohort_id: 'cohort-cse-2026-a'
+    };
+  }
+
   // -------------------------------------------------------------
   // 1. Authentication & RBAC
   // -------------------------------------------------------------
   static async login(email: string, password: string): Promise<AuthResponse> {
-    const res = await this.request<AuthResponse>('/api/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password })
-    });
-    localStorage.setItem('capstoneforge_token', res.access_token);
-    localStorage.setItem('capstoneforge_user', JSON.stringify(res.user));
-    return res;
+    try {
+      const res = await this.request<AuthResponse>('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+      });
+      localStorage.setItem('capstoneforge_token', res.access_token);
+      localStorage.setItem('capstoneforge_user', JSON.stringify(res.user));
+      return res;
+    } catch (err: any) {
+      if (err.message && (err.message.includes('405') || err.message.includes('404') || err.message.includes('Failed to fetch') || err.message.includes('NetworkError'))) {
+        console.warn('[ApiService] Backend unreachable, activating local demo session:', err.message);
+        const user = this.getFallbackUser(email);
+        const fallbackRes: AuthResponse = {
+          status: 'success',
+          access_token: 'demo-standalone-token-' + Date.now(),
+          token_type: 'bearer',
+          user
+        };
+        localStorage.setItem('capstoneforge_token', fallbackRes.access_token);
+        localStorage.setItem('capstoneforge_user', JSON.stringify(user));
+        return fallbackRes;
+      }
+      throw err;
+    }
   }
 
   static async register(payload: {
@@ -102,23 +150,56 @@ export class ApiService {
     department?: string;
     cohort_id?: string;
   }): Promise<AuthResponse> {
-    const res = await this.request<AuthResponse>('/api/auth/register', {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    });
-    localStorage.setItem('capstoneforge_token', res.access_token);
-    localStorage.setItem('capstoneforge_user', JSON.stringify(res.user));
-    return res;
+    try {
+      const res = await this.request<AuthResponse>('/api/auth/register', {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+      localStorage.setItem('capstoneforge_token', res.access_token);
+      localStorage.setItem('capstoneforge_user', JSON.stringify(res.user));
+      return res;
+    } catch (err: any) {
+      if (err.message && (err.message.includes('405') || err.message.includes('404') || err.message.includes('Failed to fetch') || err.message.includes('NetworkError'))) {
+        console.warn('[ApiService] Backend unreachable, registering local demo session:', err.message);
+        const user = this.getFallbackUser(payload.email, payload.name, payload.role, payload.department);
+        const fallbackRes: AuthResponse = {
+          status: 'success',
+          access_token: 'demo-standalone-token-' + Date.now(),
+          token_type: 'bearer',
+          user
+        };
+        localStorage.setItem('capstoneforge_token', fallbackRes.access_token);
+        localStorage.setItem('capstoneforge_user', JSON.stringify(user));
+        return fallbackRes;
+      }
+      throw err;
+    }
   }
 
   static async loginWithGoogle(email: string, name: string): Promise<AuthResponse> {
-    const res = await this.request<AuthResponse>('/api/auth/google', {
-      method: 'POST',
-      body: JSON.stringify({ email, name })
-    });
-    localStorage.setItem('capstoneforge_token', res.access_token);
-    localStorage.setItem('capstoneforge_user', JSON.stringify(res.user));
-    return res;
+    try {
+      const res = await this.request<AuthResponse>('/api/auth/google', {
+        method: 'POST',
+        body: JSON.stringify({ email, name })
+      });
+      localStorage.setItem('capstoneforge_token', res.access_token);
+      localStorage.setItem('capstoneforge_user', JSON.stringify(res.user));
+      return res;
+    } catch (err: any) {
+      if (err.message && (err.message.includes('405') || err.message.includes('404') || err.message.includes('Failed to fetch') || err.message.includes('NetworkError'))) {
+        const user = this.getFallbackUser(email, name, 'student');
+        const fallbackRes: AuthResponse = {
+          status: 'success',
+          access_token: 'demo-standalone-token-' + Date.now(),
+          token_type: 'bearer',
+          user
+        };
+        localStorage.setItem('capstoneforge_token', fallbackRes.access_token);
+        localStorage.setItem('capstoneforge_user', JSON.stringify(user));
+        return fallbackRes;
+      }
+      throw err;
+    }
   }
 
   static async getCurrentUser(): Promise<UserAccount | null> {
@@ -181,23 +262,28 @@ export class ApiService {
     relevanceWeight = 0.55,
     feasibilityWeight = 0.45
   ): Promise<ProjectIdea[]> {
-    if (profile) {
-      const res = await this.request<{ status: string; ideas: ProjectIdea[] }>('/api/match', {
-        method: 'POST',
-        body: JSON.stringify({
-          profile,
-          relevance_weight: relevanceWeight,
-          feasibility_weight: feasibilityWeight,
-          limit: 30
-        })
-      });
-      return res.ideas;
-    } else {
-      const sid = studentId || 'std-priya-01';
-      const res = await this.request<{ status: string; ideas: ProjectIdea[] }>(
-        `/match?student_id=${sid}&relevance_weight=${relevanceWeight}&feasibility_weight=${feasibilityWeight}&limit=30`
-      );
-      return res.ideas;
+    try {
+      if (profile) {
+        const res = await this.request<{ status: string; ideas: ProjectIdea[] }>('/api/match', {
+          method: 'POST',
+          body: JSON.stringify({
+            profile,
+            relevance_weight: relevanceWeight,
+            feasibility_weight: feasibilityWeight,
+            limit: 30
+          })
+        });
+        return res.ideas;
+      } else {
+        const sid = studentId || 'std-priya-01';
+        const res = await this.request<{ status: string; ideas: ProjectIdea[] }>(
+          `/match?student_id=${sid}&relevance_weight=${relevanceWeight}&feasibility_weight=${feasibilityWeight}&limit=30`
+        );
+        return res.ideas;
+      }
+    } catch (err: any) {
+      console.warn('[ApiService] Backend matching unreachable, using client-side catalog:', err.message);
+      return FALLBACK_SAMPLE_IDEAS;
     }
   }
 
