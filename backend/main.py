@@ -155,6 +155,8 @@ ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:80",
     "http://localhost",
+    # Production Vercel frontend — always allowed
+    "https://ai-project-generator-psi.vercel.app",
 ]
 if _frontend_url:
     ALLOWED_ORIGINS.append(_frontend_url.rstrip("/"))
@@ -164,11 +166,8 @@ if _origins_env and _origins_env != "*":
         if clean_o and clean_o not in ALLOWED_ORIGINS:
             ALLOWED_ORIGINS.append(clean_o)
 
-if _origins_env == "*":
-    allow_origin_regex = r".*"
-else:
-    # Allow typical cloud deployment domains (Vercel, Render, Railway, Netlify) by default
-    allow_origin_regex = r"https?://(localhost|127\.0\.0\.1|.*\.vercel\.app|.*\.onrender\.com|.*\.railway\.app|.*\.netlify\.app)(:\d+)?"
+# Allow all Vercel preview deployments, Render, Railway, Netlify domains by default
+allow_origin_regex = r"https?://(localhost|127\.0\.0\.1|.*\.vercel\.app|.*\.onrender\.com|.*\.railway\.app|.*\.netlify\.app)(:\d+)?"
 
 app.add_middleware(
     CORSMiddleware,

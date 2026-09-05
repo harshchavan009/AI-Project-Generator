@@ -20,10 +20,7 @@ import { FALLBACK_SAMPLE_IDEAS } from '../data/sampleIdeas';
 
 
 export const getApiBase = (): string => {
-  const envUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL) as string | undefined;
-  if (envUrl) {
-    return envUrl.replace(/\/$/, '');
-  }
+  // Development: talk directly to local FastAPI on port 8000
   if (
     typeof window !== 'undefined' &&
     (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
@@ -31,6 +28,8 @@ export const getApiBase = (): string => {
   ) {
     return 'http://127.0.0.1:8000';
   }
+  // Production: use same-origin — Vercel proxies /api/* → Render backend.
+  // VITE_API_URL is no longer needed and should NOT be set on Vercel.
   return '';
 };
 
@@ -277,7 +276,7 @@ export class ApiService {
       } else {
         const sid = studentId || 'std-priya-01';
         const res = await this.request<{ status: string; ideas: ProjectIdea[] }>(
-          `/match?student_id=${sid}&relevance_weight=${relevanceWeight}&feasibility_weight=${feasibilityWeight}&limit=30`
+          `/api/match?student_id=${sid}&relevance_weight=${relevanceWeight}&feasibility_weight=${feasibilityWeight}&limit=30`
         );
         return res.ideas;
       }
@@ -321,7 +320,7 @@ export class ApiService {
   // 7. AST Static Analysis for Viva Voce
   // -------------------------------------------------------------
   static async analyzeAstViva(sourceCode: string, filePath = 'main.py'): Promise<AstVivaResponse> {
-    const res = await this.request<{ status: string; analysis: AstVivaResponse }>('/mentor/viva-questions', {
+    const res = await this.request<{ status: string; analysis: AstVivaResponse }>('/api/mentor/viva-questions', {
       method: 'POST',
       body: JSON.stringify({ source_code: sourceCode, file_path: filePath })
     });
@@ -350,20 +349,20 @@ export class ApiService {
   // -------------------------------------------------------------
   static async getCohortStudents(cohortId = 'cohort-cse-2026-a'): Promise<CohortStudent[]> {
     const res = await this.request<{ status: string; students: CohortStudent[] }>(
-      `/cohort/students?cohort_id=${cohortId}`
+      `/api/cohort/students?cohort_id=${cohortId}`
     );
     return res.students;
   }
 
   static async getCohortDuplicates(cohortId = 'cohort-cse-2026-a', threshold = 0.72): Promise<DuplicateCluster[]> {
     const res = await this.request<{ status: string; duplicate_clusters: DuplicateCluster[] }>(
-      `/cohort/duplicates?cohort_id=${cohortId}&similarity_threshold=${threshold}`
+      `/api/cohort/duplicates?cohort_id=${cohortId}&similarity_threshold=${threshold}`
     );
     return res.duplicate_clusters;
   }
 
   static async getCohortDifficultyDistribution(cohortId = 'cohort-cse-2026-a'): Promise<DifficultyDistribution> {
-    return this.request<DifficultyDistribution>(`/cohort/difficulty-distribution?cohort_id=${cohortId}`);
+    return this.request<DifficultyDistribution>(`/api/cohort/difficulty-distribution?cohort_id=${cohortId}`);
   }
 
   static async uploadArchive(

@@ -153,16 +153,7 @@ export const App: React.FC = () => {
       if (matched.length > 0 && !selectedIdea) {
         setSelectedIdea(matched[0]);
       }
-      // Check if running on cloud host (like Vercel) with no backend configured
-      if (
-        typeof window !== 'undefined' &&
-        window.location.hostname !== 'localhost' &&
-        window.location.hostname !== '127.0.0.1' &&
-        !import.meta.env.VITE_API_URL &&
-        !import.meta.env.VITE_API_BASE_URL
-      ) {
-        setApiError('Demo Mode: Live backend not connected. Add VITE_API_URL in your Vercel Project Settings to connect your Render FastAPI backend.');
-      }
+      // Backend is now connected via Vercel proxy — no env var needed
     } catch (err: any) {
       console.error('Failed to match ideas:', err);
       setApiError('Unable to connect to matching backend engine. Verify server is running.');
