@@ -1,124 +1,155 @@
-# Meridian — Live Deployment Guide
+# Meridian — Live Production Deployment Guide
 
-This guide details how to deploy **Meridian** live to production with HTTPS and free/low-cost cloud hosting.
+This guide details the exact architecture, environment variables, and platform settings to deploy **Meridian** live to production with zero build errors.
 
 ---
 
-## Architecture Overview
+## 1. Repository Architecture
+The repository is a **frontend + backend monorepo**:
 ```
-┌──────────────────────────────────────────────────────────────┐
-│                    User Browser / Mobile                     │
-└──────────────────────────────┬───────────────────────────────┘
-                               │
-               HTTPS Requests  ▼
-┌──────────────────────────────────────────────────────────────┐
-│              Frontend (React + Vite + Tailwind)              │
-│       Hosted on: Vercel, Netlify, or Render Static Site      │
-└──────────────────────────────┬───────────────────────────────┘
-                               │ REST / SSE
-                               ▼
-┌──────────────────────────────────────────────────────────────┐
-│              Backend (FastAPI + ONNX INT8 + RBAC)            │
-│         Hosted on: Render, Railway, or VPS Docker            │
-└──────────────────────────────┬───────────────────────────────┘
-                               │
-                               ▼
-┌──────────────────────────────────────────────────────────────┐
-│            Database (PostgreSQL + Connection Pool)           │
-│         Hosted on: Render Postgres, Supabase, or Neon        │
-└──────────────────────────────────────────────────────────────┘
+AI-Project-Generator/
+├── backend/                      # Python FastAPI application
+│   ├── main.py                   # FastAPI app instance (app = FastAPI(...))
+│   ├── database.py               # SQLAlchemy async connection pooling & ORM
+│   ├── config.py                 # Configuration & environment loader
+│   ├── schemas.py                # Pydantic request/response validation schemas
+│   ├── services/                 # Embedding, matching, feasibility & RAG engines
+│   └── requirements.txt          # Python dependencies for backend/ subdirectory
+├── frontend/                     # React 19 + TypeScript + Vite + Tailwind CSS
+│   ├── src/                      # Client UI, 3D Graph, Mentor Chat & Studio
+│   ├── package.json              # Frontend scripts (build: "tsc -b && vite build")
+│   └── vercel.json               # SPA client-side rewrite rules for Vercel
+├── requirements.txt              # Root Python dependencies (Render root build)
+├── package.json                  # Root package.json (delegates builds to frontend)
+├── vercel.json                   # Root Vercel SPA configuration
+├── render.yaml                   # Render 1-click infrastructure blueprint
+├── docker-compose.yml            # Containerized deployment (Postgres + Backend + Frontend)
+└── .env.example                  # Template of all production environment variables
 ```
 
 ---
 
-## Option 1: 1-Click Cloud Deployment via Render Blueprint (Recommended)
+## 2. Deploying Backend to Render (Resolving Build Errors)
 
-Render provides free hosting for PostgreSQL, Python Web Services, and Static React sites. Because `render.yaml` is pre-configured in this repository, you can deploy the complete stack with zero manual wiring:
+### Root Cause of the Error:
+Render failed with:
+```
+ERROR: Could not open requirements file:
+[Errno 2] No such file or directory: 'requirements.txt'
+```
+Render's default Web Service configuration runs `pip install -r requirements.txt` at the repository root (`./`). Because the project originally only had `backend/requirements.txt`, Render could not find `requirements.txt` at the root.
 
-### Steps:
-1. **Push the latest commits to GitHub**:
-   ```bash
-   git add .
-   git commit -m "feat: Meridian AI Mentor & Production Deployment Config"
-   git push origin main
-   ```
-2. Go to **[dashboard.render.com](https://dashboard.render.com)** and sign in with GitHub.
-3. Click **New +** → **Blueprint**.
-4. Select repository: `harshchavan009/AI-Project-Generator`.
-5. Render reads [`render.yaml`](file:///Users/harsh/Desktop/Ai%20Project%20Generator/render.yaml) and automatically creates:
-   - `meridian-db`: Managed PostgreSQL database.
-   - `meridian-api`: FastAPI backend web service.
-   - `meridian-frontend`: Static site with SPA routing and automatic HTTPS.
-6. Click **Apply**.
-7. In ~3 minutes, your live site URL will be active (e.g. `https://meridian-frontend.onrender.com`)!
+### Fix Implemented:
+1. `requirements.txt` is now placed at the **root (`./requirements.txt`)** AND inside **`backend/requirements.txt`**.
+2. Both files contain the complete set of required production packages (`fastapi`, `uvicorn[standard]`, `pydantic`, `httpx`, `sqlalchemy`, `asyncpg`, `psycopg2-binary`, `bcrypt`, `pyjwt`, `cryptography`, `slowapi`, `sentry-sdk`, `numpy`, `joblib`, `scikit-learn`, `fastembed`, `networkx`, `onnxruntime`).
+3. `backend/main.py` automatically injects the parent and current directory into `sys.path` so that imports succeed regardless of working directory.
+
+### Exact Render Settings:
+
+#### Recommended Configuration (Root Directory: Blank / `.`)
+- **Name:** `meridian-api`
+- **Environment:** `Python 3`
+- **Region:** Any (e.g., Oregon or Frankfurt)
+- **Branch:** `main`
+- **Root Directory:** *(leave blank or set to `.`) *
+- **Build Command:** `pip install -r requirements.txt`
+- **Start Command:** `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
+
+#### Alternative Configuration (Root Directory: `backend`)
+If you set Render's **Root Directory** to `backend`:
+- **Root Directory:** `backend`
+- **Build Command:** `pip install -r requirements.txt`
+- **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
 
 ---
 
-## Option 2: Split Deploy (Vercel Frontend + Render / Railway Backend)
+## 3. Deploying Frontend to Vercel
 
-This is the most popular, high-performance architecture (instant global CDN for React + dedicated server for FastAPI).
-
-### Part A: Deploy Backend on Render
-1. Go to **[dashboard.render.com](https://dashboard.render.com)** → **New +** → **Web Service**.
-2. Connect your GitHub repository: `harshchavan009/AI-Project-Generator`.
-3. Configure settings:
-   - **Name**: `meridian-api`
-   - **Language**: Python 3
-   - **Build Command**: `pip install -r backend/requirements.txt`
-   - **Start Command**: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
-4. Under **Environment Variables**, add:
-   - `ENVIRONMENT` = `production`
-   - `ALLOWED_ORIGINS` = `*`
-   - `JWT_SECRET_KEY` = (Click Generate)
-   - `PII_ENCRYPTION_KEY` = (Click Generate)
-5. Click **Create Web Service**. Once deployed, copy your backend URL (e.g. `https://meridian-api.onrender.com`).
-
-### Part B: Deploy Frontend on Vercel
-1. Go to **[vercel.com](https://vercel.com)** and sign in with GitHub.
-2. Click **Add New...** → **Project**.
-3. Import `harshchavan009/AI-Project-Generator`.
-4. Configure settings:
-   - **Framework Preset**: Vite
-   - **Root Directory**: `frontend` (Click Edit and select `frontend`)
+### Recommended Configuration (Root Directory: `frontend`)
+1. Go to **[vercel.com](https://vercel.com)** → **Add New...** → **Project**.
+2. Select `harshchavan009/AI-Project-Generator`.
+3. In the project setup screen, click **Edit** next to `./` and select **`frontend`**.
+4. Vercel automatically detects:
+   - **Framework:** `Vite`
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
 5. Under **Environment Variables**, add:
-   - `VITE_API_BASE_URL` = `https://meridian-api.onrender.com` (Your Render backend URL from Part A)
-6. Click **Deploy**. Vercel will build and assign you a global HTTPS domain (e.g. `https://meridian-app.vercel.app`).
+   - `VITE_API_URL` = `https://your-meridian-api.onrender.com` (Your live Render backend URL)
+6. Click **Deploy**.
 
 ---
 
-## Option 3: Single-Server VPS Deployment (Docker Compose)
+## 4. Environment Variables Reference
 
-If you have a Linux VPS (DigitalOcean Droplet, AWS EC2, GCP Compute Engine, Hetzner):
+Never commit secrets to source control. Configure these in the Render and Vercel dashboards:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/harshchavan009/AI-Project-Generator.git
-   cd AI-Project-Generator
-   ```
-2. **Start all services**:
-   ```bash
-   docker compose up -d --build
-   ```
-3. **Verify status**:
-   ```bash
-   docker compose ps
-   ```
-   - Nginx frontend is accessible at port `80` (or `5173`).
-   - FastAPI is at port `8000`.
-   - PostgreSQL is healthy at `5432`.
+### Backend Environment Variables (Render Dashboard):
+| Variable Name | Required | Description | Example / Notes |
+| :--- | :---: | :--- | :--- |
+| `DATABASE_URL` | Optional | PostgreSQL connection string | Defaults to local SQLite if omitted |
+| `JWT_SECRET_KEY` | **Yes** | 256-bit key for signing auth tokens | Render can generate this or use 32 hex chars |
+| `PII_ENCRYPTION_KEY` | **Yes** | Fernet AES-256 key for encrypting student data | Generated via `Fernet.generate_key()` |
+| `ENVIRONMENT` | **Yes** | App runtime mode | `production` |
+| `FRONTEND_URL` | Optional | Custom frontend URL for strict CORS | e.g. `https://meridian.vercel.app` |
+| `ALLOWED_ORIGINS` | Optional | Allowed CORS origins | Defaults to auto-allowing `*.vercel.app`, `*.onrender.com` |
+| `ANTHROPIC_API_KEY` | Optional | Anthropic Claude API Key | Offline deterministic RAG active if omitted |
+| `GEMINI_API_KEY` | Optional | Google Gemini API Key | Offline deterministic RAG active if omitted |
+| `OPENAI_API_KEY` | Optional | OpenAI API Key | Offline deterministic RAG active if omitted |
+| `SENTRY_DSN` | Optional | Sentry error tracking endpoint | Optional |
+
+### Frontend Environment Variables (Vercel Dashboard):
+| Variable Name | Required | Description |
+| :--- | :---: | :--- |
+| `VITE_API_URL` | **Yes** | Live backend HTTPS URL (e.g., `https://meridian-api.onrender.com`) |
 
 ---
 
-## Option 4: Instant Temporary Live Public URL (for Testing Right Now)
+## 5. Verifying the Deployed Backend
 
-To share the app immediately without signing up for cloud hosting:
+Once Render finishes building and starts your service:
 
-### Using Localtunnel (No installation required with npx):
-1. Keep your local servers running:
-   - Backend on `http://127.0.0.1:8000`
-   - Frontend on `http://localhost:5173`
-2. Open a terminal and run:
+1. **Root Probe**:
    ```bash
-   npx localtunnel --port 5173
+   curl https://<your-render-url>.onrender.com/
    ```
-   Localtunnel generates a public HTTPS URL (e.g., `https://meridian-demo.loca.lt`) accessible from anywhere!
+   **Expected Response:**
+   ```json
+   {
+     "status": "ok",
+     "service": "meridian-backend",
+     "version": "2.0.0",
+     "docs_url": "/docs",
+     "health_url": "/health"
+   }
+   ```
+
+2. **Health Check**:
+   ```bash
+   curl https://<your-render-url>.onrender.com/health
+   ```
+   **Expected Response:**
+   ```json
+   {
+     "status": "healthy",
+     "service": "meridian-backend",
+     "database": { "status": "healthy" }
+   }
+   ```
+
+3. **Interactive Swagger Documentation**:
+   Navigate in browser to:
+   `https://<your-render-url>.onrender.com/docs`
+   and `https://<your-render-url>.onrender.com/openapi.json`.
+
+---
+
+## 6. 1-Click Full-Stack Deploy via Render Blueprint
+
+Because [`render.yaml`](file:///Users/harsh/Desktop/Ai%20Project%20Generator/render.yaml) is pre-configured in the repository root:
+1. Go to **Render Dashboard** → **New +** → **Blueprint**.
+2. Connect `harshchavan009/AI-Project-Generator`.
+3. Render automatically provisions:
+   - `meridian-db` (PostgreSQL Database)
+   - `meridian-api` (FastAPI Python Service)
+   - `meridian-frontend` (Static React Site)
+4. Click **Apply** to launch the complete system.

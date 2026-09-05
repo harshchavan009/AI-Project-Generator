@@ -2,9 +2,13 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load .env if present
-env_path = Path(__file__).resolve().parent / ".env"
-load_dotenv(dotenv_path=env_path)
+# Load .env if present (root or backend)
+root_env = Path(__file__).resolve().parent.parent / ".env"
+backend_env = Path(__file__).resolve().parent / ".env"
+if root_env.exists():
+    load_dotenv(dotenv_path=root_env)
+if backend_env.exists():
+    load_dotenv(dotenv_path=backend_env)
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", os.getenv("GOOGLE_API_KEY", ""))

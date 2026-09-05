@@ -12,6 +12,14 @@ FastAPI server featuring:
 
 import os
 import sys
+
+# Ensure both backend directory and repository root are in sys.path
+_CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+_REPO_ROOT = os.path.dirname(_CURRENT_DIR)
+if _REPO_ROOT not in sys.path:
+    sys.path.insert(0, _REPO_ROOT)
+if _CURRENT_DIR not in sys.path:
+    sys.path.insert(0, _CURRENT_DIR)
 import json
 import time
 import uuid
@@ -138,21 +146,27 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # CORS Policy
-_origins_env = os.getenv("ALLOWED_ORIGINS", "")
-if _origins_env and _origins_env.strip() != "*":
-    ALLOWED_ORIGINS = [o.strip() for o in _origins_env.split(",") if o.strip()]
-    allow_origin_regex = None
-elif _origins_env.strip() == "*":
-    ALLOWED_ORIGINS = []
+_frontend_url = os.getenv("FRONTEND_URL", "").strip()
+_origins_env = os.getenv("ALLOWED_ORIGINS", "").strip()
+
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://localhost:80",
+    "http://localhost",
+]
+if _frontend_url:
+    ALLOWED_ORIGINS.append(_frontend_url.rstrip("/"))
+if _origins_env and _origins_env != "*":
+    for o in _origins_env.split(","):
+        clean_o = o.strip()
+        if clean_o and clean_o not in ALLOWED_ORIGINS:
+            ALLOWED_ORIGINS.append(clean_o)
+
+if _origins_env == "*":
     allow_origin_regex = r".*"
 else:
-    ALLOWED_ORIGINS = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://localhost:80",
-        "http://localhost",
-    ]
     # Allow typical cloud deployment domains (Vercel, Render, Railway, Netlify) by default
     allow_origin_regex = r"https?://(localhost|127\.0\.0\.1|.*\.vercel\.app|.*\.onrender\.com|.*\.railway\.app|.*\.netlify\.app)(:\d+)?"
 
@@ -210,6 +224,17 @@ async def json_logging_middleware(request: Request, call_next):
 # -------------------------------------------------------------
 # Pillar 8: Health & Monitoring Endpoint
 # -------------------------------------------------------------
+@app.get("/")
+async def root_status():
+    """Root endpoint for probe verification and service identification."""
+    return {
+        "status": "ok",
+        "service": "meridian-backend",
+        "version": "2.0.0",
+        "docs_url": "/docs",
+        "health_url": "/health"
+    }
+
 @app.get("/api/health")
 @app.get("/health")
 async def health_check():
@@ -235,6 +260,7 @@ async def health_check():
 
     health_data = {
         "status": "healthy" if is_healthy else "degraded",
+        "service": "meridian-backend",
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "version": "2.0.0",
         "database": db_health,
