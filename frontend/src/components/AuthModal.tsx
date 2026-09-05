@@ -10,8 +10,8 @@ interface AuthModalProps {
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onAuthSuccess }) => {
   const [mode, setMode] = useState<'login' | 'register'>('login');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('priya.sharma@eng.univ.edu');
+  const [password, setPassword] = useState('Student@Capstone2026');
   const [name, setName] = useState('');
   const [role, setRole] = useState<'student' | 'faculty' | 'admin'>('student');
   const [department, setDepartment] = useState('Computer Science & Engineering');
@@ -274,7 +274,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onAuthSuc
             <button
               type="button"
               onClick={() => {
-                setMode(mode === 'login' ? 'register' : 'login');
+                if (mode === 'login') {
+                  setMode('register');
+                  setEmail('');
+                  setPassword('');
+                } else {
+                  setMode('login');
+                  setEmail('priya.sharma@eng.univ.edu');
+                  setPassword('Student@Capstone2026');
+                }
                 setError(null);
               }}
               className="text-xs text-[#1d6e5c] font-medium hover:underline"
