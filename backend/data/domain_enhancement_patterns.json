@@ -1,0 +1,246 @@
+{
+  "version": "1.0.0",
+  "description": "Curated domain-specific enhancement patterns for programmatically differentiating engineering capstone projects.",
+  "patterns_by_domain": {
+    "Healthcare & Biomedical AI": [
+      {
+        "id": "pat-health-01",
+        "name": "Edge Quantization & Grad-CAM Interpretability",
+        "tag": "interpretability_quantization",
+        "description": "Deploy INT8/FP16 quantized neural inference on low-power devices coupled with Grad-CAM saliency overlays to explain diagnostic decisions to clinicians.",
+        "added_tech": ["ONNX Runtime", "Grad-CAM", "TensorRT", "DICOM Toolkit"]
+      },
+      {
+        "id": "pat-health-02",
+        "name": "Federated Privacy-Preserving Differential Privacy",
+        "tag": "federated_privacy",
+        "description": "Implement decentralized training across distributed clinical client nodes with differential privacy guarantees preventing medical record leakage.",
+        "added_tech": ["Flower (FL)", "PySyft", "Opacus", "Federated Averaging"]
+      },
+      {
+        "id": "pat-health-03",
+        "name": "Multimodal Sensor Fusion & Temporal Vital Drift",
+        "tag": "sensor_fusion_vital_drift",
+        "description": "Fuse continuous ECG/SpO2 waveform telemetry with EHR lab values via cross-attention transformers for early shock onset prediction.",
+        "added_tech": ["TimesFM", "Cross-Attention Transformers", "InfluxDB", "BioSPPy"]
+      },
+      {
+        "id": "pat-health-04",
+        "name": "Demographic Parity & Counterfactual Bias Auditing",
+        "tag": "algorithmic_fairness_audit",
+        "description": "Incorporate fairness metrics across age/gender subgroups and generate counterfactual samples demonstrating model robustness across underrepresented cohorts.",
+        "added_tech": ["AIF360", "Fairlearn", "Counterfactual Explanations", "SHAP"]
+      }
+    ],
+    "Cybersecurity & Threat Intelligence": [
+      {
+        "id": "pat-cyber-01",
+        "name": "eBPF In-Kernel Syscall Tracing & Kill Intervention",
+        "tag": "ebpf_kernel_defense",
+        "description": "Trace container syscall patterns in the Linux kernel via eBPF probes, killing malicious processes breaking out of Docker namespaces in under 2ms.",
+        "added_tech": ["eBPF / Cilium", "C / Go", "BCC Tools", "Kernel Tracepoints"]
+      },
+      {
+        "id": "pat-cyber-02",
+        "name": "Zero-Knowledge Cryptographic Audit Logging",
+        "tag": "zk_audit_verification",
+        "description": "Store immutable cryptographic zero-knowledge proofs (zk-SNARKs) of security events allowing third-party compliance verification without disclosing proprietary data.",
+        "added_tech": ["Circom", "snarkjs", "Merkle Trees", "SHA-256 State Chains"]
+      },
+      {
+        "id": "pat-cyber-03",
+        "name": "Automated MITRE ATT&CK Attack-Graph Reconstruction",
+        "tag": "mitre_graph_reconstruction",
+        "description": "Construct dynamic directed attack graphs correlating multi-stage telemetry against MITRE ATT&CK techniques with Bayesian probability progression.",
+        "added_tech": ["NetworkX", "Neo4j", "Sigma Rules", "Graph Attention Networks"]
+      },
+      {
+        "id": "pat-cyber-04",
+        "name": "Adversarial Reinforcement Learning Honeypot Adaptation",
+        "tag": "adaptive_rl_honeypot",
+        "description": "Deploy dynamic honeypot services whose response latency and fake service vulnerabilities dynamically shift via Q-learning to trap automated scanners.",
+        "added_tech": ["Stable-Baselines3", "Scapy", "Suricata", "Decoy Containers"]
+      }
+    ],
+    "FinTech & Fraud Analytics": [
+      {
+        "id": "pat-fintech-01",
+        "name": "Temporal Dynamic Graph Neural Networks (T-GNN)",
+        "tag": "temporal_graph_fraud",
+        "description": "Model money-mule rings and cyclic smurfing laundering patterns across millions of accounts using continuous-time graph convolution networks.",
+        "added_tech": ["PyTorch Geometric", "Temporal Graph Networks (TGN)", "TimescaleDB", "DGL"]
+      },
+      {
+        "id": "pat-fintech-02",
+        "name": "Real-Time Streaming Transaction Disruption via Flink",
+        "tag": "subsecond_streaming_fraud",
+        "description": "Process 25,000 transactions/second with sub-10ms latency using Apache Flink sliding windows and RocksDB stateful anomaly scoring.",
+        "added_tech": ["Apache Flink", "Kafka", "RocksDB", "Triton Inference Server"]
+      },
+      {
+        "id": "pat-fintech-03",
+        "name": "Explainable Credit Risk Decomposition with Monotonic Constraints",
+        "tag": "explainable_credit_risk",
+        "description": "Train monotonic gradient boosted models with exact TreeSHAP waterfall charts ensuring legal FCRA regulatory compliance and transparent loan denials.",
+        "added_tech": ["LightGBM", "TreeSHAP", "Optuna", "FastAPI"]
+      },
+      {
+        "id": "pat-fintech-04",
+        "name": "Self-Supervised Contrastive Imbalanced Transaction Embeddings",
+        "tag": "contrastive_fraud_representation",
+        "description": "Tackle extreme 0.01% positive fraud class imbalance via contrastive representation learning without synthetic SMOTE distortions.",
+        "added_tech": ["SimCLR / InfoNCE", "PyTorch", "Faiss", "UMAP"]
+      }
+    ],
+    "Edge AI & TinyML / IoT": [
+      {
+        "id": "pat-edgeml-01",
+        "name": "On-Device 8-bit Sensor Fusion on Sub-256KB RAM",
+        "tag": "sub_256kb_tinyml",
+        "description": "Compress audio/accelerometer neural models into under 64KB ROM and 16KB RAM for bare-metal execution on Cortex-M4/ESP32 microcontrollers.",
+        "added_tech": ["TensorFlow Lite Micro", "CMSIS-NN", "ESP-IDF", "I2C/SPI Sensor Drivers"]
+      },
+      {
+        "id": "pat-edgeml-02",
+        "name": "Energy-Harvesting Intermittent Resilient Computing",
+        "tag": "energy_harvesting_checkpointing",
+        "description": "Incorporate non-volatile FRAM state checkpointing so neural inference resumes smoothly across solar/piezoelectric power brownouts without data corruption.",
+        "added_tech": ["TI MSP430 / FRAM", "Energy Budget Simulator", "Power Profiling ADC", "C"]
+      },
+      {
+        "id": "pat-edgeml-03",
+        "name": "Decentralized Mesh Gossip Swarm Anomaly Scoring",
+        "tag": "mesh_swarm_consensus",
+        "description": "Network edge sensor nodes over BLE/LoRa mesh to achieve Byzantine fault-tolerant consensus on localized physical environmental hazards.",
+        "added_tech": ["LoRaWAN / Meshtastic", "Raft-Lightweight", "Protocol Buffers", "MQTT-SN"]
+      },
+      {
+        "id": "pat-edgeml-04",
+        "name": "Differential Delta OTA Firmware Compression",
+        "tag": "differential_ota_compression",
+        "description": "Transmit byte-level neural weight updates over low-bandwidth cellular/satellite links using VCDIFF delta encoding reducing telemetry data by 94%.",
+        "added_tech": ["open-vcdiff", "Flash Partition Manager", "AES-128 Bootloader", "ECDSA Signatures"]
+      }
+    ],
+    "Green Tech & Renewable Smart Grids": [
+      {
+        "id": "pat-green-01",
+        "name": "Physics-Informed Kirchhoff Law Power Flow Emulation",
+        "tag": "physics_informed_grid",
+        "description": "Constrain solar battery inverter dispatch models with Kirchoff voltage/current laws ensuring physically feasible distribution grid operations.",
+        "added_tech": ["PyTorch / DeepXDE", "OpenDSS", "SciPy Optimize", "Pandapower"]
+      },
+      {
+        "id": "pat-green-02",
+        "name": "Multi-Agent Reinforcement Learning Microgrid Balancing",
+        "tag": "marl_microgrid_dispatch",
+        "description": "Deploy decentralized cooperative MARL agents representing neighborhood solar prosumers negotiating peer-to-peer energy trades.",
+        "added_tech": ["PettingZoo", "Ray RLlib", "TimescaleDB", "ZeroMQ"]
+      },
+      {
+        "id": "pat-green-03",
+        "name": "Satellite Telemetry Nowcasting for Ramp-Rate Protection",
+        "tag": "solar_nowcasting_ramp_rate",
+        "description": "Combine ground all-sky camera optical flow with GOES weather satellite streams to forecast cloud-induced solar ramp down 15 minutes ahead.",
+        "added_tech": ["OpenCV Optical Flow", "Geopandas", "Xarray", "UNet Cloud Tracker"]
+      },
+      {
+        "id": "pat-green-04",
+        "name": "High-Speed Passive Islanding Interruption via Phase Drift",
+        "tag": "passive_islanding_prevention",
+        "description": "Detect utility grid severance under 100ms by computing instantaneous rate-of-change-of-frequency (ROCOF) and harmonic distortion triggers.",
+        "added_tech": ["Fast Fourier Transform (FFT)", "IIR Digital Filter", "Rust", "Modbus-TCP"]
+      }
+    ],
+    "Developer Tooling & Program Analysis": [
+      {
+        "id": "pat-dev-01",
+        "name": "Inter-Procedural AST Taint-Flow Vulnerability Propagation",
+        "tag": "ast_taint_flow_security",
+        "description": "Build an abstract syntax tree visitor tracking untrusted user input from HTTP parameters through helper functions into database and shell execution sinks.",
+        "added_tech": ["Python AST / Tree-sitter", "Control Flow Graphs (CFG)", "Data Flow Tracking", "Semgrep Rules"]
+      },
+      {
+        "id": "pat-dev-02",
+        "name": "Automated Formal Verification via SMT Solvers (Z3)",
+        "tag": "formal_smt_verification",
+        "description": "Translate business logic functions into first-order logical constraints, proving mathematical absence of integer overflows and divide-by-zero crashes.",
+        "added_tech": ["Z3 Theorem Prover", "Symbolic Execution", "Constraint Satisfaction", "Python"]
+      },
+      {
+        "id": "pat-dev-03",
+        "name": "Differential Fuzzing Engine for OpenAPI & gRPC Contracts",
+        "tag": "differential_api_fuzzing",
+        "description": "Generate grammar-aware mutating payloads testing schema boundary edge cases, identifying silent deserialization crashes and memory leaks.",
+        "added_tech": ["Hypothesis", "Atheris", "gRPC reflection", "FastAPI OpenAPI specs"]
+      },
+      {
+        "id": "pat-dev-04",
+        "name": "Semantic Graph Embedding Code Clone & Duplication Detector",
+        "tag": "semantic_code_clone",
+        "description": "Represent functions as program dependency graphs and query 100k repository functions via vector similarity to detect refactoring targets.",
+        "added_tech": ["CodeBERT", "Tree-sitter", "Faiss", "NetworkX Graph Isomorphism"]
+      }
+    ],
+    "Transportation, Logistics & Supply Chain": [
+      {
+        "id": "pat-logistics-01",
+        "name": "Stochastic Dynamic Vehicle Routing with Battery State-of-Charge",
+        "tag": "ev_routing_stochastic",
+        "description": "Solve multi-stop fleet delivery routes factoring elevation grade, real-time traffic jams, and intermediate fast-charging station battery replenishment.",
+        "added_tech": ["Google OR-Tools", "OSRM Routing API", "Genetic Algorithms", "PostGIS"]
+      },
+      {
+        "id": "pat-logistics-02",
+        "name": "Cold-Chain Perishable Shelf-Life Kinetic Decay Modeling",
+        "tag": "perishable_coldchain_decay",
+        "description": "Calculate Arrhenius kinetic temperature-decay coefficients on refrigerated container food consignments using continuous IoT temperature dataloggers.",
+        "added_tech": ["SciPy Differential Equations", "MQTT / Protobuf", "Grafana", "TimescaleDB"]
+      },
+      {
+        "id": "pat-logistics-03",
+        "name": "Bayesian Demand Forecasting with Supply Shock Interruption",
+        "tag": "bayesian_demand_forecasting",
+        "description": "Model warehouse SKU replenishment with hierarchical Bayesian modeling accounting for promotional holidays and supplier transport delays.",
+        "added_tech": ["Prophet", "PyMC", "Scikit-Learn", "FastAPI"]
+      },
+      {
+        "id": "pat-logistics-04",
+        "name": "Edge Vision Pallet Packing Anomaly & Volumetric Measurement",
+        "tag": "volumetric_pallet_packing",
+        "description": "Estimate 3D cargo packing density and detect hazardous cargo overhangs using depth camera point clouds and bounding-box geometry.",
+        "added_tech": ["Open3D", "YOLOv8-OBB", "PyTorch", "Intel RealSense SDK"]
+      }
+    ],
+    "General Engineering & Enterprise Systems": [
+      {
+        "id": "pat-enterprise-01",
+        "name": "Event-Driven CQRS Architecture with Real-Time Elastic Search",
+        "tag": "cqrs_event_sourcing",
+        "description": "Separate command mutations from query reads with an append-only event log and streaming projections for sub-5ms search queries across millions of rows.",
+        "added_tech": ["EventStore / Kafka", "Elasticsearch", "PostgreSQL", "FastAPI"]
+      },
+      {
+        "id": "pat-enterprise-02",
+        "name": "Role-Based State Machine Workflow with Tamper-Proof Audit",
+        "tag": "state_machine_audit",
+        "description": "Enforce deterministic status transitions with cryptographic signature chains on approval actions preventing unauthorized state skips.",
+        "added_tech": ["Finite State Machine (FSM)", "HMAC Audit Signatures", "SQLAlchemy", "React Flow"]
+      },
+      {
+        "id": "pat-enterprise-03",
+        "name": "Automated Partition Failover & Circuit Breaker Telemetry",
+        "tag": "resilience_circuit_breaker",
+        "description": "Integrate fault-tolerant bulkhead isolation and exponential circuit breakers with Prometheus metrics to sustain partial cluster blackouts.",
+        "added_tech": ["Resilience4j / PyBreaker", "Prometheus", "Redis Sentinel", "Docker Healthchecks"]
+      },
+      {
+        "id": "pat-enterprise-04",
+        "name": "Streaming Multi-Tenant Resource Quotas & Token Bucket Limiter",
+        "tag": "token_bucket_quotas",
+        "description": "Enforce strict per-tenant concurrency limits and rolling API token buckets with Redis sliding-window memory structures.",
+        "added_tech": ["Redis Lua Scripts", "SlowAPI", "Celery", "PostgreSQL RLS"]
+      }
+    ]
+  }
+}

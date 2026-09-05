@@ -1,0 +1,138 @@
+{
+  "version": "1.0.0",
+  "description": "Taxonomy of problem categories and structural constraints for evaluating feasibility of student-typed project ideas.",
+  "categories": [
+    {
+      "id": "cat-seismic-prediction",
+      "name": "Long-Horizon Natural Disaster / Earthquake Prediction",
+      "domain": "Earth Sciences & Civil Engineering",
+      "keywords": ["earthquake prediction", "predict tsunami 30 days", "cyclone forecast months ahead", "volcanic eruption prediction"],
+      "feasibility_verdict": "LOW",
+      "failing_factors": [
+        "Data availability: no public dataset exists with sufficient underground geological sensor granularity or verifiable precursors.",
+        "Research complexity: long-horizon seismic prediction remains unsolved fundamental geophysics/PhD-level research, exceeding undergraduate capstone scope.",
+        "Timeline constraint: validating statistical significance against low-frequency seismic events requires years of longitudinal data."
+      ],
+      "scoped_down_alternative": {
+        "title": "Seismic Sensor Telemetry Anomaly Detection & Micro-Tremor Triage",
+        "description": "Short-horizon (under 60-second) P-wave seismic threshold detection and localized alert broadcasting using public USGS accelerometer streams.",
+        "recommended_domain": "Edge AI & TinyML / IoT",
+        "feasibility_band": "HIGH"
+      }
+    },
+    {
+      "id": "cat-autonomous-clinical",
+      "name": "Autonomous Clinical Diagnosis & Prescription Recommendation",
+      "domain": "Healthcare & Biomedical AI",
+      "keywords": ["autonomous doctor", "auto prescribe medicine", "ai clinical treatment dispenser", "diagnose cancer autonomously"],
+      "feasibility_verdict": "LOW",
+      "failing_factors": [
+        "Regulatory lockout: autonomous diagnostic prescriptions require clinical trials, IRB approval, and FDA/CE software-as-medical-device clearance.",
+        "Liability & safety risk: black-box medical treatment recommendations pose critical patient safety failure risks without licensed physician oversight.",
+        "Data availability: longitudinal patient pharmacology outcome datasets are restricted under HIPAA with no open public equivalent."
+      ],
+      "scoped_down_alternative": {
+        "title": "Clinical Radiograph Pathology Decision-Support Assistant with Grad-CAM",
+        "description": "Secondary triage assistant highlighting thoracic abnormalities on anonymized NIH/MIMIC chest X-rays to expedite radiologist review.",
+        "recommended_domain": "Healthcare & Biomedical AI",
+        "feasibility_band": "HIGH"
+      }
+    },
+    {
+      "id": "cat-hft-arbitrage",
+      "name": "Real-Time High-Frequency Trading & Arbitrage Engine",
+      "domain": "FinTech & Fraud Analytics",
+      "keywords": ["high frequency trading", "hft algorithmic trading", "predict stock price 100% accurate", "crypto arbitrage microsecond"],
+      "feasibility_verdict": "LOW",
+      "failing_factors": [
+        "Data availability: sub-millisecond Level-3 market order book feeds require expensive proprietary Bloomberg/Reuters institutional subscriptions.",
+        "Hardware infrastructure: true HFT requires colocation server racks inside exchange data centers and specialized FPGA execution circuits.",
+        "Efficient market hypothesis: simple statistical models fail against institutional market makers, resulting in rapid capital liquidation."
+      ],
+      "scoped_down_alternative": {
+        "title": "Temporal Graph Anti-Money Laundering & Synthetic Fraud Ring Detector",
+        "description": "Analyze transaction graphs on public Kaggle/IEEE financial datasets to identify multi-hop smurfing and laundering rings.",
+        "recommended_domain": "FinTech & Fraud Analytics",
+        "feasibility_band": "HIGH"
+      }
+    },
+    {
+      "id": "cat-frontier-llm-train",
+      "name": "Frontier Foundation Model Training from Scratch",
+      "domain": "Natural Language Processing",
+      "keywords": ["train gpt-5 from scratch", "train foundational llm", "create rival to chatgpt from scratch", "pretrain frontier model"],
+      "feasibility_verdict": "LOW",
+      "failing_factors": [
+        "Compute feasibility: pretraining foundational language models requires multimillion-dollar GPU clusters (thousands of H100s) and months of compute.",
+        "Data scale: curating and filtering multi-terabyte web corpora requires distributed data engineering infrastructure beyond university laboratories.",
+        "Budget constraints: power and cloud egress costs far exceed undergraduate capstone resources."
+      ],
+      "scoped_down_alternative": {
+        "title": "Domain-Specific Parameter-Efficient Fine-Tuning (QLoRA) & RAG Assistant",
+        "description": "Fine-tune an open-weights 7B/8B model using QLoRA with localized retrieval-augmented generation on a single consumer GPU.",
+        "recommended_domain": "Developer Tooling & Program Analysis",
+        "feasibility_band": "HIGH"
+      }
+    },
+    {
+      "id": "cat-satellite-guidance",
+      "name": "Commercial Satellite De-Orbit & Orbital Collision Interception",
+      "domain": "Aerospace & Systems Engineering",
+      "keywords": ["satellite deorbit autonomous", "space debris collision interceptor", "orbital laser tracking"],
+      "feasibility_verdict": "LOW",
+      "failing_factors": [
+        "Data availability: live radar telemetry tracking classified space objects is restricted under national security (ITAR) regulations.",
+        "Verification constraint: impossible to deploy or empirically validate spacecraft maneuvers in physical space during a university semester.",
+        "Physics complexity: multi-body gravitational perturbation and orbital decay modeling requires specialized aerospace flight software."
+      ],
+      "scoped_down_alternative": {
+        "title": "Physics-Engine Orbital Debris Conjunction Warning Simulation",
+        "description": "Simulate low-Earth orbit two-line element (TLE) satellite catalog ephemerides using SGP4 propagators to flag close conjunction passes.",
+        "recommended_domain": "General Engineering & Enterprise Systems",
+        "feasibility_band": "MODERATE"
+      }
+    },
+    {
+      "id": "cat-microgrid-forecasting",
+      "name": "Renewable Microgrid Solar & Battery Dispatch Telemetry",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "keywords": ["solar energy forecasting", "smart grid inverter", "microgrid battery management", "islanding detection"],
+      "feasibility_verdict": "HIGH",
+      "failing_factors": [],
+      "typical_requirements": {
+        "hardware": "CPU-only",
+        "team_size": 2,
+        "timeframe_weeks": 16,
+        "public_data": "NREL NSRDB Solar Radiation Database (Public Domain)"
+      }
+    },
+    {
+      "id": "cat-edge-sensor-audio",
+      "name": "Edge Acoustic Hazard & Industrial Vibration Anomaly Detector",
+      "domain": "Edge AI & TinyML / IoT",
+      "keywords": ["tinyml audio", "industrial machine vibration", "acoustic defect detection", "esp32 sensor fusion"],
+      "feasibility_verdict": "HIGH",
+      "failing_factors": [],
+      "typical_requirements": {
+        "hardware": "IoT hardware",
+        "team_size": 2,
+        "timeframe_weeks": 14,
+        "public_data": "NASA Bearing Dataset / MIMII Industrial Audio (Kaggle/Open)"
+      }
+    },
+    {
+      "id": "cat-static-taint-analyzer",
+      "name": "Static Program Analysis & Security Vulnerability Scanner",
+      "domain": "Developer Tooling & Program Analysis",
+      "keywords": ["static analysis", "ast parser", "vulnerability scanner python", "code quality analyzer"],
+      "feasibility_verdict": "HIGH",
+      "failing_factors": [],
+      "typical_requirements": {
+        "hardware": "CPU-only",
+        "team_size": 1,
+        "timeframe_weeks": 14,
+        "public_data": "Open Source GitHub Repositories (Public Domain / MIT)"
+      }
+    }
+  ]
+}

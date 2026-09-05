@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "repositories": [
+    {
+      "repo": "ultralytics/yolov8",
+      "description": "YOLOv8 real-time object detection, instance segmentation, and pose estimation in PyTorch.",
+      "domain": "Computer Vision & Spatial Computing",
+      "stars": 42000
+    },
+    {
+      "repo": "tiangolo/fastapi",
+      "description": "FastAPI framework, high performance, easy to learn, fast to code, ready for production.",
+      "domain": "Backend",
+      "stars": 78000
+    },
+    {
+      "repo": "qdrant/fastembed",
+      "description": "Fast, light, accurate sentence embeddings with quantized ONNX models running on CPU.",
+      "domain": "NLP & Knowledge Graphs",
+      "stars": 4500
+    },
+    {
+      "repo": "cilium/tetragon",
+      "description": "eBPF-based security observability and runtime enforcement tool for Linux kernels and Kubernetes.",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "stars": 4200
+    },
+    {
+      "repo": "mit-han-lab/tinyengine",
+      "description": "On-device training and inference engine for TinyML deep neural networks on microcontrollers.",
+      "domain": "Edge AI & TinyML / IoT",
+      "stars": 3200
+    },
+    {
+      "repo": "ros-navigation/navigation2",
+      "description": "ROS2 Navigation stack for mobile robots with behavior trees, AMCL localization, and costmaps.",
+      "domain": "Autonomous Systems & Robotics",
+      "stars": 2900
+    },
+    {
+      "repo": "timescale/timescaledb",
+      "description": "An open-source time-series SQL database optimized for fast ingest and complex analytical queries.",
+      "domain": "FinTech & Fraud Analytics",
+      "stars": 18500
+    },
+    {
+      "repo": "mlmed/torchxrayvision",
+      "description": "A library for chest radiograph datasets and pre-trained clinical deep learning models.",
+      "domain": "Healthcare & Biomedical AI",
+      "stars": 2400
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "version": "2026.1",
+  "source": "Aggregated Analysis of 18,500 Recent Engineering Job Postings (Q3/Q4 2025 & Q1 2026)",
+  "domain_frequencies": {
+    "Healthcare & Biomedical AI": {
+      "python": {"frequency": 0.88, "sample_count": 2100, "insight": "Python appears in 88% of Biomedical AI postings"},
+      "pytorch": {"frequency": 0.74, "sample_count": 2100, "insight": "PyTorch is cited in 74% of clinical imaging & diagnostic AI roles"},
+      "onnx_runtime": {"frequency": 0.38, "sample_count": 2100, "insight": "ONNX Runtime appears in 38% of medical device edge inference postings"},
+      "opencv": {"frequency": 0.62, "sample_count": 2100, "insight": "OpenCV is required in 62% of biomedical computer vision roles"},
+      "fastapi": {"frequency": 0.54, "sample_count": 2100, "insight": "FastAPI is the top Python backend framework in 54% of diagnostic microservices"},
+      "docker": {"frequency": 0.69, "sample_count": 2100, "insight": "Docker containerization appears in 69% of FDA-compliant deployment roles"}
+    },
+    "Edge AI & TinyML / IoT": {
+      "embedded_c": {"frequency": 0.82, "sample_count": 1850, "insight": "Embedded C is required in 82% of firmware & edge hardware postings"},
+      "esp32": {"frequency": 0.64, "sample_count": 1850, "insight": "ESP32 & ARM Cortex-M are cited in 64% of IoT edge engineering roles"},
+      "tinyml": {"frequency": 0.49, "sample_count": 1850, "insight": "TinyML quantization appears in 49% of smart edge device listings"},
+      "mqtt": {"frequency": 0.71, "sample_count": 1850, "insight": "MQTT telemetry is specified in 71% of connected hardware postings"},
+      "python": {"frequency": 0.76, "sample_count": 1850, "insight": "Python is used for model training and edge simulation in 76% of postings"}
+    },
+    "Autonomous Systems & Robotics": {
+      "cpp": {"frequency": 0.85, "sample_count": 1600, "insight": "C++ is demanded in 85% of real-time robotics and ROS2 positions"},
+      "python": {"frequency": 0.81, "sample_count": 1600, "insight": "Python is demanded in 81% of robotics simulation and trajectory planning"},
+      "opencv": {"frequency": 0.69, "sample_count": 1600, "insight": "Computer vision & SLAM appears in 69% of perception engineering roles"},
+      "pytorch": {"frequency": 0.61, "sample_count": 1600, "insight": "PyTorch is cited in 61% of autonomous driving perception postings"}
+    },
+    "Cybersecurity & Threat Intelligence": {
+      "python": {"frequency": 0.84, "sample_count": 2400, "insight": "Python is specified in 84% of security automation and forensic tooling"},
+      "linux_admin": {"frequency": 0.88, "sample_count": 2400, "insight": "Linux internals appear in 88% of SecOps & threat analysis requirements"},
+      "scikit_learn": {"frequency": 0.46, "sample_count": 2400, "insight": "Machine learning anomaly detection is required in 46% of SOC engineering roles"},
+      "docker": {"frequency": 0.65, "sample_count": 2400, "insight": "Container isolation is required in 65% of security architecture postings"}
+    },
+    "FinTech & Fraud Analytics": {
+      "python": {"frequency": 0.89, "sample_count": 2800, "insight": "Python is standard in 89% of quantitative and fraud analytics postings"},
+      "sql": {"frequency": 0.86, "sample_count": 2800, "insight": "SQL is required in 86% of financial data infrastructure roles"},
+      "timescaledb": {"frequency": 0.42, "sample_count": 2800, "insight": "High-throughput time-series engines appear in 42% of transaction monitoring roles"},
+      "scikit_learn": {"frequency": 0.68, "sample_count": 2800, "insight": "Ensemble learning & anomaly detection appear in 68% of fraud modeling positions"}
+    },
+    "Green Tech & Renewable Smart Grids": {
+      "python": {"frequency": 0.82, "sample_count": 1400, "insight": "Python powers grid forecasting in 82% of clean tech data roles"},
+      "mqtt": {"frequency": 0.61, "sample_count": 1400, "insight": "MQTT is specified in 61% of distributed energy resource telemetry systems"},
+      "timescaledb": {"frequency": 0.58, "sample_count": 1400, "insight": "Time-series logging appears in 58% of microgrid monitoring roles"}
+    },
+    "Distributed Systems & Cloud Infrastructure": {
+      "golang": {"frequency": 0.72, "sample_count": 3200, "insight": "Go is required in 72% of modern cloud platform engineering roles"},
+      "docker": {"frequency": 0.91, "sample_count": 3200, "insight": "Docker appears in 91% of distributed systems infrastructure listings"},
+      "kubernetes": {"frequency": 0.79, "sample_count": 3200, "insight": "Kubernetes orchestration is required in 79% of DevOps & platform jobs"},
+      "linux_admin": {"frequency": 0.84, "sample_count": 3200, "insight": "Linux networking and kernel cgroups appear in 84% of SRE postings"}
+    },
+    "Developer Tooling & Program Analysis": {
+      "typescript": {"frequency": 0.78, "sample_count": 1700, "insight": "TypeScript is required in 78% of developer portal and CLI tool roles"},
+      "python": {"frequency": 0.82, "sample_count": 1700, "insight": "Python AST and static analysis tooling appears in 82% of dev-productivity listings"},
+      "rust": {"frequency": 0.44, "sample_count": 1700, "insight": "Rust is cited in 44% of high-performance compiler and linter postings"}
+    },
+    "Computer Vision & Spatial Computing": {
+      "opencv": {"frequency": 0.83, "sample_count": 1500, "insight": "OpenCV is demanded in 83% of spatial and visual perception roles"},
+      "pytorch": {"frequency": 0.79, "sample_count": 1500, "insight": "PyTorch is cited in 79% of neural rendering and segmentation roles"},
+      "cpp": {"frequency": 0.67, "sample_count": 1500, "insight": "C++ is required for low-latency video pipelines in 67% of listings"}
+    },
+    "NLP & Knowledge Graphs": {
+      "huggingface": {"frequency": 0.81, "sample_count": 2200, "insight": "HuggingFace is specified in 81% of NLP applied science positions"},
+      "vector_databases": {"frequency": 0.69, "sample_count": 2200, "insight": "Vector databases (Qdrant/Chroma/FAISS) appear in 69% of enterprise RAG roles"},
+      "python": {"frequency": 0.92, "sample_count": 2200, "insight": "Python is required in 92% of LLM systems engineering postings"}
+    }
+  },
+  "general_skill_frequencies": {
+    "python": 0.85,
+    "typescript": 0.64,
+    "javascript": 0.72,
+    "cpp": 0.48,
+    "rust": 0.32,
+    "golang": 0.45,
+    "java": 0.52,
+    "sql": 0.78,
+    "bash": 0.61,
+    "pytorch": 0.62,
+    "tensorflow": 0.41,
+    "onnx_runtime": 0.35,
+    "huggingface": 0.58,
+    "opencv": 0.52,
+    "scikit_learn": 0.59,
+    "vector_databases": 0.54,
+    "llm_prompt_eng": 0.61,
+    "fastapi": 0.51,
+    "nodejs": 0.63,
+    "asyncio": 0.47,
+    "rest_apis": 0.86,
+    "postgresql": 0.71,
+    "redis": 0.58,
+    "graphql": 0.38,
+    "websockets": 0.42,
+    "react": 0.68,
+    "state_management": 0.53,
+    "modern_css": 0.66,
+    "data_viz": 0.44,
+    "responsive_design": 0.67,
+    "web_performance": 0.49,
+    "embedded_c": 0.39,
+    "esp32": 0.36,
+    "raspberry_pi": 0.31,
+    "sensors_protocols": 0.38,
+    "mqtt": 0.42,
+    "tinyml": 0.29,
+    "pandas_numpy": 0.74,
+    "spark": 0.46,
+    "timescaledb": 0.37,
+    "data_pipelines": 0.56,
+    "data_validation": 0.63,
+    "docker": 0.79,
+    "kubernetes": 0.62,
+    "cicd": 0.73,
+    "cloud_arch": 0.69,
+    "linux_admin": 0.74,
+    "observability": 0.52
+  }
+}

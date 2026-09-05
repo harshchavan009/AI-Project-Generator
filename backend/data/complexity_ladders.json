@@ -1,0 +1,286 @@
+{
+  "version": "1.0.0",
+  "description": "5-Level Complexity Ladder Progression Dataset across Engineering Capstone Domains.",
+  "ladders": {
+    "Healthcare & Biomedical AI": {
+      "domain": "Healthcare & Biomedical AI",
+      "category_anchor": "clinical diagnostic pathology medical imaging physiological telemetry",
+      "levels": [
+        {
+          "level": 1,
+          "title": "Basic Offline Pathology Classifier",
+          "scope": "Local script loading static JPEG images, running a standard pretrained ResNet, printing top-1 class in terminal.",
+          "capabilities": ["Single-image classification", "Command-line script execution", "Pretrained weights without fine-tuning"],
+          "tech_stack": ["Python", "PyTorch", "Torchvision"],
+          "estimated_weeks": 4,
+          "feasibility_score": 92.0,
+          "novelty_score": 38.0
+        },
+        {
+          "level": 2,
+          "title": "Web Triage API with DICOM Metadata Parsing",
+          "scope": "FastAPI service accepting medical DICOM format files, extracting patient metadata tags, and returning classification scores.",
+          "capabilities": ["DICOM file ingestion", "REST API endpoints", "Basic confidence thresholding", "Pydantic validation"],
+          "tech_stack": ["Python", "FastAPI", "PyDICOM", "PyTorch"],
+          "estimated_weeks": 8,
+          "feasibility_score": 85.0,
+          "novelty_score": 58.0
+        },
+        {
+          "level": 3,
+          "title": "INT8 Quantized Radiograph Pipeline with Grad-CAM",
+          "scope": "Standard Capstone: Multi-label classification with Grad-CAM heatmap overlays, INT8 ONNX CPU quantization, and React interface.",
+          "capabilities": ["INT8 CPU quantization (ONNX)", "Visual Grad-CAM saliency heatmaps", "Multi-label thoracic screening", "Interactive clinician UI"],
+          "tech_stack": ["FastAPI", "ONNX Runtime", "React", "Grad-CAM", "OpenCV"],
+          "estimated_weeks": 16,
+          "feasibility_score": 78.0,
+          "novelty_score": 82.5
+        },
+        {
+          "level": 4,
+          "title": "Hospital PACS-Integrated Streaming Triage Service",
+          "scope": "Event-driven DICOM PACS listener automatically queuing radiograph studies via Celery/Redis with physician audit trails.",
+          "capabilities": ["DICOM C-STORE PACS network listener", "Background worker queue", "Audit logging & clinician review workflow", "Docker deployment"],
+          "tech_stack": ["FastAPI", "Celery", "Redis", "PostgreSQL", "Orthanc PACS", "Docker"],
+          "estimated_weeks": 22,
+          "feasibility_score": 68.0,
+          "novelty_score": 88.0
+        },
+        {
+          "level": 5,
+          "title": "Federated Multi-Hospital Clinical AI with Differential Privacy",
+          "scope": "Research-grade: Decentralized federated model training across multiple institutional silos with Renyi differential privacy guarantees.",
+          "capabilities": ["Federated averaging across hospital nodes", "Formal differential privacy noise addition", "Demographic bias auditing", "Counterfactual validation"],
+          "tech_stack": ["Flower (FL)", "PySyft", "Opacus", "Kubernetes", "ONNX Runtime"],
+          "estimated_weeks": 30,
+          "feasibility_score": 52.0,
+          "novelty_score": 95.0
+        }
+      ]
+    },
+    "Cybersecurity & Threat Intelligence": {
+      "domain": "Cybersecurity & Threat Intelligence",
+      "category_anchor": "container security ebpf malware detection intrusion prevention threat intelligence",
+      "levels": [
+        {
+          "level": 1,
+          "title": "Static Log Parser & Regex Rule Matcher",
+          "scope": "Python script searching Linux auth.log and syslog for repeated failed SSH passwords using static regex patterns.",
+          "capabilities": ["Regex pattern matching", "CSV summary generation", "Static threshold alerting"],
+          "tech_stack": ["Python", "Regex"],
+          "estimated_weeks": 4,
+          "feasibility_score": 94.0,
+          "novelty_score": 35.0
+        },
+        {
+          "level": 2,
+          "title": "Live Syslog Ingestion & Geo-IP Alert Dashboard",
+          "scope": "REST service parsing continuous syslog streams via UDP, resolving attacker IP geolocation, and displaying live map alerts.",
+          "capabilities": ["UDP socket listener", "MaxMind GeoIP lookups", "Live dashboard map", "Email alerts"],
+          "tech_stack": ["FastAPI", "WebSockets", "GeoIP2", "React", "Leaflet"],
+          "estimated_weeks": 8,
+          "feasibility_score": 86.0,
+          "novelty_score": 54.0
+        },
+        {
+          "level": 3,
+          "title": "eBPF Real-Time Container Privilege Interceptor",
+          "scope": "Standard Capstone: In-kernel eBPF syscall tracing flagging and killing processes attempting namespace breakouts in Docker.",
+          "capabilities": ["eBPF tracepoint probes", "Sub-2ms kernel intervention", "MITRE ATT&CK technique mapping", "Security taint graph"],
+          "tech_stack": ["C / Go", "eBPF (BCC)", "Python", "Docker", "FastAPI"],
+          "estimated_weeks": 16,
+          "feasibility_score": 68.5,
+          "novelty_score": 94.0
+        },
+        {
+          "level": 4,
+          "title": "Kubernetes Admission Webhook & Dynamic Policy Engine",
+          "scope": "Cluster-wide mutating admission controller verifying pod security contexts and dynamically injecting runtime eBPF sidecars.",
+          "capabilities": ["Kubernetes MutatingAdmissionWebhook", "Dynamic eBPF sidecar injection", "Prometheus security metrics", "PromQL alerts"],
+          "tech_stack": ["Go", "Kubernetes", "Cilium / Tetragon", "Prometheus", "Helm"],
+          "estimated_weeks": 24,
+          "feasibility_score": 58.0,
+          "novelty_score": 96.0
+        },
+        {
+          "level": 5,
+          "title": "Zero-Knowledge Verifiable Audit Chain with Formal Policy Proving",
+          "scope": "Enterprise/Research: Cryptographic zero-knowledge proof generation of security events with formal SMT policy verification.",
+          "capabilities": ["zk-SNARK proof generation for compliance", "Z3 formal theorem proving of security policies", "Distributed multi-agent consensus"],
+          "tech_stack": ["Circom", "snarkjs", "Z3 Theorem Prover", "Rust", "libp2p"],
+          "estimated_weeks": 32,
+          "feasibility_score": 45.0,
+          "novelty_score": 98.0
+        }
+      ]
+    },
+    "Edge AI & TinyML / IoT": {
+      "domain": "Edge AI & TinyML / IoT",
+      "category_anchor": "tinyml microcontroller sensor fusion esp32 low power embedded hardware",
+      "levels": [
+        {
+          "level": 1,
+          "title": "Threshold Sensor Logger with Serial Output",
+          "scope": "Arduino sketch reading DHT11 temperature sensor and printing threshold exceedance warnings over USB serial connection.",
+          "capabilities": ["Analog/digital GPIO reading", "Simple threshold logic", "Serial monitor plotting"],
+          "tech_stack": ["Arduino C++", "Hardware Sensors"],
+          "estimated_weeks": 3,
+          "feasibility_score": 96.0,
+          "novelty_score": 30.0
+        },
+        {
+          "level": 2,
+          "title": "WiFi MQTT Telemetry Datalogger with Cloud Charting",
+          "scope": "ESP32 publishing temperature and humidity packets over MQTT to an Adafruit IO cloud dashboard with threshold email notifications.",
+          "capabilities": ["WiFi connectivity", "MQTT protocol publishing", "Cloud dashboard charts", "Deep sleep power cycling"],
+          "tech_stack": ["ESP-IDF / Arduino", "MQTT", "Adafruit IO", "C++"],
+          "estimated_weeks": 7,
+          "feasibility_score": 88.0,
+          "novelty_score": 52.0
+        },
+        {
+          "level": 3,
+          "title": "Ultra-Low-Power TinyML Wildfire Sensor Fusion",
+          "scope": "Standard Capstone: Onboard 12KB neural classifier running on bare-metal ESP32 fusing particulate matter and temperature.",
+          "capabilities": ["Onboard 8-bit quantized neural inference", "Multi-sensor fusion (PM2.5, VOC, Temp)", "Sub-15KB RAM footprint", "Battery life > 180 days"],
+          "tech_stack": ["TensorFlow Lite Micro", "ESP32 C++", "CMSIS-NN", "FastAPI"],
+          "estimated_weeks": 14,
+          "feasibility_score": 82.0,
+          "novelty_score": 89.0
+        },
+        {
+          "level": 4,
+          "title": "LoRaWAN Mesh Swarm with Differential OTA Updates",
+          "scope": "Decentralized mesh network of 5+ solar sensor nodes sharing hazard consensus and receiving binary diff OTA firmware updates.",
+          "capabilities": ["LoRaWAN ad-hoc mesh networking", "Byzantine fault tolerance", "Binary differential firmware updates", "Energy harvesting"],
+          "tech_stack": ["LoRaWAN", "open-vcdiff", "FreeRTOS", "ChirpStack", "Grafana"],
+          "estimated_weeks": 22,
+          "feasibility_score": 64.0,
+          "novelty_score": 93.0
+        },
+        {
+          "level": 5,
+          "title": "Intermittent Computing Acoustic Classifier with Energy Harvesting",
+          "scope": "Battery-free sensor node powered strictly by ambient vibration and solar, with non-volatile FRAM state checkpointing.",
+          "capabilities": ["Battery-free intermittent execution", "FRAM sub-microsecond state checkpointing", "Neuromorphic acoustic feature extractor"],
+          "tech_stack": ["MSP430 / FRAM", "Energy Budget Manager", "Custom Hardware PCB", "C"],
+          "estimated_weeks": 30,
+          "feasibility_score": 48.0,
+          "novelty_score": 97.0
+        }
+      ]
+    },
+    "FinTech & Fraud Analytics": {
+      "domain": "FinTech & Fraud Analytics",
+      "category_anchor": "fraud detection transaction graph neural network credit risk banking streaming",
+      "levels": [
+        {
+          "level": 1,
+          "title": "Rule-Based Spending Anomaly Flag",
+          "scope": "Jupyter notebook applying static z-score thresholds on transaction amount per user account to output an anomaly CSV.",
+          "capabilities": ["Statistical z-score outlier detection", "CSV batch processing", "Matplotlib histogram plotting"],
+          "tech_stack": ["Python", "Pandas", "Matplotlib"],
+          "estimated_weeks": 3,
+          "feasibility_score": 95.0,
+          "novelty_score": 32.0
+        },
+        {
+          "level": 2,
+          "title": "Supervised Credit Scoring API with Logistic Regression",
+          "scope": "REST endpoint scoring loan applications using Scikit-Learn Logistic Regression with basic SQLite credit profile storage.",
+          "capabilities": ["Feature scaling pipeline", "Model serialization via Joblib", "REST scoring endpoint", "Input validation"],
+          "tech_stack": ["Python", "Scikit-Learn", "FastAPI", "SQLite"],
+          "estimated_weeks": 7,
+          "feasibility_score": 89.0,
+          "novelty_score": 48.0
+        },
+        {
+          "level": 3,
+          "title": "Anti-Money Laundering via Temporal Graph Neural Networks",
+          "scope": "Standard Capstone: Dynamic graph convolution tracking cyclic laundering rings across 500k transactions with TreeSHAP explanations.",
+          "capabilities": ["Temporal graph neural network (T-GNN)", "Cyclic smurfing detection", "Exact TreeSHAP feature explanations", "PostgreSQL storage"],
+          "tech_stack": ["PyTorch Geometric", "PostgreSQL", "FastAPI", "React", "SHAP"],
+          "estimated_weeks": 16,
+          "feasibility_score": 74.0,
+          "novelty_score": 85.0
+        },
+        {
+          "level": 4,
+          "title": "Sub-10ms Streaming Fraud Engine via Apache Flink",
+          "scope": "High-throughput streaming engine processing 20k transactions/sec with sliding window aggregations and RocksDB persistence.",
+          "capabilities": ["Distributed stream processing", "Sliding time-window aggregations", "Sub-10ms latency SLAs", "Kafka event bus"],
+          "tech_stack": ["Apache Flink", "Kafka", "RocksDB", "Triton Inference Server", "Go"],
+          "estimated_weeks": 24,
+          "feasibility_score": 60.0,
+          "novelty_score": 91.0
+        },
+        {
+          "level": 5,
+          "title": "Self-Supervised Graph Contrastive Anti-Collusion System",
+          "scope": "Enterprise/Research: Self-supervised multi-agent transaction ring discovery under severe 0.001% fraud imbalance with zero labeled historical data.",
+          "capabilities": ["Self-supervised graph contrastive representation", "Adversarial network synthesis", "Zero-day fraud cluster discovery"],
+          "tech_stack": ["DGL / PyG", "Ray Distributed", "Faiss Vector Store", "PyTorch"],
+          "estimated_weeks": 32,
+          "feasibility_score": 46.0,
+          "novelty_score": 96.0
+        }
+      ]
+    },
+    "Green Tech & Renewable Smart Grids": {
+      "domain": "Green Tech & Renewable Smart Grids",
+      "category_anchor": "solar grid renewable energy inverter battery dispatch islanding telemetry",
+      "levels": [
+        {
+          "level": 1,
+          "title": "Static Solar Irradiance Calculator",
+          "scope": "Python script computing astronomical sun angle and theoretical solar panel DC wattage output from weather CSV.",
+          "capabilities": ["Solar geometry calculation", "Static CSV parsing", "Simple output table"],
+          "tech_stack": ["Python", "Pvlib", "Pandas"],
+          "estimated_weeks": 3,
+          "feasibility_score": 95.0,
+          "novelty_score": 30.0
+        },
+        {
+          "level": 2,
+          "title": "IoT Inverter Telemetry Logger & Energy Dashboard",
+          "scope": "ESP32 reading solar inverter voltage and current over RS485/Modbus, streaming to InfluxDB with Grafana visualization.",
+          "capabilities": ["Modbus-RTU protocol parsing", "Time-series database ingestion", "Grafana energy dashboard", "Daily kWh aggregation"],
+          "tech_stack": ["ESP32", "Modbus-RTU", "InfluxDB", "Grafana", "Python"],
+          "estimated_weeks": 8,
+          "feasibility_score": 87.0,
+          "novelty_score": 52.0
+        },
+        {
+          "level": 3,
+          "title": "Physics-Informed Solar Telemetry & Islanding Interceptor",
+          "scope": "Standard Capstone: Hybrid neural forecasting and Kirchhoff law simulator managing bi-directional power flows and islanding detection.",
+          "capabilities": ["Physics-informed neural forecasting", "Kirchhoff voltage constraint checking", "Sub-100ms islanding detection", "Microgrid dispatch optimization"],
+          "tech_stack": ["PyTorch / DeepXDE", "OpenDSS", "TimescaleDB", "FastAPI", "React"],
+          "estimated_weeks": 16,
+          "feasibility_score": 76.0,
+          "novelty_score": 88.0
+        },
+        {
+          "level": 4,
+          "title": "Multi-Inverter Peer-to-Peer Cooperative Dispatch",
+          "scope": "Autonomous distributed neighborhood microgrid balancing active and reactive power across 10 inverters without centralized SCADA.",
+          "capabilities": ["Decentralized consensus protocol", "Droop control voltage regulation", "Hardware-in-the-loop (HIL) simulation", "MQTT telemetry"],
+          "tech_stack": ["Pandapower", "ZeroMQ", "FastAPI", "Docker", "Prometheus"],
+          "estimated_weeks": 24,
+          "feasibility_score": 62.0,
+          "novelty_score": 92.0
+        },
+        {
+          "level": 5,
+          "title": "Satellite-Coupled Multi-Agent Reinforcement Learning Grid Market",
+          "scope": "Research-grade: Nowcasting cloud optical flow from GOES satellites coupled with MARL agents bidding on dynamic LMP tariffs.",
+          "capabilities": ["Satellite optical flow nowcasting", "Multi-agent reinforcement learning (MARL)", "Dynamic locational marginal pricing (LMP)", "IEEE test feeder benchmarks"],
+          "tech_stack": ["Ray RLlib", "PettingZoo", "OpenCV", "Geopandas", "Xarray"],
+          "estimated_weeks": 32,
+          "feasibility_score": 48.0,
+          "novelty_score": 96.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "version": "1.0.0",
+  "entries": [
+    {
+      "id": "kb-med-01",
+      "domain": "Healthcare & Biomedical AI",
+      "title": "TorchXRayVision: A Library of Chest X-Ray Datasets and Models",
+      "authors": "Cohen et al., Stanford / Mila",
+      "type": "paper",
+      "url": "https://github.com/mlmed/torchxrayvision",
+      "year": 2024,
+      "summary": "Unified benchmark and pre-trained deep neural architectures for chest radiograph classification, pathology localization, and out-of-distribution detection across 14 clinical findings.",
+      "keywords": ["chest x-ray", "pathology triage", "medical imaging", "grad-cam", "pytorch", "clinical ai"]
+    },
+    {
+      "id": "kb-med-02",
+      "domain": "Healthcare & Biomedical AI",
+      "title": "ONNX Runtime: Cross-Platform Accelerated Machine Learning Inference",
+      "authors": "Microsoft / Linux Foundation",
+      "type": "github_repo",
+      "url": "https://github.com/microsoft/onnxruntime",
+      "year": 2025,
+      "summary": "High-performance inference engine for ONNX models across CPU, GPU, and edge NPU hardware targets with post-training INT8 quantization, graph fusion, and memory optimizations.",
+      "keywords": ["onnx", "quantization", "int8", "latency optimization", "inference engine", "edge deployment"]
+    },
+    {
+      "id": "kb-edge-01",
+      "domain": "Edge AI & TinyML / IoT",
+      "title": "TinyEngine: Memory-Efficient Neural Network Execution for Microcontrollers",
+      "authors": "Lin, Chen, Han (MIT EECS)",
+      "type": "paper",
+      "url": "https://github.com/mit-han-lab/tinyengine",
+      "year": 2024,
+      "summary": "Code-generation based inference engine that offloads memory scheduling to compile-time, running deep neural networks in under 256KB SRAM on bare-metal Cortex-M and ESP32 chips.",
+      "keywords": ["tinyml", "esp32", "microcontrollers", "embedded c", "memory footprint", "edge inference"]
+    },
+    {
+      "id": "kb-edge-02",
+      "domain": "Edge AI & TinyML / IoT",
+      "title": "Edge Impulse Firmware: Sensor Ingestion & Quantized DSP Kernels",
+      "authors": "Edge Impulse Open Source",
+      "type": "github_repo",
+      "url": "https://github.com/edgeimpulse/firmware-sdk",
+      "year": 2025,
+      "summary": "Embedded DSP processing pipeline implementing FFT, MFCC audio features, and CMSIS-NN quantized tensor operations for continuous low-power sensor telemetry.",
+      "keywords": ["dsp", "edge ai", "imu sensors", "cmsis-nn", "microcontroller", "low power"]
+    },
+    {
+      "id": "kb-robo-01",
+      "domain": "Autonomous Systems & Robotics",
+      "title": "Nav2: The ROS2 Navigation Stack for Autonomous Mobile Robots",
+      "authors": "Macenski et al., Open Navigation LLC",
+      "type": "github_repo",
+      "url": "https://github.com/ros-navigation/navigation2",
+      "year": 2025,
+      "summary": "Modular behavior tree navigation framework for ROS2 Humble/Jazzy, featuring dynamic obstacle costmaps, MPPI controllers, and AMCL probabilistic localization.",
+      "keywords": ["ros2", "robotics", "navigation", "costmap", "slam", "autonomous mobile robots"]
+    },
+    {
+      "id": "kb-robo-02",
+      "domain": "Autonomous Systems & Robotics",
+      "title": "RT-DETR: Real-Time DEtection TRansformer with Vision-Language Perception",
+      "authors": "Lv et al., Baidu AI Lab",
+      "type": "paper",
+      "url": "https://github.com/lyuwenyu/RT-DETR",
+      "year": 2024,
+      "summary": "First end-to-end real-time object detector utilizing deformable transformers, eliminating non-maximum suppression (NMS) latency for robotics vision systems.",
+      "keywords": ["object detection", "transformer", "real-time", "robotics perception", "cuda", "tensorrt"]
+    },
+    {
+      "id": "kb-cyber-01",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "title": "eBPF-Based Runtime Threat Detection and Kernel Trace Telemetry",
+      "authors": "Isovalent / Cilium Community",
+      "type": "paper",
+      "url": "https://github.com/cilium/tetragon",
+      "year": 2024,
+      "summary": "Kernel-level security observability tool that intercepts syscalls, namespace escapes, and privilege escalations in real-time with sub-microsecond overhead.",
+      "keywords": ["ebpf", "threat detection", "kernel security", "linux", "syscall interception", "zero overhead"]
+    },
+    {
+      "id": "kb-cyber-02",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "title": "Suricata: High-Performance Network Threat Detection and PCAP Parsing",
+      "authors": "Open Information Security Foundation (OISF)",
+      "type": "github_repo",
+      "url": "https://github.com/OISF/suricata",
+      "year": 2025,
+      "summary": "Multi-threaded intrusion detection and prevention engine parsing protocols like TLS, HTTP/2, DNS at line speed with custom rule matching and JSON telemetry output.",
+      "keywords": ["network security", "intrusion detection", "suricata", "packet inspection", "multithreading"]
+    },
+    {
+      "id": "kb-fin-01",
+      "domain": "FinTech & Fraud Analytics",
+      "title": "Temporal Graph Neural Networks for Dynamic Transaction Fraud Detection",
+      "authors": "Kumar et al., ACM SIGKDD",
+      "type": "paper",
+      "url": "https://arxiv.org/abs/2309.11245",
+      "year": 2024,
+      "summary": "Continuous-time dynamic graph representation learning architecture modeling time-decayed financial transaction edges to catch sybil clusters and money laundering rings.",
+      "keywords": ["graph neural networks", "temporal graph", "fraud detection", "fintech", "anomaly detection"]
+    },
+    {
+      "id": "kb-fin-02",
+      "domain": "FinTech & Fraud Analytics",
+      "title": "TimescaleDB: Scalable Time-Series Data for Real-Time Financial Ledger Analytics",
+      "authors": "Timescale Engineering",
+      "type": "github_repo",
+      "url": "https://github.com/timescale/timescaledb",
+      "year": 2025,
+      "summary": "PostgreSQL extension partitioning relational records into distributed hypertables with columnar compression, enabling sub-10ms queries over billions of transaction events.",
+      "keywords": ["timescaledb", "time-series", "postgresql", "columnar storage", "fintech metrics"]
+    },
+    {
+      "id": "kb-green-01",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "title": "Physics-Informed Neural Networks for Photovoltaic Microgrid State Estimation",
+      "authors": "Zhang et al., IEEE Transactions on Smart Grid",
+      "type": "paper",
+      "url": "https://arxiv.org/abs/2311.08721",
+      "year": 2024,
+      "summary": "Hybrid PINN architecture integrating Kirchhoff current laws with LSTM weather forecasting to balance localized battery storage and solar inverter curtailment.",
+      "keywords": ["smart grid", "pinn", "solar telemetry", "microgrid", "renewable energy", "energy storage"]
+    },
+    {
+      "id": "kb-dist-01",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "title": "Raft Consensus Algorithm in Modern Distributed Key-Value Engines",
+      "authors": "Ongaro & Ousterhout, Stanford University",
+      "type": "paper",
+      "url": "https://raft.github.io/",
+      "year": 2024,
+      "summary": "Understandable consensus protocol for fault-tolerant state machine replication, leader election, log compaction, and membership reconfiguration in distributed backends.",
+      "keywords": ["raft", "distributed consensus", "fault tolerance", "state machine", "replication"]
+    },
+    {
+      "id": "kb-dev-01",
+      "domain": "Developer Tooling & Program Analysis",
+      "title": "Static Analysis and AST Taint Propagation for Python Vulnerability Discovery",
+      "authors": "Bandit / PyCQA Security Team",
+      "type": "github_repo",
+      "url": "https://github.com/PyCQA/bandit",
+      "year": 2025,
+      "summary": "AST visitor framework scanning Python source code syntax trees for insecure deserialization, SQL injection vectors, weak cryptographic keys, and shell injection.",
+      "keywords": ["ast", "static analysis", "python syntax tree", "code security", "taint analysis"]
+    },
+    {
+      "id": "kb-vision-01",
+      "domain": "Computer Vision & Spatial Computing",
+      "title": "FastSAM: Fast Segment Anything Model at Real-Time Latencies",
+      "authors": "Zhao et al., CVPR",
+      "type": "paper",
+      "url": "https://github.com/CASIA-IVA-Lab/FastSAM",
+      "year": 2024,
+      "summary": "Real-time promptable segmentation network reformulating segment-anything into an instance segmentation CNN task with 50x speedup over vanilla vision transformers.",
+      "keywords": ["fastsam", "segment anything", "instance segmentation", "computer vision", "edge gpu"]
+    },
+    {
+      "id": "kb-nlp-01",
+      "domain": "NLP & Knowledge Graphs",
+      "title": "FastEmbed: Fast, Light, Accurate Sentence Embeddings with Quantized ONNX",
+      "authors": "Qdrant Team",
+      "type": "github_repo",
+      "url": "https://github.com/qdrant/fastembed",
+      "year": 2025,
+      "summary": "Zero-dependency CPU-optimized sentence embedding library using INT8 quantized MiniLM and BGE models without PyTorch, delivering sub-15ms embedding generation on CPU.",
+      "keywords": ["fastembed", "onnx", "sentence embedding", "vector search", "cpu inference", "quantization"]
+    }
+  ]
+}

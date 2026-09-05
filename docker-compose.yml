@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # 1. Production PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: capstoneforge_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: capstoneforge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: capstone_prod_password_2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d capstoneforge"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - capstone_net
+
+  # 2. FastAPI Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: capstoneforge_backend
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:capstone_prod_password_2026@postgres:5432/capstoneforge
+      - JWT_SECRET_KEY=capstoneforge-jwt-production-secret-key-2026-v2-secure
+      - PII_ENCRYPTION_KEY=capstoneforge-fernet-encryption-key-for-pii-2026
+      - ENVIRONMENT=production
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - SENTRY_DSN=${SENTRY_DSN:-}
+      - ALLOWED_ORIGINS=http://localhost,http://127.0.0.1,http://localhost:5173,http://localhost:80
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - capstone_net
+
+  # 3. React Frontend (Nginx Alpine)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: capstoneforge_frontend
+    restart: always
+    ports:
+      - "80:80"
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - capstone_net
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  capstone_net:
+    driver: bridge

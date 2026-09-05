@@ -1,0 +1,78 @@
+{
+  "version": "1.0.0",
+  "department": "Department of Computer Science & Engineering",
+  "historical_projects": [
+    {
+      "id": "hist-2024-01",
+      "title": "Smart Attendance System using Facial Recognition",
+      "domain": "Computer Vision & Spatial Computing",
+      "year": 2024,
+      "abstract": "Automated classroom student attendance logging using Haar cascades, OpenCV face detector, and LBPH face recognizer with MySQL database backend.",
+      "authors": "Batch of 2024 - Team 4",
+      "tags": ["attendance", "facial recognition", "opencv", "mysql"]
+    },
+    {
+      "id": "hist-2024-02",
+      "title": "E-Commerce Recommendation System using Collaborative Filtering",
+      "domain": "Data",
+      "year": 2024,
+      "abstract": "Matrix factorization and collaborative filtering algorithm in Python predicting customer item ratings based on historical user purchase logs.",
+      "authors": "Batch of 2024 - Team 11",
+      "tags": ["recommendation", "collaborative filtering", "pandas", "flask"]
+    },
+    {
+      "id": "hist-2024-03",
+      "title": "Crop Disease Detection using Convolutional Neural Networks",
+      "domain": "Healthcare & Biomedical AI",
+      "year": 2024,
+      "abstract": "Leaf blight and rust classifier using VGG-16 transfer learning on the PlantVillage dataset with a simple Streamlit web interface.",
+      "authors": "Batch of 2024 - Team 19",
+      "tags": ["crop disease", "vgg16", "cnn", "streamlit"]
+    },
+    {
+      "id": "hist-2025-01",
+      "title": "IoT-Based Home Automation and Intruder Alert System",
+      "domain": "Edge AI & TinyML / IoT",
+      "year": 2025,
+      "abstract": "PIR motion sensor connected to an Arduino Uno triggering relay modules to switch AC appliances and sending SMS notifications via GSM SIM800L module.",
+      "authors": "Batch of 2025 - Team 2",
+      "tags": ["home automation", "arduino", "gsm", "pir sensor"]
+    },
+    {
+      "id": "hist-2025-02",
+      "title": "Credit Card Fraud Detection using Logistic Regression and Random Forest",
+      "domain": "FinTech & Fraud Analytics",
+      "year": 2025,
+      "abstract": "Supervised classification of Kaggle European credit card transactions with SMOTE oversampling for imbalanced class distributions.",
+      "authors": "Batch of 2025 - Team 8",
+      "tags": ["fraud detection", "random forest", "smote", "scikit-learn"]
+    },
+    {
+      "id": "hist-2025-03",
+      "title": "Twitter Sentiment Analysis on Crypto Currency Trends",
+      "domain": "NLP & Knowledge Graphs",
+      "year": 2025,
+      "abstract": "Scraping tweets using Tweepy, preprocessing with NLTK tokenizers, and calculating polarity scores using VADER sentiment analyzer.",
+      "authors": "Batch of 2025 - Team 15",
+      "tags": ["sentiment analysis", "twitter", "nltk", "vader"]
+    },
+    {
+      "id": "hist-2025-04",
+      "title": "Cloud-Based Health Record Management on Ethereum Blockchain",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "year": 2025,
+      "abstract": "Decentralized electronic health record storage utilizing IPFS for encrypted PDF files and Solidity smart contracts deployed on Ganache testnet.",
+      "authors": "Batch of 2025 - Team 22",
+      "tags": ["blockchain", "ethereum", "ipfs", "solidity"]
+    },
+    {
+      "id": "hist-2025-05",
+      "title": "Real-Time Traffic Sign Recognition for Driver Assistance",
+      "domain": "Autonomous Systems & Robotics",
+      "year": 2025,
+      "abstract": "GTSRB traffic sign identification using a 4-layer custom CNN architecture and OpenCV bounding box contours displayed on a desktop GUI.",
+      "authors": "Batch of 2025 - Team 31",
+      "tags": ["traffic sign", "cnn", "opencv", "adas"]
+    }
+  ]
+}

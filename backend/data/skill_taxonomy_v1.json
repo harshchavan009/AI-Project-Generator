@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "name": "Engineering Capstone Skill Taxonomy",
+  "categories": [
+    {
+      "id": "languages",
+      "name": "Languages",
+      "description": "Core programming and query languages used in modern software and hardware engineering.",
+      "skills": [
+        {"id": "python", "name": "Python", "difficulty": 2, "description": "High-level programming language for scientific computing, web, and AI."},
+        {"id": "typescript", "name": "TypeScript", "difficulty": 3, "description": "Strict syntactical superset of JavaScript adding static typing."},
+        {"id": "javascript", "name": "JavaScript (ES6+)", "difficulty": 2, "description": "Core language for web runtime and dynamic frontend/backend scripting."},
+        {"id": "cpp", "name": "C / C++", "difficulty": 4, "description": "Low-level systems programming language with manual memory management."},
+        {"id": "rust", "name": "Rust", "difficulty": 4, "description": "Memory-safe systems language with affine type system without garbage collection."},
+        {"id": "golang", "name": "Go", "difficulty": 3, "description": "Compiled, concurrent systems language for cloud and network services."},
+        {"id": "java", "name": "Java", "difficulty": 3, "description": "Object-oriented, class-based language common in enterprise backends."},
+        {"id": "sql", "name": "SQL", "difficulty": 2, "description": "Standard language for querying and managing relational databases."},
+        {"id": "bash", "name": "Bash / Shell Scripting", "difficulty": 2, "description": "Command-line scripting for automation, pipelines, and OS tasks."}
+      ]
+    },
+    {
+      "id": "ml_ai",
+      "name": "ML / AI",
+      "description": "Machine learning, neural networks, computer vision, and model inference optimization.",
+      "skills": [
+        {"id": "pytorch", "name": "PyTorch", "difficulty": 3, "description": "Dynamic tensor computation library with GPU acceleration for deep learning."},
+        {"id": "tensorflow", "name": "TensorFlow / Keras", "difficulty": 3, "description": "End-to-end open source machine learning platform."},
+        {"id": "onnx_runtime", "name": "ONNX Runtime", "difficulty": 3, "description": "Cross-platform high-performance accelerator for ONNX quantized neural network models."},
+        {"id": "huggingface", "name": "HuggingFace Transformers", "difficulty": 3, "description": "State-of-the-art NLP, vision, and audio foundation models and fine-tuning pipelines."},
+        {"id": "opencv", "name": "OpenCV / Computer Vision", "difficulty": 3, "description": "Real-time image processing, optical flow, segmentation, and feature extraction."},
+        {"id": "scikit_learn", "name": "Scikit-Learn", "difficulty": 2, "description": "Machine learning in Python: classification, regression, clustering, and dimensionality reduction."},
+        {"id": "vector_databases", "name": "Vector Databases (FAISS / Chroma / Qdrant)", "difficulty": 3, "description": "High-dimensional vector indexing and approximate nearest neighbor search."},
+        {"id": "llm_prompt_eng", "name": "LLM Prompting & Fine-Tuning", "difficulty": 3, "description": "Structured generation, LoRA fine-tuning, RAG retrieval workflows, and eval frameworks."}
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "Backend",
+      "description": "Server-side architectures, API design, concurrency, and persistent storage.",
+      "skills": [
+        {"id": "fastapi", "name": "FastAPI", "difficulty": 2, "description": "Modern, fast, ASGI web framework for building APIs with Python and Pydantic."},
+        {"id": "nodejs", "name": "Node.js / Express", "difficulty": 2, "description": "Asynchronous event-driven JavaScript backend runtime."},
+        {"id": "asyncio", "name": "Async Concurrency (asyncio / coroutines)", "difficulty": 3, "description": "Non-blocking event loop execution, cooperative multitasking, and async pools."},
+        {"id": "rest_apis", "name": "REST API Architecture", "difficulty": 2, "description": "Stateless HTTP protocol conventions, status codes, OpenAPI specs, and idempotency."},
+        {"id": "postgresql", "name": "PostgreSQL & SQLAlchemy", "difficulty": 3, "description": "ACID relational database design, indexing, transactions, and ORM modeling."},
+        {"id": "redis", "name": "Redis & Caching", "difficulty": 2, "description": "In-memory key-value data store for caching, pub/sub, and session management."},
+        {"id": "graphql", "name": "GraphQL APIs", "difficulty": 3, "description": "Schema-driven query language allowing clients to request exact data shapes."},
+        {"id": "websockets", "name": "WebSockets / SSE Streaming", "difficulty": 3, "description": "Bi-directional real-time communication and server-sent event streams."}
+      ]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend",
+      "description": "Client-side interactive user interfaces, visual design, and state management.",
+      "skills": [
+        {"id": "react", "name": "React", "difficulty": 2, "description": "Declarative component-driven user interface library with virtual DOM."},
+        {"id": "state_management", "name": "State Management (Zustand / Redux)", "difficulty": 3, "description": "Predictable centralized and slice-based client state architectures."},
+        {"id": "modern_css", "name": "TailwindCSS & Modern CSS", "difficulty": 2, "description": "Utility-first CSS framework, CSS variables, flexbox, grid, and fluid typography."},
+        {"id": "data_viz", "name": "Data Visualization (D3.js / Recharts)", "difficulty": 4, "description": "Force simulations, SVG hierarchies, radial charts, and dynamic canvas graphs."},
+        {"id": "responsive_design", "name": "Responsive UI & Accessibility (a11y)", "difficulty": 2, "description": "Mobile-first layouts, ARIA compliance, screen reader support, and keyboard nav."},
+        {"id": "web_performance", "name": "Web Performance Optimization", "difficulty": 3, "description": "Code splitting, bundle tree-shaking, lazy loading, and Core Web Vitals profiling."}
+      ]
+    },
+    {
+      "id": "hardware_iot",
+      "name": "Hardware / IoT",
+      "description": "Embedded microcontrollers, sensor integration, telemetry protocols, and TinyML.",
+      "skills": [
+        {"id": "embedded_c", "name": "Embedded C / MicroPython", "difficulty": 3, "description": "Low-level firmware development for microcontrollers and bare-metal targets."},
+        {"id": "esp32", "name": "ESP32 & Microcontroller Architecture", "difficulty": 3, "description": "Dual-core Wi-Fi/BLE microcontrollers, GPIO interrupts, FreeRTOS, and deep sleep."},
+        {"id": "raspberry_pi", "name": "Raspberry Pi & SBCs", "difficulty": 2, "description": "Single-board ARM computing, Linux GPIO interfaces, and local edge processing."},
+        {"id": "sensors_protocols", "name": "Sensors & Bus Protocols (I2C / SPI / UART)", "difficulty": 3, "description": "Interfacing IMUs, environmental sensors, ADC converters via synchronous serial buses."},
+        {"id": "mqtt", "name": "MQTT & IoT Telemetry", "difficulty": 2, "description": "Lightweight publish-subscribe network protocol for bandwidth-constrained devices."},
+        {"id": "tinyml", "name": "TinyML & Edge AI Deployment", "difficulty": 4, "description": "Deploying 8-bit quantized neural networks on microcontrollers with sub-100KB RAM."}
+      ]
+    },
+    {
+      "id": "data",
+      "name": "Data",
+      "description": "Data manipulation, analytical pipelines, time-series storage, and validation.",
+      "skills": [
+        {"id": "pandas_numpy", "name": "Pandas & NumPy", "difficulty": 2, "description": "Vectorized numerical array operations, dataframe transformations, and filtering."},
+        {"id": "spark", "name": "Distributed Data Processing (Spark / DuckDB)", "difficulty": 4, "description": "In-memory columnar query execution and large-scale parallel data processing."},
+        {"id": "timescaledb", "name": "Time-Series Databases (TimescaleDB / InfluxDB)", "difficulty": 3, "description": "Hypertables, continuous aggregations, and high-ingest telemetry storage."},
+        {"id": "data_pipelines", "name": "Data Pipelines & ETL (Airflow / Prefect)", "difficulty": 3, "description": "Directed acyclic graph task scheduling, dependency management, and retry logic."},
+        {"id": "data_validation", "name": "Data Validation & Schemas (Pydantic)", "difficulty": 2, "description": "Runtime type enforcement, data coercion, and JSON schema generation."}
+      ]
+    },
+    {
+      "id": "cloud_devops",
+      "name": "Cloud / DevOps",
+      "description": "Container orchestration, automated deployment pipelines, and cloud systems.",
+      "skills": [
+        {"id": "docker", "name": "Docker & Containerization", "difficulty": 2, "description": "Multi-stage Dockerfiles, image minimization, and container isolation."},
+        {"id": "kubernetes", "name": "Kubernetes Orchestration", "difficulty": 4, "description": "Pods, Deployments, Services, ConfigMaps, and cluster autoscaling."},
+        {"id": "cicd", "name": "CI/CD (GitHub Actions / GitLab CI)", "difficulty": 2, "description": "Automated linting, test execution matrix, artifact compilation, and delivery."},
+        {"id": "cloud_arch", "name": "Cloud Services (AWS / GCP)", "difficulty": 3, "description": "Serverless functions, object storage (S3), IAM policies, and VPC networking."},
+        {"id": "linux_admin", "name": "Linux SysAdmin & Networking", "difficulty": 3, "description": "Systemd services, socket management, firewall rules, and process monitoring."},
+        {"id": "observability", "name": "Observability (Prometheus / Grafana / OpenTelemetry)", "difficulty": 3, "description": "Metrics instrumentation, distributed tracing, structured logging, and alerting."}
+      ]
+    }
+  ]
+}

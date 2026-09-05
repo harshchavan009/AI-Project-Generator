@@ -1,0 +1,3173 @@
+{
+  "version": "1.0.0",
+  "total_ideas": 100,
+  "ideas": [
+    {
+      "id": "idea-001",
+      "title": "EdgeMed: Real-Time Chest Radiograph Triage with INT8 Quantization",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Local hospital triage pipeline that classifies 14 thoracic pathologies from DICOM images on CPU using INT8 ONNX models with Grad-CAM visual attention overlays.",
+      "required_skills": {
+        "python": 3,
+        "pytorch": 3,
+        "onnx_runtime": 3,
+        "fastapi": 2,
+        "opencv": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "ONNX Runtime",
+        "FastAPI",
+        "PyTorch",
+        "OpenCV",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for EdgeMed",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-002",
+      "title": "PulseGuard: Continuous Arrhythmia Detection from Single-Lead ECG",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Edge inference firmware filtering raw analog ECG voltages, extracting RR intervals, and classifying atrial fibrillation episodes using 1D temporal convolutions.",
+      "required_skills": {
+        "python": 3,
+        "tinyml": 3,
+        "esp32": 3,
+        "embedded_c": 3,
+        "sensors_protocols": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Embedded C",
+        "ESP32",
+        "TinyML",
+        "MQTT",
+        "Python"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for PulseGuard",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-003",
+      "title": "BioSync: Multi-Modal Patient Fall and Vitals Telemetry via BLE Mesh",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Wearable accelerometer and photoplethysmography sensor network streaming encrypted patient vitals over BLE mesh to an emergency room triage dashboard.",
+      "required_skills": {
+        "embedded_c": 3,
+        "esp32": 3,
+        "mqtt": 3,
+        "timescaledb": 2,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 5,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "ESP32",
+        "C++",
+        "MQTT",
+        "TimescaleDB",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for BioSync",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-004",
+      "title": "DermaScan: Dermoscopic Lesion Segmentation with Uncertainty Calibration",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Melanoma boundary delineation using Monte Carlo dropout segmentation networks to provide dermatologist confidence bounds for biopsy referrals.",
+      "required_skills": {
+        "python": 4,
+        "pytorch": 3,
+        "opencv": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "GPU available",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "PyTorch",
+        "OpenCV",
+        "FastAPI",
+        "Docker",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for DermaScan",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-005",
+      "title": "NeuroSpeech: Dysarthria Acoustic Biomarker Extraction for ALS Monitoring",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Speech signal processing pipeline extracting jitter, shimmer, and formant trajectories to detect motor neuron degeneration progression non-invasively.",
+      "required_skills": {
+        "python": 3,
+        "pandas_numpy": 3,
+        "scikit_learn": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "Librosa",
+        "Scikit-Learn",
+        "FastAPI",
+        "Recharts"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for NeuroSpeech",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-006",
+      "title": "SurgiTrack: Sub-Millimeter Laparoscopic Instrument Visual Tracking",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Optical flow and color marker-free surgical tool tip tracking in stereo endoscopic video feeds for real-time surgical tremor dampening.",
+      "required_skills": {
+        "cpp": 3,
+        "opencv": 4,
+        "pytorch": 3
+      },
+      "typical_timeline_weeks": 18,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++",
+        "OpenCV",
+        "PyTorch",
+        "CUDA"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SurgiTrack",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-007",
+      "title": "PharmAlert: Automated Drug-Drug Interaction Discovery via Biomedical KG",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Graph convolutional neural network over PubMed biomedical knowledge graphs discovering adverse contraindications in polypharmacy patient regimens.",
+      "required_skills": {
+        "python": 4,
+        "pytorch": 3,
+        "vector_databases": 3,
+        "postgresql": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch Geometric",
+        "PostgreSQL",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for PharmAlert",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-008",
+      "title": "GaitLab: Markerless 3D Biomechanical Gait Kinematics from Monocular Video",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Pose estimation pipeline reconstructing lower-extremity joint angle trajectories to assist post-stroke rehabilitation physical therapy.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 3,
+        "pytorch": 3,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "FastAPI",
+        "D3.js"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for GaitLab",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-009",
+      "title": "Audiolyze: Real-Time Cochlear Acoustic Feedback for Pediatric Speech Therapy",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Low-latency pitch and phonetic spectrum visualization guiding children with hearing impairments to modulate vocal resonance.",
+      "required_skills": {
+        "typescript": 3,
+        "react": 3,
+        "data_viz": 3,
+        "web_performance": 3
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "React",
+        "Web Audio API",
+        "TypeScript",
+        "D3.js"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for Audiolyze",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-010",
+      "title": "HemoCount: Microfluidic Blood Smear Cell Counting with Synthetic Augmentation",
+      "domain": "Healthcare & Biomedical AI",
+      "description": "Automated complete blood count (CBC) from digitized microscope glass slides using synthetic diffusion augmentation to train white cell counters.",
+      "required_skills": {
+        "python": 4,
+        "pytorch": 4,
+        "opencv": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "PyTorch",
+        "OpenCV",
+        "FastAPI",
+        "Docker"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for HemoCount",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-011",
+      "title": "AeroSense: Ultra-Low-Power Wildfire Smoke Detection via TinyML Sensor Fusion",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "Off-grid ESP32 sensor node fusing particulate matter, CO2, and temperature readings with an onboard 12KB neural classifier powered by solar harvesting.",
+      "required_skills": {
+        "embedded_c": 3,
+        "esp32": 3,
+        "tinyml": 3,
+        "sensors_protocols": 3,
+        "mqtt": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Embedded C",
+        "ESP32",
+        "TinyML",
+        "MQTT",
+        "TimescaleDB"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for AeroSense",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-012",
+      "title": "VibroGuard: Predictive Industrial Motor Bearing Failure via Edge FFT",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "MEMS vibration accelerometer sampling at 10kHz on STM32/ESP32 computing spectral kurtosis and alerting technicians before bearing seizure.",
+      "required_skills": {
+        "embedded_c": 4,
+        "esp32": 3,
+        "tinyml": 3,
+        "sensors_protocols": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Embedded C",
+        "CMSIS-DSP",
+        "ESP32",
+        "MQTT"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for VibroGuard",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-013",
+      "title": "SoundSentinel: Acoustic Edge Gunshot & Chainsaw Localization",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "Microphone array triangulation running on Raspberry Pi edge devices using generalized cross-correlation phase transform (GCC-PHAT) for rainforest anti-poaching.",
+      "required_skills": {
+        "python": 3,
+        "raspberry_pi": 3,
+        "linux_admin": 2,
+        "tinyml": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "Raspberry Pi",
+        "NumPy",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SoundSentinel",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-014",
+      "title": "AgriDrip: Autonomous LoRa Soil Moisture and Evapotranspiration Controller",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "Sub-gigahertz LoRa sensor nodes estimating soil water deficit and triggering solenoid irrigation valves strictly during off-peak thermal hours.",
+      "required_skills": {
+        "embedded_c": 3,
+        "sensors_protocols": 3,
+        "esp32": 3
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Embedded C",
+        "LoRaWAN",
+        "ESP32",
+        "SQLite"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for AgriDrip",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-015",
+      "title": "ColdChain: Pharmaceutical Cryo-Transport Logger with Tamper Proof Cryptography",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "BLE sensor beacon logging cryogenic vaccine temperatures into an append-only cryptographic hash chain with NFC validation on delivery.",
+      "required_skills": {
+        "embedded_c": 3,
+        "esp32": 3,
+        "sensors_protocols": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Embedded C",
+        "ESP32",
+        "BLE",
+        "Python"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for ColdChain",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-016",
+      "title": "SmartMeter: Edge Non-Intrusive Load Monitoring (NILM) on Microcontrollers",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "Current transformer clamp sampling household AC waveforms to disaggregate individual appliance electricity consumption without smart plugs.",
+      "required_skills": {
+        "python": 3,
+        "tinyml": 3,
+        "esp32": 3,
+        "timescaledb": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "TinyML",
+        "ESP32",
+        "TimescaleDB"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SmartMeter",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-017",
+      "title": "BeeTrack: Non-Invasive Acoustic Colony Collapse Warning System",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "In-hive acoustic sensor running an INT8 quantized resonant frequency detector to detect queen bee loss and parasite infestations.",
+      "required_skills": {
+        "embedded_c": 3,
+        "esp32": 3,
+        "tinyml": 3,
+        "mqtt": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Embedded C",
+        "ESP32",
+        "TinyML",
+        "MQTT"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for BeeTrack",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-018",
+      "title": "HoloTouch: Ultrasonic Gesture Interface for Sterile Surgical Displays",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "Time-of-flight ultrasonic sensor array detecting 3D hand gestures to control PACS medical imaging monitors touchlessly in operating theaters.",
+      "required_skills": {
+        "cpp": 3,
+        "embedded_c": 3,
+        "esp32": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "C++",
+        "ESP32",
+        "I2C",
+        "WebSockets"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for HoloTouch",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-019",
+      "title": "UrbanFlow: Privacy-Preserving Pedestrian Density Radar via mmWave",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "60GHz FMCW millimeter-wave radar sensor counting pedestrian flow through public transit stations without capturing optical images.",
+      "required_skills": {
+        "python": 3,
+        "raspberry_pi": 3,
+        "timescaledb": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "Raspberry Pi",
+        "TimescaleDB",
+        "Grafana"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for UrbanFlow",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-020",
+      "title": "FleetPulse: CAN-Bus Edge Telematics and Predictive Fleet Diagnostics",
+      "domain": "Edge AI & TinyML / IoT",
+      "description": "OBD-II CAN-bus reader parsing engine telemetry frames and predicting battery degradation using lightweight linear regression on edge SBCs.",
+      "required_skills": {
+        "python": 3,
+        "embedded_c": 3,
+        "raspberry_pi": 3,
+        "mqtt": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "CAN-bus",
+        "Raspberry Pi",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for FleetPulse",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-021",
+      "title": "SwarmSync: Decentralized Consensus for Aerial Drone Flocking without GPS",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "Peer-to-peer visual odometry and ultra-wideband (UWB) ranging protocol allowing 5 quadcopters to maintain tight formation in indoor tunnels.",
+      "required_skills": {
+        "cpp": 4,
+        "opencv": 3,
+        "linux_admin": 3
+      },
+      "typical_timeline_weeks": 20,
+      "hardware_requirement": "GPU available",
+      "component_count": 5,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++",
+        "ROS2",
+        "OpenCV",
+        "Linux"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SwarmSync",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-022",
+      "title": "WarehouseRover: Autonomous Mobile Robot with Dynamic A* and Semantic Costmaps",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "2D LiDAR SLAM wheeled mobile robot navigating unpredictable fulfillment center aisles while recognizing forklift yield zones.",
+      "required_skills": {
+        "cpp": 3,
+        "python": 3,
+        "opencv": 3,
+        "linux_admin": 2
+      },
+      "typical_timeline_weeks": 18,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "C++",
+        "ROS2 Nav2",
+        "Python",
+        "LiDAR"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for WarehouseRover",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-023",
+      "title": "AgriBot: Precision Weed Eradication via Stereo Vision and Delta Arm",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "Agricultural rover identifying invasive weeds among sugar beet crops using lightweight object detection and triggering a targeted spray nozzle.",
+      "required_skills": {
+        "python": 3,
+        "pytorch": 3,
+        "opencv": 3,
+        "embedded_c": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "GPU available",
+      "component_count": 5,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "ESP32"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for AgriBot",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-024",
+      "title": "RoboGrip: Tactile Slip Detection for Soft Robotic Grippers",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "Piezoresistive sensor skin measuring micro-vibrations to dynamically adjust grasping force before fragile glass objects slip from robot claws.",
+      "required_skills": {
+        "cpp": 3,
+        "embedded_c": 3,
+        "sensors_protocols": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++",
+        "Embedded C",
+        "I2C",
+        "Python"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for RoboGrip",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-025",
+      "title": "CaveMapper: Autonomous Subterranean Exploration using Quadruped Robots",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "3D point cloud registration and frontier-based exploration algorithm mapping abandoned mineshafts with zero operator tether.",
+      "required_skills": {
+        "cpp": 4,
+        "linux_admin": 3,
+        "opencv": 3
+      },
+      "typical_timeline_weeks": 20,
+      "hardware_requirement": "GPU available",
+      "component_count": 5,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++",
+        "ROS2",
+        "PCL",
+        "CUDA"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CaveMapper",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-026",
+      "title": "DockMaster: Vision-Guided Precision Autonomous Underwater Vehicle Docking",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "Monocular underwater camera locating acoustic transponder docking bays amidst turbid water using dark-channel dehazing algorithms.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 3,
+        "pytorch": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "PyTorch",
+        "ROS2"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for DockMaster",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-027",
+      "title": "CableClimber: High-Voltage Transmission Line Inspection Robot",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "Robotic crawler traversing 110kV suspension cables, logging corrosion pits and insulator flashover cracks using high-res stereo cameras.",
+      "required_skills": {
+        "embedded_c": 3,
+        "opencv": 3,
+        "esp32": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Embedded C",
+        "OpenCV",
+        "ESP32",
+        "Python"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CableClimber",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-028",
+      "title": "ExoSense: Active Lower-Limb Exoskeleton with Surface EMG Intent Recognition",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "Multi-channel electromyography muscle potential decoder anticipating leg swing phases to drive brushless DC motors for mobility assistance.",
+      "required_skills": {
+        "embedded_c": 4,
+        "tinyml": 3,
+        "sensors_protocols": 3
+      },
+      "typical_timeline_weeks": 18,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 5,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Embedded C",
+        "TinyML",
+        "STM32",
+        "Python"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for ExoSense",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-029",
+      "title": "AeroTrack: Drone Intrusion Detection via Multi-Camera Stereo Triangulation",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "Coordinated dual PTZ security cameras tracking rogue recreational UAVs in restricted airspace with kalman filter trajectory projection.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 4,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "FastAPI",
+        "WebSockets"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for AeroTrack",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-030",
+      "title": "TrashSail: Autonomous Solar Catamaran for Harbor Plastic Skimming",
+      "domain": "Autonomous Systems & Robotics",
+      "description": "Autonomous surface vessel utilizing monocular computer vision to navigate marina debris booms and scoop floating macro-plastics.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 3,
+        "raspberry_pi": 3,
+        "sensors_protocols": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "Raspberry Pi",
+        "MQTT"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for TrashSail",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-031",
+      "title": "KernelShield: eBPF Real-Time Container Privilege Escalation Interceptor",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Linux security agent attaching eBPF tracepoints to syscalls (execve, ptrace) to kill malicious processes breaking out of Docker namespaces.",
+      "required_skills": {
+        "golang": 3,
+        "linux_admin": 4,
+        "docker": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Go",
+        "eBPF",
+        "Linux Cgroups",
+        "Docker",
+        "Prometheus"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for KernelShield",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-032",
+      "title": "PhishHunter: Deep Visual Similarity and Domain Homograph Defense",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Browser extension rendering web pages in headless Chrome, computing perceptual hashes against brand vector logos to block zero-day credential harvesters.",
+      "required_skills": {
+        "typescript": 3,
+        "python": 3,
+        "fastapi": 2,
+        "opencv": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "TypeScript",
+        "Python",
+        "FastAPI",
+        "OpenCV"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for PhishHunter",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-033",
+      "title": "HoneyNet: Dynamic Deception Environment for ICS/SCADA Modbus Honeypots",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Configurable virtual PLC honeynet simulating water treatment telemetry to profile adversary reconnaissance tactics and log zero-day exploits.",
+      "required_skills": {
+        "python": 3,
+        "linux_admin": 3,
+        "docker": 3,
+        "data_viz": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "Docker",
+        "Scapy",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for HoneyNet",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-034",
+      "title": "GhostPacket: Covert Channel Detection in DNS and ICMP Payloads",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Deep inspection IDS engine extracting entropy, inter-packet arrival jitter, and n-gram frequencies to flag data exfiltration via DNS tunneling.",
+      "required_skills": {
+        "python": 3,
+        "scikit_learn": 3,
+        "linux_admin": 3
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "Scapy",
+        "Scikit-Learn",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for GhostPacket",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-035",
+      "title": "ZeroTrustGate: Ephemeral WireGuard Mesh with Hardware-Attested WebAuthn",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Micro-segmented internal VPN creating per-session WireGuard tunnels strictly upon FIDO2 biometric authentication and device TPM posture checks.",
+      "required_skills": {
+        "golang": 3,
+        "linux_admin": 3,
+        "react": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Go",
+        "WireGuard",
+        "WebAuthn",
+        "SQLite",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for ZeroTrustGate",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-036",
+      "title": "FirmScope: Automated IoT Firmware Vulnerability Scanner and Emulation Engine",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Static extraction of squashfs filesystem images, binary decompilation for hardcoded credentials, and QEMU emulation of MIPS/ARM binaries.",
+      "required_skills": {
+        "python": 4,
+        "bash": 3,
+        "linux_admin": 3,
+        "docker": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "QEMU",
+        "Bash",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for FirmScope",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-037",
+      "title": "SupplyGuard: Automated SBOM Verification and Dependency Typosquatting Sentinel",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Continuous CI/CD scanner parsing npm/PyPI dependency trees, flagging malicious lifecycle post-install scripts and brandjacking package names.",
+      "required_skills": {
+        "typescript": 3,
+        "python": 3,
+        "cicd": 3,
+        "docker": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "TypeScript",
+        "Python",
+        "GitHub Actions",
+        "Docker"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SupplyGuard",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-038",
+      "title": "CanaryVault: Cryptographic Ransomware Early-Warning Sentinel via Honeyfiles",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Filesystem minifilter driver deploying honeydoc canary files in network shares to detect rapid entropy surges and kill encrypting PIDs.",
+      "required_skills": {
+        "cpp": 4,
+        "linux_admin": 3,
+        "bash": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++",
+        "Linux inotify",
+        "Bash",
+        "SQLite"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CanaryVault",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-039",
+      "title": "API-WAF: Adaptive Behavioral Rate Limiting and BOLA Attack Detector",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Reverse proxy analyzing API request sequence graphs and token claims to block Broken Object Level Authorization (BOLA) attempts in real time.",
+      "required_skills": {
+        "golang": 3,
+        "redis": 3,
+        "rest_apis": 3,
+        "docker": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Go",
+        "Redis",
+        "Docker",
+        "REST APIs"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for API-WAF",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-040",
+      "title": "LeakWatch: Enterprise Secret Sprawl Scanner for Ephemeral CI Runners",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "description": "Git pre-commit and pipeline hook utilizing Shannon entropy and AST regexes to intercept JWTs, AWS credentials, and private keys before push.",
+      "required_skills": {
+        "golang": 3,
+        "cicd": 3,
+        "bash": 2
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "none",
+      "component_count": 2,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Go",
+        "Git Hooks",
+        "GitHub Actions"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for LeakWatch",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-041",
+      "title": "GraphFraud: Real-Time Anti-Money Laundering via Temporal Graph Neural Networks",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Continuous graph learning engine tracking money laundering transaction rings across 500k bank accounts with dynamic edge time-decay weighting.",
+      "required_skills": {
+        "python": 4,
+        "pytorch": 3,
+        "postgresql": 3,
+        "timescaledb": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch Geometric",
+        "PostgreSQL",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for GraphFraud",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-042",
+      "title": "LedgerSense: Zero-Knowledge Proof Audit Trail for Corporate Treasury",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "zk-SNARK cryptographic verification layer proving company balance sheet solvency without revealing individual customer transaction records.",
+      "required_skills": {
+        "rust": 4,
+        "typescript": 3,
+        "react": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Rust",
+        "Circom / SnarkJS",
+        "TypeScript",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for LedgerSense",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-043",
+      "title": "OrderBook: High-Frequency Limit Order Book Simulation with Microstructure Alpha",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Lock-free C++ matching engine processing 1,000,000 orders/sec with nanosecond timestamps to backtest market-making inventory strategies.",
+      "required_skills": {
+        "cpp": 4,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++20",
+        "Lock-free Queues",
+        "Python",
+        "Recharts"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for OrderBook",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-044",
+      "title": "PaySentry: Real-Time Chargeback & Synthetic Identity Fraud Classifier",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Payment gateway scoring API combining device fingerprinting, behavioral mouse trajectory entropy, and ensemble gradient boosting in under 40ms.",
+      "required_skills": {
+        "python": 3,
+        "scikit_learn": 3,
+        "fastapi": 3,
+        "redis": 3
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "Scikit-Learn",
+        "FastAPI",
+        "Redis"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for PaySentry",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-045",
+      "title": "QuantStream: Decentralized Oracle Consensus for Synthetic Commodity Assets",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Multi-source financial market aggregator discarding outlier quote spikes using Median Absolute Deviation before publishing price feeds.",
+      "required_skills": {
+        "golang": 3,
+        "rest_apis": 3,
+        "timescaledb": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Go",
+        "WebSockets",
+        "TimescaleDB",
+        "REST APIs"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for QuantStream",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-046",
+      "title": "TaxEngine: Multi-Jurisdictional Cross-Border VAT and Crypto Compliance",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Automated tax lot accounting engine computing FIFO, LIFO, and Specific ID capital gains across 10 distinct blockchain protocols.",
+      "required_skills": {
+        "python": 3,
+        "sql": 3,
+        "postgresql": 3,
+        "react": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "PostgreSQL",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for TaxEngine",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-047",
+      "title": "MicroScore: Alternative Underwriting Engine for Unbanked Micro-Merchants",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Creditworthiness scoring pipeline analyzing utility payment regularity, mobile airtime recharges, and localized supply chain receipts.",
+      "required_skills": {
+        "python": 3,
+        "pandas_numpy": 3,
+        "scikit_learn": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "Pandas",
+        "Scikit-Learn",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for MicroScore",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-048",
+      "title": "RiskMatrix: Real-Time Value-at-Risk (VaR) Monte Carlo Portfolio Engine",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Vectorized NumPy simulation executing 100,000 correlated price shock scenarios to compute Expected Shortfall for multi-asset portfolios.",
+      "required_skills": {
+        "python": 3,
+        "pandas_numpy": 4,
+        "fastapi": 2,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "NumPy",
+        "FastAPI",
+        "D3.js"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for RiskMatrix",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-049",
+      "title": "FairLend: Algorithmic Bias Detection and Counterfactual Parity in Lending",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Fairness auditing toolkit analyzing credit scoring models for disparate impact across protected demographic attributes with disparate impact repair.",
+      "required_skills": {
+        "python": 3,
+        "scikit_learn": 3,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "none",
+      "component_count": 2,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "Scikit-Learn",
+        "FastAPI",
+        "Recharts"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for FairLend",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-050",
+      "title": "AlgoGuard: Market Manipulation Sentinel for Spoofing and Wash Trading",
+      "domain": "FinTech & Fraud Analytics",
+      "description": "Real-time order flow inspection detecting quote stuffing, layering, and cancelled trades designed to mislead automated algorithms.",
+      "required_skills": {
+        "python": 3,
+        "timescaledb": 3,
+        "fastapi": 2,
+        "redis": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "TimescaleDB",
+        "Redis",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for AlgoGuard",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-051",
+      "title": "GridPulse: Physics-Informed Solar Inverter Telemetry and Islanding Prevention",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Hybrid neural forecasting and Kirchhoff law simulator managing bi-directional power flows and battery discharging in neighborhood microgrids.",
+      "required_skills": {
+        "python": 3,
+        "pytorch": 3,
+        "timescaledb": 3,
+        "mqtt": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "TimescaleDB",
+        "MQTT",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for GridPulse",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-052",
+      "title": "EV-ChargeFlow: Smart Grid Dynamic EV Charging Orchestration",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Non-linear optimization service scheduling 50 fleet vehicle chargers to prevent substation transformer overload during peak tariff windows.",
+      "required_skills": {
+        "python": 4,
+        "fastapi": 3,
+        "redis": 2,
+        "data_viz": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "SciPy Optimize",
+        "FastAPI",
+        "Redis",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for EV-ChargeFlow",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-053",
+      "title": "BioGasTrack: Anaerobic Digester Methane Yield Optimization via Sensor Loop",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "IoT telemetry controller monitoring pH, slurry temperature, and volatile fatty acids to maximize biomethane generation in agricultural digesters.",
+      "required_skills": {
+        "embedded_c": 3,
+        "esp32": 3,
+        "timescaledb": 2,
+        "mqtt": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Embedded C",
+        "ESP32",
+        "TimescaleDB",
+        "MQTT"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for BioGasTrack",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-054",
+      "title": "WindTurbinePredict: Acoustic Blade Delamination Sentinel via Edge FFT",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Wind turbine nacelle vibration and audio sensor detecting micro-cracks in 40m fiberglass blades prior to catastrophic structural failure.",
+      "required_skills": {
+        "embedded_c": 3,
+        "esp32": 3,
+        "tinyml": 3,
+        "sensors_protocols": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Embedded C",
+        "ESP32",
+        "TinyML",
+        "TimescaleDB"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for WindTurbinePredict",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-055",
+      "title": "CarbonLedger: Scope 1, 2, and 3 Enterprise Carbon Footprint Auditing API",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Automated greenhouse gas accounting engine digesting ERP invoices, electricity meter data, and travel logs into standardized GHG Protocol reports.",
+      "required_skills": {
+        "python": 3,
+        "postgresql": 3,
+        "fastapi": 3,
+        "react": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "PostgreSQL",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CarbonLedger",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-056",
+      "title": "HydroFlow: Run-of-River Micro-Hydro Turbine Adaptive Incline Governor",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Motorized penstock valve controller adjusting water intake based on upstream ultrasonic river depth sensors and grid frequency demand.",
+      "required_skills": {
+        "cpp": 3,
+        "embedded_c": 3,
+        "esp32": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "C++",
+        "ESP32",
+        "FreeRTOS",
+        "Modbus"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for HydroFlow",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-057",
+      "title": "SolarSentry: Drone Thermal Orthomosaic Solar Farm Hotspot Detection",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Computer vision pipeline stitching radiometric infrared drone imagery to automatically flag bypass diode failures and cracked PV cells.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 4,
+        "pytorch": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "PyTorch",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SolarSentry",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-058",
+      "title": "CoolBuilding: Predictive HVAC Thermostat via Ambient Thermal Inertia Modeling",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Thermodynamic building envelope simulator pre-cooling commercial spaces during cheap morning solar hours to minimize 4PM peak grid stress.",
+      "required_skills": {
+        "python": 3,
+        "pandas_numpy": 3,
+        "scikit_learn": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "Pandas",
+        "Scikit-Learn",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CoolBuilding",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-059",
+      "title": "BatteryTwin: Lithium-Ion Degradation & Remaining Useful Life (RUL) Digital Twin",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Electrochemical battery degradation tracker estimating state-of-health (SoH) from partial discharge voltage relaxation curves.",
+      "required_skills": {
+        "python": 3,
+        "pandas_numpy": 3,
+        "timescaledb": 2,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "NumPy",
+        "TimescaleDB",
+        "D3.js"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for BatteryTwin",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-060",
+      "title": "RecycleSort: High-Speed Waste Material NIR Optical Sorter",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "description": "Near-infrared spectral reflectance classifier triggering high-pressure pneumatic ejector nozzles to separate PET, HDPE, and PP plastics.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 3,
+        "embedded_c": 3,
+        "raspberry_pi": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "IoT hardware",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "Raspberry Pi",
+        "ESP32"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for RecycleSort",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-061",
+      "title": "MiniRaft: Resilient Distributed Consensus Key-Value Store in Go",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "Production-grade implementation of Raft consensus featuring leader election, append-only log replication, snapshotting, and fault injection.",
+      "required_skills": {
+        "golang": 4,
+        "linux_admin": 3,
+        "docker": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Go",
+        "gRPC",
+        "Docker",
+        "Linux"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for MiniRaft",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-062",
+      "title": "LoadMesh: Consistent Hashing Distributed Cache with Rendezvous Routing",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "In-memory distributed LRU cache utilizing Ketama consistent hashing, heartbeat failure detection, and probabilistic bloom filters.",
+      "required_skills": {
+        "golang": 3,
+        "asyncio": 2,
+        "docker": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Go",
+        "Consistent Hashing",
+        "Docker",
+        "Prometheus"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for LoadMesh",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-063",
+      "title": "TaskQueue: Zero-Dependency Distributed Task Queue with Priority Leasing",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "Durable task execution broker implementing distributed lock leases, exponential backoff retries, and dead-letter queues over SQLite WAL.",
+      "required_skills": {
+        "python": 3,
+        "asyncio": 3,
+        "fastapi": 3,
+        "redis": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "asyncio",
+        "FastAPI",
+        "SQLite",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for TaskQueue",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-064",
+      "title": "EdgeSync: Conflict-Free Replicated Data Types (CRDT) Collaborative Document Store",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "State-based and operation-based CRDT engine enabling real-time peer-to-peer document editing across disconnected clients without central locks.",
+      "required_skills": {
+        "typescript": 4,
+        "websockets": 3,
+        "react": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "TypeScript",
+        "WebSockets",
+        "CRDT",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for EdgeSync",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-065",
+      "title": "MetricPulse: High-Throughput Time-Series Metric Ingestion & Downsampling Daemon",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "Lightweight metric aggregator buffering 100,000 UDP statsd metrics/sec, computing exponential moving averages and writing to disk.",
+      "required_skills": {
+        "rust": 4,
+        "linux_admin": 3,
+        "observability": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Rust",
+        "Linux Sockets",
+        "Prometheus",
+        "Grafana"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for MetricPulse",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-066",
+      "title": "ChaosPod: Kubernetes Chaos Engineering Operator for StatefulSets",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "Kubernetes custom controller injecting network packet latency, pod evictions, and disk I/O throttling to validate cluster self-healing.",
+      "required_skills": {
+        "golang": 4,
+        "kubernetes": 4,
+        "docker": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "none",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Go",
+        "Kubernetes Operator SDK",
+        "Docker"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for ChaosPod",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-067",
+      "title": "BlobStore: S3-Compatible Content-Addressable Object Storage Engine",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "High-performance chunked blob store with SHA-256 deduplication, Reed-Solomon erasure coding, and multipart HTTP upload streams.",
+      "required_skills": {
+        "golang": 3,
+        "rest_apis": 3,
+        "linux_admin": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Go",
+        "Erasure Coding",
+        "REST APIs",
+        "Docker"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for BlobStore",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-068",
+      "title": "MicroTrace: Zero-Instrumentation eBPF Distributed Request Tracer",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "Kernel-level tracer extracting HTTP request headers and tracing latency across microservices without modifying application source code.",
+      "required_skills": {
+        "golang": 3,
+        "linux_admin": 4,
+        "observability": 3
+      },
+      "typical_timeline_weeks": 18,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Go",
+        "eBPF",
+        "OpenTelemetry",
+        "Linux"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for MicroTrace",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-069",
+      "title": "LogPipe: Append-Only Partitioned Commit Log with Zero-Copy Reads",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "Kafka-like distributed message broker utilizing Linux sendfile zero-copy system calls and memory-mapped index segments.",
+      "required_skills": {
+        "rust": 4,
+        "linux_admin": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Rust",
+        "mmap",
+        "Linux Syscalls"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for LogPipe",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-070",
+      "title": "CanaryMesh: Intelligent Automated Traffic Shifting Service Mesh",
+      "domain": "Distributed Systems & Cloud Infrastructure",
+      "description": "Envoy-compatible sidecar proxy performing automated canary deployments based on real-time error rate thresholds and latency percentiles.",
+      "required_skills": {
+        "golang": 3,
+        "docker": 3,
+        "observability": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Go",
+        "Envoy",
+        "Docker",
+        "Prometheus"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CanaryMesh",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-071",
+      "title": "AST-Guard: Automated Static Analysis and Security Taint Engine for Python",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "Abstract Syntax Tree (AST) visitor propagating untrusted user input sources into database and shell sinks to flag SQLi and command injection.",
+      "required_skills": {
+        "python": 4,
+        "fastapi": 2,
+        "react": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "ast module",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for AST-Guard",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-072",
+      "title": "GitDrift: Real-Time Developer Velocity & Milestone Drift Predictor",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "Engineering telemetry engine analyzing git commit graphs, PR turnaround latency, and churn ratios to predict sprint delivery slips.",
+      "required_skills": {
+        "python": 3,
+        "fastapi": 3,
+        "sql": 3,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "FastAPI",
+        "SQLite",
+        "Recharts"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for GitDrift",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-073",
+      "title": "DocuGen: Semantic Living Architecture Diagrams from Codebase Inspection",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "Automated tool parsing package imports, REST route definitions, and database schemas into interactive editable C4 architecture models.",
+      "required_skills": {
+        "typescript": 3,
+        "python": 3,
+        "react": 3,
+        "data_viz": 4
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "none",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "TypeScript",
+        "Python",
+        "React",
+        "D3.js"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for DocuGen",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-074",
+      "title": "TestShrink: Mutation Testing and Flaky Test Detection for CI Pipelines",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "AST mutator injecting operator mutations into codebases to compute test suite mutation score and pinpoint untested conditional paths.",
+      "required_skills": {
+        "python": 4,
+        "cicd": 3,
+        "bash": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "ast",
+        "pytest",
+        "GitHub Actions"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for TestShrink",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-075",
+      "title": "TypeInfer: Probabilistic Runtime Type Inference for Dynamic Python",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "Lightweight runtime profiling tracer inferring strict PEP 484 type annotations for untyped legacy codebases with zero test disruption.",
+      "required_skills": {
+        "python": 4,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 2,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "sys.settrace",
+        "mypy"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for TypeInfer",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-076",
+      "title": "BundleDoctor: Webpack/Vite Tree-Shaking Analyzer and Dead-Code Eliminator",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "Static bundle graph inspector detecting phantom dependencies, duplicate polyfills, and CSS bloat to reduce frontend asset footprints.",
+      "required_skills": {
+        "typescript": 3,
+        "web_performance": 3,
+        "react": 2
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "none",
+      "component_count": 2,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "TypeScript",
+        "Rollup/Vite",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for BundleDoctor",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-077",
+      "title": "SchemaDiff: Zero-Downtime Database Migration Validator and Safety Linter",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "CI pipeline check analyzing PostgreSQL DDL migration scripts for table locks, column drop hazards, and missing concurrent indexes.",
+      "required_skills": {
+        "python": 3,
+        "postgresql": 3,
+        "cicd": 3
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "none",
+      "component_count": 2,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "PostgreSQL",
+        "GitHub Actions"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SchemaDiff",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-078",
+      "title": "MockForge: Contract-Driven Dynamic Mock Server from OpenAPI 3.1 Specs",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "Configurable API emulator generating stateful CRUD mocks, dynamic latency simulation, and schema validation from OpenAPI YAML.",
+      "required_skills": {
+        "typescript": 3,
+        "nodejs": 3,
+        "rest_apis": 3,
+        "react": 2
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for MockForge",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-079",
+      "title": "ProfileLens: Low-Overhead Sampling CPU Profiler with Interactive Flamegraphs",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "POSIX signal-based sampling profiler recording call stacks at 100Hz and generating interactive SVG flamegraphs for performance bottlenecks.",
+      "required_skills": {
+        "cpp": 3,
+        "python": 3,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++",
+        "Python",
+        "SVG Flamegraphs",
+        "D3.js"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for ProfileLens",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-080",
+      "title": "LintFlow: Unified Architectural Boundary Enforcer for Monorepos",
+      "domain": "Developer Tooling & Program Analysis",
+      "description": "Static dependency linter verifying architectural boundaries (e.g. preventing domain entities from importing HTTP presentation controllers).",
+      "required_skills": {
+        "typescript": 3,
+        "nodejs": 3,
+        "cicd": 2
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "none",
+      "component_count": 2,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "TypeScript",
+        "Node.js",
+        "GitHub Actions"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for LintFlow",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-081",
+      "title": "GazeTrack: WebCam-Only High-Precision Gaze and Attention Heatmapper",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "Iris corneal reflection and head pose tracking using monocular webcam video to generate UX website eye-tracking attention heatmaps.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 4,
+        "pytorch": 3,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "PyTorch",
+        "D3.js",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for GazeTrack",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-082",
+      "title": "AutoDefect: Real-Time High-Speed Surface Anomaly Detection on Industrial Conveyors",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "Patch-based autoencoder locating microscopic scratches, voids, and misprints on manufactured parts moving at 1m/s.",
+      "required_skills": {
+        "python": 3,
+        "pytorch": 3,
+        "opencv": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for AutoDefect",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-083",
+      "title": "VoxelNav: Real-Time Monocular 3D Occupancy Grid Mapping for Indoor Robotics",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "Depth estimation and voxel raycasting pipeline turning a single RGB smartphone feed into a navigable 3D volumetric barrier map.",
+      "required_skills": {
+        "cpp": 3,
+        "python": 3,
+        "opencv": 3,
+        "pytorch": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++",
+        "Python",
+        "OpenCV",
+        "PyTorch"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for VoxelNav",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-084",
+      "title": "SignTranslate: Bidirectional Real-Time Sign Language Gesture Interpreter",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "MediaPipe skeletal landmark tracker classifying continuous American Sign Language fingerspelling and converting gestures into audio speech.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 3,
+        "scikit_learn": 3,
+        "react": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "Scikit-Learn",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SignTranslate",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-085",
+      "title": "NightVision: Extreme Low-Light Real-Time Video Enhancement via Retinex",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "High-throughput neural Retinex decomposition illuminating pitch-black surveillance camera feeds with noise suppression in under 30ms.",
+      "required_skills": {
+        "python": 3,
+        "pytorch": 3,
+        "opencv": 3
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "GPU available",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for NightVision",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-086",
+      "title": "DocuWarp: Document Scanner Flattening and Perspective Rectification",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "Geometric boundary contour detection and 3D surface unwarping to turn curved, crumpled book page photos into flat PDFs.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 4,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "CPU-only",
+      "component_count": 2,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "NumPy",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for DocuWarp",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-087",
+      "title": "CrowdCount: High-Density Crowd Estimation with Scale-Aware Dilated Convolutions",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "Congestion density mapping for sports stadiums and transit hubs estimating headcount in crowds of up to 10,000 people.",
+      "required_skills": {
+        "python": 3,
+        "pytorch": 3,
+        "opencv": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "GPU available",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CrowdCount",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-088",
+      "title": "SportVision: Automated Tennis/Badminton Shuttlecock Line-Call Verification",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "High-framerate trajectory fitting and homography warping verifying in/out boundary calls with sub-centimeter parabolic physics models.",
+      "required_skills": {
+        "cpp": 3,
+        "opencv": 4,
+        "python": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "C++",
+        "OpenCV",
+        "Python"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for SportVision",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-089",
+      "title": "FaceShield: Real-Time Deepfake and Synthetic Video Telemetry Detector",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "Facial blood flow photoplethysmography (rPPG) and eye-blink frequency analyzer exposing AI face swaps in live video calls.",
+      "required_skills": {
+        "python": 4,
+        "opencv": 3,
+        "pytorch": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for FaceShield",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-090",
+      "title": "MicroAlign: Sub-Pixel Electronic Component Soldering Alignment Inspector",
+      "domain": "Computer Vision & Spatial Computing",
+      "description": "SMD circuit board surface mount inspection detecting bridging, Tombstoning, and component tilt on PCB assembly lines.",
+      "required_skills": {
+        "python": 3,
+        "opencv": 4,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "OpenCV",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for MicroAlign",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-091",
+      "title": "LegalSense: Automated Contract Clause Conflict Discovery via Cross-Attention",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "RAG-grounded legal contract audit engine matching indemnification, liability, and termination clauses across 100-page master service agreements.",
+      "required_skills": {
+        "python": 3,
+        "huggingface": 3,
+        "vector_databases": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "FastEmbed",
+        "Qdrant",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for LegalSense",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-092",
+      "title": "CiteGraph: Interactive Scientific Research Paper Citations Knowledge Graph",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "Academic paper recommendation engine constructing citation lineage graphs and surfacing foundational vs derivative research contributions.",
+      "required_skills": {
+        "python": 3,
+        "vector_databases": 3,
+        "data_viz": 4,
+        "postgresql": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "none",
+      "component_count": 4,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "NetworkX",
+        "PostgreSQL",
+        "D3.js",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CiteGraph",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-093",
+      "title": "CodeWhisper: Local Privacy-First Code Autocompletion via Quantized LLM",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "VS Code extension connecting to a local quantized 1B parameter code LLM running on CPU for zero-telemetry enterprise developers.",
+      "required_skills": {
+        "typescript": 3,
+        "onnx_runtime": 3,
+        "python": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "TypeScript",
+        "ONNX Runtime",
+        "Python"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for CodeWhisper",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-094",
+      "title": "DialectAI: Low-Resource Vernacular Language Speech-to-Text Pipeline",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "Fine-tuned Whisper acoustic model adapted to regional colloquial dialects with acoustic data augmentation and beam search decoding.",
+      "required_skills": {
+        "python": 4,
+        "huggingface": 3,
+        "pytorch": 3
+      },
+      "typical_timeline_weeks": 16,
+      "hardware_requirement": "GPU available",
+      "component_count": 4,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "HuggingFace",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for DialectAI",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-095",
+      "title": "MedSummary: Clinical Patient Discharge Summary Generator with Grounding Check",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "EHR summarization pipeline distilling doctor notes into patient-accessible guides with strict hallucination verification against vital signs.",
+      "required_skills": {
+        "python": 3,
+        "vector_databases": 3,
+        "llm_prompt_eng": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "FastAPI",
+        "FAISS",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for MedSummary",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-096",
+      "title": "FactLens: Automated Claim Extraction and Multi-Source Fact-Checking",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "NLP pipeline decomposing online news articles into atomic claims, querying trusted consensus archives, and assigning veracity scores.",
+      "required_skills": {
+        "python": 3,
+        "vector_databases": 3,
+        "huggingface": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 14,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "FastEmbed",
+        "ChromaDB",
+        "FastAPI"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for FactLens",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-097",
+      "title": "OntoMap: Automated Domain Ontology Construction from Unstructured Technical Text",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "Relation extraction pipeline converting software documentation and engineering specs into structured RDF triples and knowledge graphs.",
+      "required_skills": {
+        "python": 3,
+        "pandas_numpy": 3,
+        "vector_databases": 2,
+        "data_viz": 3
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "NetworkX",
+        "FastAPI",
+        "D3.js"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for OntoMap",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-098",
+      "title": "BugSummarizer: GitHub Issue Triage and Duplicate Thread Clustering",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "Semantic deduplication bot comparing incoming bug reports against open issues, suggesting root cause fixes from commit histories.",
+      "required_skills": {
+        "python": 3,
+        "vector_databases": 3,
+        "fastapi": 2,
+        "docker": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "FastEmbed",
+        "FastAPI",
+        "Docker"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for BugSummarizer",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-099",
+      "title": "MeetingRecall: Multi-Speaker Meeting Transcript Action Item Extractor",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "Speaker diarization and acoustic boundary segmentation producing structured sprint action item tickets with assignee tagging.",
+      "required_skills": {
+        "python": 3,
+        "huggingface": 3,
+        "fastapi": 2,
+        "react": 2
+      },
+      "typical_timeline_weeks": 12,
+      "hardware_requirement": "CPU-only",
+      "component_count": 3,
+      "novel_algorithm_required": false,
+      "tech_stack": [
+        "Python",
+        "HuggingFace",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for MeetingRecall",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    },
+    {
+      "id": "idea-100",
+      "title": "QueryAI: Natural Language to Secure SQL Query Translator with AST Validation",
+      "domain": "NLP & Knowledge Graphs",
+      "description": "NL-to-SQL translator enforcing read-only schema boundaries and AST validation to prevent data exfiltration and syntax errors.",
+      "required_skills": {
+        "python": 3,
+        "sql": 3,
+        "data_validation": 3,
+        "fastapi": 2
+      },
+      "typical_timeline_weeks": 10,
+      "hardware_requirement": "none",
+      "component_count": 3,
+      "novel_algorithm_required": true,
+      "tech_stack": [
+        "Python",
+        "SQLAlchemy",
+        "FastAPI",
+        "React"
+      ],
+      "mvp_features": [
+        "Core pipeline implementation for QueryAI",
+        "Data ingestion, cleaning, and normalization module",
+        "Validated REST API service with health monitoring"
+      ],
+      "stretch_features": [
+        "Real-time telemetry dashboard with dynamic graphing",
+        "Multi-node distributed clustering and automated failover",
+        "Automated end-to-end integration test suite and CI deployment"
+      ]
+    }
+  ]
+}

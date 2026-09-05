@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "description": "Technology stack boilerplate tasks for auto-generating Kanban deliverable backlogs.",
+  "tasks_by_technology": {
+    "FastAPI": [
+      {"title": "Scaffold FastAPI application directory & lifespan handlers", "week": 1, "is_stretch": false},
+      {"title": "Configure CORS middleware, request ID tracking & JSON logger", "week": 1, "is_stretch": false},
+      {"title": "Define Pydantic schema validation models and error handlers", "week": 2, "is_stretch": false},
+      {"title": "Implement rate limiting middleware and /health check endpoint", "week": 3, "is_stretch": false}
+    ],
+    "PostgreSQL": [
+      {"title": "Design normalized relational entity schema & primary keys", "week": 1, "is_stretch": false},
+      {"title": "Configure async SQLAlchemy sessionmaker & connection pooling", "week": 2, "is_stretch": false},
+      {"title": "Write and apply initial versioned Alembic migration script", "week": 2, "is_stretch": false},
+      {"title": "Add composite database indices on frequently filtered query keys", "week": 6, "is_stretch": false}
+    ],
+    "React": [
+      {"title": "Initialize Vite React TypeScript project with clean styling shell", "week": 1, "is_stretch": false},
+      {"title": "Implement responsive navigation layout and accessible routing", "week": 2, "is_stretch": false},
+      {"title": "Build reusable API data-fetching service layer with Bearer auth", "week": 3, "is_stretch": false},
+      {"title": "Incorporate skeleton loading state indicators & error boundary alerts", "week": 4, "is_stretch": false}
+    ],
+    "PyTorch": [
+      {"title": "Implement dataset loader with train/val/test reproducible splits", "week": 2, "is_stretch": false},
+      {"title": "Construct neural network model architecture and forward pass", "week": 3, "is_stretch": false},
+      {"title": "Train baseline model checkpoint & log epoch validation losses", "week": 4, "is_stretch": false},
+      {"title": "Export trained model weights to ONNX graph format for inference", "week": 6, "is_stretch": false}
+    ],
+    "Docker": [
+      {"title": "Write multi-stage Dockerfile with unprivileged non-root user", "week": 3, "is_stretch": false},
+      {"title": "Configure docker-compose.yml with healthchecks and volumes", "week": 4, "is_stretch": false},
+      {"title": "Test container build and verify service network reachability", "week": 5, "is_stretch": false}
+    ],
+    "ONNX Runtime": [
+      {"title": "Calibrate and quantize ONNX model to INT8 precision", "week": 5, "is_stretch": false},
+      {"title": "Benchmark CPU inference latency and memory RAM footprint", "week": 6, "is_stretch": false},
+      {"title": "Integrate INT8 runtime engine into FastAPI prediction route", "week": 7, "is_stretch": false}
+    ],
+    "Grad-CAM": [
+      {"title": "Hook final convolutional layer activations to compute gradients", "week": 5, "is_stretch": false},
+      {"title": "Generate heatmaps and overlay transparency over input radiographs", "week": 6, "is_stretch": false},
+      {"title": "Render visual saliency explanations in frontend clinician viewer", "week": 8, "is_stretch": false}
+    ],
+    "ESP32": [
+      {"title": "Set up ESP-IDF / PlatformIO toolchain and flash blink test", "week": 1, "is_stretch": false},
+      {"title": "Configure I2C/SPI sensor communication drivers and register reads", "week": 2, "is_stretch": false},
+      {"title": "Implement power management deep-sleep duty-cycling loops", "week": 4, "is_stretch": false}
+    ],
+    "TensorFlow Lite Micro": [
+      {"title": "Convert trained float model into flatbuffer byte array", "week": 4, "is_stretch": false},
+      {"title": "Allocate micro-tensor arena and execute on-device inference", "week": 5, "is_stretch": false},
+      {"title": "Profile bare-metal execution cycles and RAM consumption", "week": 7, "is_stretch": false}
+    ],
+    "Kafka": [
+      {"title": "Set up local Kafka broker and define telemetry topic partitions", "week": 4, "is_stretch": true},
+      {"title": "Implement streaming producer and consumer pipeline handlers", "week": 6, "is_stretch": true}
+    ],
+    "eBPF": [
+      {"title": "Write kernel C tracepoint probe intercepting execve and clone syscalls", "week": 3, "is_stretch": false},
+      {"title": "Build userspace Go/Python daemon reading eBPF ring buffer events", "week": 4, "is_stretch": false},
+      {"title": "Implement automated SIGKILL process termination for container escapes", "week": 6, "is_stretch": false}
+    ]
+  }
+}

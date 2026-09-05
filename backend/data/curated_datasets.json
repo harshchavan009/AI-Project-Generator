@@ -1,0 +1,110 @@
+{
+  "version": "1.0.0",
+  "description": "Curated index of public research datasets for undergraduate capstone projects.",
+  "datasets": [
+    {
+      "id": "ds-nih-chestxray14",
+      "name": "NIH Chest X-ray 14",
+      "domain": "Healthcare & Biomedical AI",
+      "source_portal": "National Institutes of Health (NIH) / Kaggle",
+      "url": "https://www.kaggle.com/datasets/nih-chest-xrays/data",
+      "license": "CC0: Public Domain",
+      "size_samples": "112,120 frontal chest radiographs (42GB)",
+      "data_modality": "Medical DICOM / PNG Images + CSV Metadata",
+      "features": ["Patient Age", "Patient Gender", "View Position", "Follow-up Number"],
+      "target_variable": "14 Binary Multilabel Pathologies (Atelectasis, Cardiomegaly, Effusion, Infiltration, Mass, Nodule, Pneumonia, Pneumothorax, Consolidation, Edema, Emphysema, Fibrosis, Pleural Thickening, Hernia)",
+      "suitability_notes": "Highly suitable for multi-label classification and Grad-CAM interpretability. Insufficient for 3D volumetric analysis (requires CT scans)."
+    },
+    {
+      "id": "ds-mimic-iv",
+      "name": "MIMIC-IV Clinical Database",
+      "domain": "Healthcare & Biomedical AI",
+      "source_portal": "PhysioNet / MIT Laboratory for Computational Physiology",
+      "url": "https://physionet.org/content/mimiciv/",
+      "license": "PhysioNet Credentialed Health Data License",
+      "size_samples": "40,000+ ICU admissions over 2008-2019",
+      "data_modality": "Relational Tabular EHR (Demographics, Vitals, Labs, Medications)",
+      "features": ["Heart Rate", "Blood Pressure", "SpO2", "White Blood Count", "Creatinine", "Glasgow Coma Scale"],
+      "target_variable": "In-Hospital Mortality, ICU Length-of-Stay, Sepsis Onset (SOFA Score)",
+      "suitability_notes": "Gold standard for clinical machine learning and time-series risk forecasting. Requires completion of CITI human research training for access."
+    },
+    {
+      "id": "ds-kaggle-creditfraud",
+      "name": "Credit Card Fraud Detection Benchmark",
+      "domain": "FinTech & Fraud Analytics",
+      "source_portal": "Kaggle / ULB Machine Learning Group",
+      "url": "https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud",
+      "license": "Open Data Commons Database License (ODbL)",
+      "size_samples": "284,807 European cardholder transactions (150MB)",
+      "data_modality": "Tabular Numerical Features",
+      "features": ["Time (seconds)", "V1 through V28 (PCA transformed)", "Amount (EUR)"],
+      "target_variable": "Class (0: Legitimate, 1: Fraudulent; 492 frauds / 0.172% positive)",
+      "suitability_notes": "Ideal for testing extreme class imbalance, anomaly detection, and cost-sensitive classification. Features are PCA-anonymized; lacks raw account graph links."
+    },
+    {
+      "id": "ds-ieee-cis-fraud",
+      "name": "IEEE-CIS Fraud Detection",
+      "domain": "FinTech & Fraud Analytics",
+      "source_portal": "IEEE Computational Intelligence Society / Vesta / Kaggle",
+      "url": "https://www.kaggle.com/c/ieee-fraud-detection",
+      "license": "Kaggle Competition Open Data",
+      "size_samples": "590,540 e-commerce transactions across card networks (1.2GB)",
+      "data_modality": "Rich Tabular Features (Device Info, Identity, Transaction)",
+      "features": ["DeviceType", "DeviceInfo", "Card1-6", "Addr1-2", "P_emaildomain", "C1-14 Counts", "M1-9 Match Flags"],
+      "target_variable": "isFraud (Binary)",
+      "suitability_notes": "Sufficient relational structure to construct bipartite transaction graphs and user-device entity resolution trees."
+    },
+    {
+      "id": "ds-cic-ids2017",
+      "name": "CIC-IDS2017 Network Intrusion Detection",
+      "domain": "Cybersecurity & Threat Intelligence",
+      "source_portal": "Canadian Institute for Cybersecurity (UNB)",
+      "url": "https://www.unb.ca/cic/datasets/ids-2017.html",
+      "license": "Free for Academic & Educational Research",
+      "size_samples": "2,830,743 labeled network flow records across 5 days (1.8GB CSV / 50GB PCAP)",
+      "data_modality": "Network Packet Captures (PCAP) + Extracted NetFlow CSV",
+      "features": ["Flow Duration", "Total Fwd Packets", "Packet Length Mean", "Flow IAT Mean", "Bwd Packets/s", "SYN Flag Count"],
+      "target_variable": "Attack Category (Benign, DoS/DDoS, PortScan, Botnet, Infiltration, Web Attack, Heartbleed)",
+      "suitability_notes": "Standard benchmark for intrusion detection, flow classifiers, and random forest telemetry evaluation."
+    },
+    {
+      "id": "ds-nrel-nsrdb",
+      "name": "NREL National Solar Radiation Database (NSRDB)",
+      "domain": "Green Tech & Renewable Smart Grids",
+      "source_portal": "National Renewable Energy Laboratory (NREL)",
+      "url": "https://nsrdb.nrel.gov/",
+      "license": "U.S. Public Domain / NREL Open Access",
+      "size_samples": "Half-hourly physical solar irradiance across North America, 1998-2023",
+      "data_modality": "Geospatial Time-Series NetCDF / HDF5 / CSV",
+      "features": ["Global Horizontal Irradiance (GHI)", "Direct Normal Irradiance (DNI)", "Diffuse Horizontal (DHI)", "Solar Zenith Angle", "Wind Speed", "Ambient Temp"],
+      "target_variable": "Hourly / Daily Solar PV Wattage Output",
+      "suitability_notes": "Excellent for time-series forecasting, LSTM/Transformer models, and microgrid renewable forecasting."
+    },
+    {
+      "id": "ds-mimii-acoustic",
+      "name": "MIMII Industrial Machine Acoustic Defect Sound",
+      "domain": "Edge AI & TinyML / IoT",
+      "source_portal": "Hitachi / IEEE AASP DCASE",
+      "url": "https://zenodo.org/record/3384388",
+      "license": "Creative Commons Attribution 4.0 International (CC-BY 4.0)",
+      "size_samples": "26,092 ten-second audio clips across 4 industrial machine types (valves, pumps, fans, slide rails)",
+      "data_modality": "8-Channel 16kHz WAV Audio Recordings",
+      "features": ["Mel-Frequency Cepstral Coefficients (MFCCs)", "Log-Mel Spectrograms", "Zero-Crossing Rate"],
+      "target_variable": "Machine Condition (Normal vs Anomalous Operation at -6dB, 0dB, +6dB SNR)",
+      "suitability_notes": "Perfect for TinyML on-device audio anomaly classifiers on microcontrollers (sub-128KB models)."
+    },
+    {
+      "id": "ds-codesearchnet",
+      "name": "CodeSearchNet Python Corpus",
+      "domain": "Developer Tooling & Program Analysis",
+      "source_portal": "GitHub / Hugging Face Datasets",
+      "url": "https://huggingface.co/datasets/code_search_net",
+      "license": "Apache 2.0 / Permissive Open Source",
+      "size_samples": "2,000,000+ Python functions with parsed docstrings & AST tokens (1.5GB)",
+      "data_modality": "Source Code Text + Tokenized AST Streams",
+      "features": ["Function Identifier", "Docstring Tokens", "Raw Python Code", "AST Node Sequences"],
+      "target_variable": "Code-Docstring Semantic Retrieval & Function Vulnerability Classification",
+      "suitability_notes": "Ideal for training code embeddings, AST vulnerability visitors, and semantic code clone detectors."
+    }
+  ]
+}
