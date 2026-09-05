@@ -27,7 +27,12 @@ class StudentProfile(BaseModel):
     id: Optional[str] = None
     name: str = "Student Engineer"
     email: Optional[str] = ""
+    degree: Optional[str] = "B.Tech"
+    year: Optional[str] = "4th Year (Final)"
     branch: str = "Computer Science & Engineering"
+    project_goal: Optional[str] = "College Capstone"
+    preferred_complexity: Optional[str] = "Intermediate"
+    project_preference: Optional[str] = "AI / ML"
     team_size: int = Field(default=1, ge=1, le=6)
     timeframe_weeks: int = Field(default=16, ge=4, le=52)
     hardware_constraint: str = Field(default="CPU-only", description="CPU-only | GPU available | IoT hardware | none")

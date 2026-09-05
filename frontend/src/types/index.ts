@@ -16,7 +16,12 @@ export interface StudentProfile {
   id?: string;
   name: string;
   email?: string;
+  degree?: "B.Tech" | "BCA" | "MCA" | "M.Tech" | "B.Sc / M.Sc";
+  year?: "1st Year" | "2nd Year" | "3rd Year" | "4th Year (Final)";
   branch: string;
+  project_goal?: "College Capstone" | "Resume / Placement Project" | "Hackathon Winning Project" | "Startup MVP" | "Research Publication";
+  preferred_complexity?: "Beginner" | "Intermediate" | "Advanced";
+  project_preference?: "AI / ML" | "Full-stack Web Application" | "Mobile App" | "IoT & Embedded" | "Cloud & Distributed Systems" | "Cybersecurity";
   team_size: number;
   timeframe_weeks: number;
   hardware_constraint: "CPU-only" | "GPU available" | "IoT hardware" | "none";

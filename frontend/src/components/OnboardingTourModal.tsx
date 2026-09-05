@@ -19,32 +19,32 @@ export const OnboardingTourModal: React.FC<OnboardingTourModalProps> = ({
 
   const steps = [
     {
-      title: "Welcome to CapstoneForge",
-      subtitle: "Deterministic Engineering Capstone Architect",
+      title: "Welcome to Meridian",
+      subtitle: "Your Final-Year Project Partner",
       icon: <Sparkles className="w-8 h-8 text-[#1d6e5c]" />,
       badge: "Step 1 of 3",
-      headline: "Define Your Academic & Hardware Constraints",
-      description: "Unlike generic chatbots, CapstoneForge relies on deterministic rule engines and versioned skill taxonomies. Begin by rating your technical competencies and setting your real-world delivery constraints: hardware limitations (CPU-only, GPU, IoT), team size, and semester timeframe.",
-      cta: "Configure Profile",
+      headline: "1. Tell Us What You Know & What You Have",
+      description: "Start by selecting the programming languages and tools you've used, your team size, and your computer hardware (like CPU-only or laptop). We'll only suggest projects you can realistically build and finish within your semester timeline.",
+      cta: "Set Your Skills",
       route: "/profile"
     },
     {
-      title: "Deterministic Discovery",
-      subtitle: "Explainable Match & Vector Uniqueness",
+      title: "Find Your Perfect Project",
+      subtitle: "Ideas Matched to Your Exact Skills",
       icon: <Layers className="w-8 h-8 text-[#1d6e5c]" />,
       badge: "Step 2 of 3",
-      headline: "Explore 100+ Curated Engineering Blueprints",
-      description: "Navigate through the D3 Zoomable Graph Canvas or the ranked idea cards. Inspect the mathematical score breakdown: topological prerequisite coverage, skill gap bridging hours, and vector novelty percentage checked against departmental project archives to prevent duplicate submissions.",
-      cta: "Explore Ideas",
+      headline: "2. Explore Ideas with Match & Originality Scores",
+      description: "Browse 100+ curated project ideas on a visual bubble graph. Green bubbles mean highly original projects that avoid duplicating previous submissions. The match score shows how ready your team is to begin immediately.",
+      cta: "Find Projects",
       route: "/"
     },
     {
-      title: "RAG Proposal & AI Mentor",
-      subtitle: "Attributed Grounding & Viva Defense",
+      title: "Build & Defend with Confidence",
+      subtitle: "Step-by-Step Guidance & Viva Prep",
       icon: <MessageSquareCode className="w-8 h-8 text-[#1d6e5c]" />,
       badge: "Step 3 of 3",
-      headline: "Ground Your Proposal & Prepare for Defense",
-      description: "Synthesize complete project proposals anchored to peer-reviewed research citations. Consult the AI Mentor for architectural decoupling guidance, and run Python AST static code analysis to generate targeted viva voce oral defense questions.",
+      headline: "3. Complete Roadmap, Code Tasks & Viva Practice",
+      description: "Adopt an idea to get a clear blueprint, MVP checklist, and milestone tasks. Chat with Dr. Aris (your technical advisor) whenever you hit a roadblock, and practice answering realistic viva voce oral defense questions.",
       cta: "Open Project Studio",
       route: "/project"
     }

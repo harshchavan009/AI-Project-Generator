@@ -14,7 +14,9 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { ProjectIdea, CitationItem, AstVivaResponse, StudentProfile } from '../types';
-import { ApiService } from '../services/api';
+import { ApiService, getApiBase } from '../services/api';
+import { useViewMode } from '../context/ViewModeContext';
+import { NextStepPrompt } from './NextStepPrompt';
 
 interface MentorPanelProps {
   activeIdea: ProjectIdea | null;
@@ -38,6 +40,7 @@ export const MentorPanel: React.FC<MentorPanelProps> = ({
   activeIdea,
   activeProfile
 }) => {
+  const { isSimple } = useViewMode();
   const [activeTab, setActiveTab] = useState<'mentor' | 'ast_viva'>('mentor');
   
   // Chat state
@@ -113,7 +116,8 @@ class PathologyInferenceEngine:
     ]);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/mentor/chat', {
+      const apiBase = getApiBase();
+      const response = await fetch(`${apiBase}/mentor/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -260,7 +264,7 @@ class PathologyInferenceEngine:
             }`}
           >
             <FileCode2 className="w-3.5 h-3.5" />
-            Static AST Viva Inspector
+            {isSimple ? 'Practice Viva Questions' : 'Static AST Viva Inspector'}
           </button>
         </div>
 
@@ -389,11 +393,22 @@ class PathologyInferenceEngine:
         <div className="flex-1 p-4 overflow-y-auto space-y-4">
           <div className="space-y-1">
             <h4 className="font-serif-heading font-bold text-base text-[#1c1917] flex items-center justify-between">
-              <span>AST Static Code Inspector for Viva Defense</span>
-              <span className="text-xs font-mono text-[#1d6e5c] font-bold">Python ast parser</span>
+              <span>{isSimple ? 'Practice Viva Questions from Your Code' : 'AST Static Code Inspector for Viva Defense'}</span>
+              {!isSimple ? (
+                <span className="text-xs font-mono text-[#1d6e5c] font-bold">Python ast parser</span>
+              ) : (
+                <details className="text-[10px] font-mono text-[#78716c] cursor-pointer">
+                  <summary className="hover:text-[#1d6e5c]">ⓘ How this works</summary>
+                  <div className="absolute right-6 mt-1 p-2 bg-[#faf7f2] border border-[#d6cfc4] rounded shadow-md z-20 text-[10px] max-w-xs text-[#57534e]">
+                    Analyzes Python syntax trees locally using AST parsing to anticipate panel examiner questions.
+                  </div>
+                </details>
+              )}
             </h4>
             <p className="text-xs text-[#57534e]">
-              Paste your capstone code snippet below. Our static parser detects actual imports, class hierarchies, and async patterns to synthesize targeted viva defense questions.
+              {isSimple
+                ? 'Paste your project code snippet below. We inspect your functions and imports to generate realistic oral questions your evaluation committee will ask.'
+                : 'Paste your capstone code snippet below. Our static parser detects actual imports, class hierarchies, and async patterns to synthesize targeted viva defense questions.'}
             </p>
           </div>
 
@@ -473,6 +488,17 @@ class PathologyInferenceEngine:
           )}
         </div>
       )}
+
+      {/* Guided Next Step Prompt */}
+      <NextStepPrompt
+        stepText={
+          activeTab === 'mentor'
+            ? "Ask Dr. Aris about your architecture trade-offs or switch to Practice Viva Questions to test your defense."
+            : "Review the generated viva defense questions and practice explaining your architectural trade-offs."
+        }
+        actionLabel={activeTab === 'mentor' ? "Practice Viva" : "Chat with Advisor"}
+        onAction={() => setActiveTab(activeTab === 'mentor' ? 'ast_viva' : 'mentor')}
+      />
     </div>
   );
 };

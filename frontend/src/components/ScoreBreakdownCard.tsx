@@ -6,9 +6,10 @@ import {
   BookOpen, 
   Cpu, 
   Briefcase, 
-  ExternalLink,
-  ShieldCheck,
-  ShieldAlert
+  ExternalLink, 
+  ShieldCheck, 
+  ShieldAlert,
+  ChevronDown
 } from 'lucide-react';
 import { 
   FeasibilityResult, 
@@ -16,6 +17,7 @@ import {
   SkillCoverageBreakdown, 
   HireabilityResult 
 } from '../types';
+import { useViewMode } from '../context/ViewModeContext';
 
 interface ScoreBreakdownCardProps {
   type: 'match' | 'feasibility' | 'novelty' | 'hireability';
@@ -30,8 +32,25 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
   data,
   compact = false
 }) => {
+  const { isSimple } = useViewMode();
+
   if (type === 'feasibility') {
     const feas = data as FeasibilityResult;
+
+    const getFeasibilitySummary = () => {
+      if (feas.feasibility_band === 'HIGH') {
+        return 'Realistic for your team size and timeline.';
+      }
+      const penalty = feas.factor_breakdown?.find((f) => f.status === 'PENALTY');
+      if (penalty) {
+        return `Achievable with caution — watch ${penalty.factor.toLowerCase()}: ${penalty.explanation}`;
+      }
+      if (feas.feasibility_band === 'MODERATE') {
+        return 'Manageable scope with steady milestone pace.';
+      }
+      return 'High risk — requires significant hardware or timeline adjustments.';
+    };
+
     return (
       <div className="academic-card p-4 space-y-3">
         <div className="flex items-center justify-between border-b border-[#e7e2d8] pb-2">
@@ -53,10 +72,27 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
               </span>
             </div>
           </div>
-          <div className="text-right font-mono text-[11px] text-[#57534e]">
-            <div>Rule Base: <strong>{feas.rule_score}%</strong></div>
-            <div>ML Predict: <strong>{Math.round(feas.ml_completion_probability * 100)}%</strong></div>
-          </div>
+          
+          {!isSimple ? (
+            <div className="text-right font-mono text-[11px] text-[#57534e]">
+              <div>Rule Base: <strong>{feas.rule_score}%</strong></div>
+              <div>ML Predict: <strong>{Math.round(feas.ml_completion_probability * 100)}%</strong></div>
+            </div>
+          ) : (
+            <details className="text-right font-mono text-[10px] text-[#78716c] cursor-pointer">
+              <summary className="hover:text-[#1d6e5c]">Technical details</summary>
+              <div className="mt-1 bg-[#faf7f2] p-1.5 rounded border border-[#e7e2d8]">
+                <div>Rule Base: {feas.rule_score}%</div>
+                <div>ML Predict: {Math.round(feas.ml_completion_probability * 100)}%</div>
+              </div>
+            </details>
+          )}
+        </div>
+
+        {/* Sitewide One-Line Plain Language Explanation */}
+        <div className="text-xs font-sans text-[#44403c] bg-[#faf7f2] border border-[#e7e2d8] rounded-md px-2.5 py-1.5 font-medium leading-snug">
+          <span className="text-[#1d6e5c] font-bold font-mono mr-1">{feas.feasibility_score}% Feasibility</span>
+          — {getFeasibilitySummary()}
         </div>
 
         {/* Inline Factor Drivers Breakdown */}
@@ -93,6 +129,17 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
 
   if (type === 'novelty') {
     const nov = data as NoveltyResult;
+
+    const getNoveltySummary = () => {
+      if (nov.novelty_score >= 75 && !nov.is_high_overlap) {
+        return 'Highly original — minimal overlap with previous student capstones.';
+      }
+      if (nov.novelty_score >= 50 && !nov.is_high_overlap) {
+        return 'Somewhat common theme — adding a custom extension is recommended.';
+      }
+      return `Very similar to existing submissions (${nov.max_similarity_percentage}% match) — consider differentiation.`;
+    };
+
     return (
       <div className="academic-card p-4 space-y-3">
         <div className="flex items-center justify-between border-b border-[#e7e2d8] pb-2">
@@ -114,10 +161,27 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
               </span>
             </div>
           </div>
-          <div className="text-right font-mono text-[11px] text-[#57534e]">
-            <div>Max Sim: <strong>{nov.max_similarity_percentage}%</strong></div>
-            <div>Corpus: <strong>{nov.corpus_size_evaluated} past works</strong></div>
-          </div>
+
+          {!isSimple ? (
+            <div className="text-right font-mono text-[11px] text-[#57534e]">
+              <div>Max Sim: <strong>{nov.max_similarity_percentage}%</strong></div>
+              <div>Corpus: <strong>{nov.corpus_size_evaluated} past works</strong></div>
+            </div>
+          ) : (
+            <details className="text-right font-mono text-[10px] text-[#78716c] cursor-pointer">
+              <summary className="hover:text-[#1d6e5c]">Vector details</summary>
+              <div className="mt-1 bg-[#faf7f2] p-1.5 rounded border border-[#e7e2d8]">
+                <div>Max Sim: {nov.max_similarity_percentage}%</div>
+                <div>Corpus: {nov.corpus_size_evaluated} past works</div>
+              </div>
+            </details>
+          )}
+        </div>
+
+        {/* Sitewide One-Line Plain Language Explanation */}
+        <div className="text-xs font-sans text-[#44403c] bg-[#faf7f2] border border-[#e7e2d8] rounded-md px-2.5 py-1.5 font-medium leading-snug">
+          <span className="text-[#1d6e5c] font-bold font-mono mr-1">{nov.novelty_score}% Novelty</span>
+          — {getNoveltySummary()}
         </div>
 
         {nov.is_high_overlap && (
@@ -152,6 +216,17 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
 
   if (type === 'hireability') {
     const hire = data as HireabilityResult;
+
+    const getHireabilitySummary = () => {
+      if (hire.hireability_score >= 75) {
+        return 'In-demand stack — strongly aligns with current industry hiring trends.';
+      }
+      if (hire.hireability_score >= 50) {
+        return 'Solid market demand across software and engineering roles.';
+      }
+      return 'Niche stack — specialized industry application with targeted job fit.';
+    };
+
     return (
       <div className="academic-card p-4 space-y-3">
         <div className="flex items-center justify-between border-b border-[#e7e2d8] pb-2">
@@ -167,10 +242,27 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
               </span>
             </div>
           </div>
-          <div className="text-right font-mono text-[11px] text-[#57534e]">
-            <div>Avg Demand: <strong>{Math.round(hire.average_market_frequency * 100)}%</strong></div>
-            <div>Source: <strong>Job Index 2026</strong></div>
-          </div>
+
+          {!isSimple ? (
+            <div className="text-right font-mono text-[11px] text-[#57534e]">
+              <div>Avg Demand: <strong>{Math.round(hire.average_market_frequency * 100)}%</strong></div>
+              <div>Source: <strong>Job Index 2026</strong></div>
+            </div>
+          ) : (
+            <details className="text-right font-mono text-[10px] text-[#78716c] cursor-pointer">
+              <summary className="hover:text-[#1d6e5c]">Market metrics</summary>
+              <div className="mt-1 bg-[#faf7f2] p-1.5 rounded border border-[#e7e2d8]">
+                <div>Avg Demand: {Math.round(hire.average_market_frequency * 100)}%</div>
+                <div>Source: Job Index 2026</div>
+              </div>
+            </details>
+          )}
+        </div>
+
+        {/* Sitewide One-Line Plain Language Explanation */}
+        <div className="text-xs font-sans text-[#44403c] bg-[#faf7f2] border border-[#e7e2d8] rounded-md px-2.5 py-1.5 font-medium leading-snug">
+          <span className="text-[#1d6e5c] font-bold font-mono mr-1">{hire.hireability_score}% Hireability</span>
+          — {getHireabilitySummary()}
         </div>
 
         {/* Stack Market Demand Bars */}
@@ -200,13 +292,24 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
 
   // Type: Match / Skill Coverage
   const cov = data as SkillCoverageBreakdown;
+
+  const getMatchSummary = () => {
+    if (cov.coverage_percentage >= 80) {
+      return 'Strong fit — your declared skills cover the core requirements.';
+    }
+    if (cov.coverage_percentage >= 50) {
+      return `Good fit — requires ~${cov.estimated_bridging_weeks} weeks of prep on prerequisites.`;
+    }
+    return `Steep learning curve — ${cov.gap_severity} gap points to bridge before starting.`;
+  };
+
   return (
     <div className="academic-card p-4 space-y-3">
       <div className="flex items-center justify-between border-b border-[#e7e2d8] pb-2">
         <div>
           <span className="text-[11px] font-mono uppercase text-[#78716c] font-semibold flex items-center gap-1.5">
             <BookOpen className="w-3.5 h-3.5 text-[#1d6e5c]" />
-            Skill Coverage & Gap Traversal
+            Skill Coverage & Match
           </span>
           <div className="flex items-baseline gap-2 mt-0.5">
             <span className="font-serif-heading font-bold text-2xl text-[#1c1917]">{cov.coverage_percentage}%</span>
@@ -215,16 +318,33 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
             </span>
           </div>
         </div>
-        <div className="text-right font-mono text-[11px] text-[#57534e]">
-          <div>Gap Severity: <strong>{cov.gap_severity} pts</strong></div>
-          <div>Bridge Time: <strong>{cov.estimated_bridging_weeks} wks</strong></div>
-        </div>
+
+        {!isSimple ? (
+          <div className="text-right font-mono text-[11px] text-[#57534e]">
+            <div>Gap Severity: <strong>{cov.gap_severity} pts</strong></div>
+            <div>Bridge Time: <strong>{cov.estimated_bridging_weeks} wks</strong></div>
+          </div>
+        ) : (
+          <details className="text-right font-mono text-[10px] text-[#78716c] cursor-pointer">
+            <summary className="hover:text-[#1d6e5c]">Gap metrics</summary>
+            <div className="mt-1 bg-[#faf7f2] p-1.5 rounded border border-[#e7e2d8]">
+              <div>Gap Severity: {cov.gap_severity} pts</div>
+              <div>Bridge Time: {cov.estimated_bridging_weeks} wks</div>
+            </div>
+          </details>
+        )}
+      </div>
+
+      {/* Sitewide One-Line Plain Language Explanation */}
+      <div className="text-xs font-sans text-[#44403c] bg-[#faf7f2] border border-[#e7e2d8] rounded-md px-2.5 py-1.5 font-medium leading-snug">
+        <span className="text-[#1d6e5c] font-bold font-mono mr-1">{cov.coverage_percentage}% Match</span>
+        — {getMatchSummary()}
       </div>
 
       {/* Topological Learning Pathway Preview */}
       <div className="space-y-1.5 pt-1">
         <span className="text-[10px] font-mono uppercase text-[#78716c] block">
-          NetworkX Topological Prerequisite Chain:
+          Topological Prerequisite Pathway:
         </span>
         {cov.topological_learning_pathway.length === 0 ? (
           <p className="text-xs text-emerald-700 font-medium flex items-center gap-1">

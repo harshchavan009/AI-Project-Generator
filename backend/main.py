@@ -1,5 +1,5 @@
 """
-CapstoneForge API - Production-Hardened Backend
+Meridian API - AI-Powered Final-Year Project Mentor & Production-Hardened Backend
 FastAPI server featuring:
 - Role-Based Access Control (RBAC): Student, Faculty, Admin with bcrypt & JWT
 - Connection-pooled Database with Alembic migrations & encryption at rest (Fernet)
@@ -104,7 +104,7 @@ if SENTRY_DSN:
             dsn=SENTRY_DSN,
             traces_sample_rate=1.0,
             environment=os.getenv("ENVIRONMENT", "production"),
-            release="capstoneforge@2.0.0"
+            release="meridian@2.0.0"
         )
         logger.info("Sentry SDK initialized successfully.")
     except Exception as e:
@@ -128,8 +128,8 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(
-    title="CapstoneForge API",
-    description="AI-Powered Engineering Capstone Generator & Faculty Oversight Platform - Production Hardened",
+    title="Meridian API",
+    description="Meridian: AI-Powered Final-Year Project Mentor & Faculty Oversight Platform - Production Hardened",
     version="2.0.0",
     lifespan=lifespan
 )
@@ -138,10 +138,28 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # CORS Policy
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000").split(",")
+_origins_env = os.getenv("ALLOWED_ORIGINS", "")
+if _origins_env and _origins_env.strip() != "*":
+    ALLOWED_ORIGINS = [o.strip() for o in _origins_env.split(",") if o.strip()]
+    allow_origin_regex = None
+elif _origins_env.strip() == "*":
+    ALLOWED_ORIGINS = []
+    allow_origin_regex = r".*"
+else:
+    ALLOWED_ORIGINS = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://localhost:80",
+        "http://localhost",
+    ]
+    # Allow typical cloud deployment domains (Vercel, Render, Railway, Netlify) by default
+    allow_origin_regex = r"https?://(localhost|127\.0\.0\.1|.*\.vercel\.app|.*\.onrender\.com|.*\.railway\.app|.*\.netlify\.app)(:\d+)?"
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=allow_origin_regex,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

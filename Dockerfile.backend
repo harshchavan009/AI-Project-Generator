@@ -1,4 +1,4 @@
-# Multi-stage production Dockerfile for CapstoneForge Backend
+# Multi-stage production Dockerfile for Meridian Backend
 FROM python:3.12-slim AS builder
 
 WORKDIR /app
@@ -18,20 +18,20 @@ FROM python:3.12-slim AS runner
 WORKDIR /app
 
 # Create unprivileged system user for security
-RUN groupadd -r capstone && useradd -r -g capstone -d /app capstone
+RUN groupadd -r meridian && useradd -r -g meridian -d /app meridian
 
-COPY --from=builder /root/.local /home/capstone/.local
-ENV PATH=/home/capstone/.local/bin:$PATH
+COPY --from=builder /root/.local /home/meridian/.local
+ENV PATH=/home/meridian/.local/bin:$PATH
 ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
 
-COPY --chown=capstone:capstone backend /app/backend
-COPY --chown=capstone:capstone alembic.ini /app/alembic.ini
+COPY --chown=meridian:meridian backend /app/backend
+COPY --chown=meridian:meridian alembic.ini /app/alembic.ini
 
 # Create storage directory for models and logs
-RUN mkdir -p /app/backend/data && chown -R capstone:capstone /app
+RUN mkdir -p /app/backend/data && chown -R meridian:meridian /app
 
-USER capstone
+USER meridian
 
 EXPOSE 8000
 

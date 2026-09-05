@@ -18,7 +18,21 @@ import {
 } from '../types';
 
 
-const API_BASE = 'http://127.0.0.1:8000';
+export const getApiBase = (): string => {
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return (import.meta.env.VITE_API_BASE_URL as string).replace(/\/$/, '');
+  }
+  if (
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
+    window.location.port !== '8000'
+  ) {
+    return 'http://127.0.0.1:8000';
+  }
+  return '';
+};
+
+const API_BASE = getApiBase();
 
 export interface UserAccount {
   id: string;

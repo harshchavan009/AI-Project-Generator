@@ -10,6 +10,7 @@ import { OnboardingTourModal } from './components/OnboardingTourModal';
 import { StudentProfile, ProjectIdea } from './types';
 import { ApiService, UserAccount } from './services/api';
 import { Sparkles, Compass, AlertCircle, WifiOff } from 'lucide-react';
+import { ViewModeProvider } from './context/ViewModeContext';
 
 const DEMO_PRESETS: Record<string, StudentProfile> = {
   priya: {
@@ -194,6 +195,12 @@ export const App: React.FC = () => {
       }));
       navigate('/');
     }
+
+    // Auto-trigger tour on first login if not yet dismissed
+    const hasSeenTour = localStorage.getItem('capstoneforge_has_seen_tour');
+    if (!hasSeenTour) {
+      setIsOnboardingTourOpen(true);
+    }
   };
 
   const handleLogout = () => {
@@ -257,9 +264,10 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f5f1e8] text-[#1c1917] selection:bg-[#1d6e5c]/20 selection:text-[#1d6e5c]">
-      
-      {/* Institutional Navigation Header */}
+    <ViewModeProvider>
+      <div className="min-h-screen flex flex-col bg-[#f5f1e8] text-[#1c1917] selection:bg-[#1d6e5c]/20 selection:text-[#1d6e5c]">
+        
+        {/* Institutional Navigation Header */}
       <Navbar
         currentRoute={currentRoute}
         navigate={navigate}
@@ -330,8 +338,8 @@ export const App: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#78716c]">
           <div className="flex items-center space-x-2">
             <span className="w-2 h-2 rounded-full bg-[#1d6e5c]"></span>
-            <span className="text-[#1c1917] font-bold font-serif-heading">CapstoneForge</span>
-            <span>— AI Engineering Capstone Generator & Faculty Oversight Console</span>
+            <span className="text-[#1c1917] font-bold font-serif-heading">Meridian</span>
+            <span>— AI Final-Year Project Mentor & Faculty Oversight Console</span>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -344,9 +352,10 @@ export const App: React.FC = () => {
             <span>JWT RBAC Protected</span>
           </div>
         </div>
-      </footer>
+        </footer>
 
-    </div>
+      </div>
+    </ViewModeProvider>
   );
 };
 

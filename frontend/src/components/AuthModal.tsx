@@ -91,11 +91,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onAuthSuc
         <div className="px-6 py-4 bg-[#ede8df] border-b border-[#d6cfc4] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-[#1d6e5c] text-white flex items-center justify-center font-bold text-sm">
-              CF
+              M
             </div>
             <div>
               <h2 id="auth-modal-title" className="text-base font-bold text-[#1c1917] font-serif-heading">
-                {mode === 'login' ? 'Sign In to CapstoneForge' : 'Create an Account'}
+                {mode === 'login' ? 'Sign In to Meridian' : 'Create an Account on Meridian'}
               </h2>
               <p className="text-xs text-[#78716c]">Role-Based Access & Scoped Authentication</p>
             </div>

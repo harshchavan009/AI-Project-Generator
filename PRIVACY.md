@@ -1,4 +1,4 @@
-# CapstoneForge Privacy Policy & Student Data Protection
+# Meridian Privacy Policy & Student Data Protection
 **Version:** 2.0.0  
 **Effective Date:** 2026 Academic Year  
 **Compliance Standards:** Family Educational Rights and Privacy Act (FERPA), General Data Protection Regulation (GDPR), institutional academic confidentiality protocols.
@@ -6,7 +6,7 @@
 ---
 
 ## 1. Introduction
-CapstoneForge is an AI-assisted project idea generator and academic mentor platform built for engineering students and faculty advisors. This document describes the personal data and academic telemetry collected by the system, our encryption and security posture, retention timelines, and the process by which students can exercise their rights to access, amend, or permanently delete their data.
+Meridian is an AI-assisted project idea generator and academic mentor platform built for engineering students and faculty advisors. This document describes the personal data and academic telemetry collected by the system, our encryption and security posture, retention timelines, and the process by which students can exercise their rights to access, amend, or permanently delete their data.
 
 ---
 
@@ -66,7 +66,7 @@ In accordance with FERPA and GDPR principles, students retain ownership of their
 - **Automated In-App / API Deletion:**  
   Send an authenticated `DELETE /api/profile/{student_id}` request with your Bearer token.
 - **Manual Request to Departmental Privacy Officer:**  
-  Email your faculty coordinator or the university Data Protection Officer (`privacy@eng.univ.edu`) with the subject `"CapstoneForge Data Deletion Request"`. Requests are validated and executed within **48 business hours**, triggering a cascading delete across PostgreSQL tables:
+  Email your faculty coordinator or the university Data Protection Officer (`privacy@eng.univ.edu`) with the subject `"Meridian Data Deletion Request"`. Requests are validated and executed within **48 business hours**, triggering a cascading delete across PostgreSQL tables:
   ```sql
   DELETE FROM mentor_messages WHERE project_id IN (...);
   DELETE FROM projects WHERE student_id = :student_id;
@@ -78,7 +78,7 @@ In accordance with FERPA and GDPR principles, students retain ownership of their
 ---
 
 ## 6. Abuse Prevention & Content Moderation
-CapstoneForge enforces server-side input sanitization on all free-text fields to neutralize script injection (XSS) and SQL injection attempts. The AI Mentor endpoint employs automated regex and semantic filters to reject prompt injection attacks, jailbreaking instructions, or inappropriate content prior to invoking external APIs.
+Meridian enforces server-side input sanitization on all free-text fields to neutralize script injection (XSS) and SQL injection attempts. The AI Mentor endpoint employs automated regex and semantic filters to reject prompt injection attacks, jailbreaking instructions, or inappropriate content prior to invoking external APIs.
 
 ---
 

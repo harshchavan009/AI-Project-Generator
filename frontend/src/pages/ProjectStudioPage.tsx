@@ -23,6 +23,8 @@ import { OriginalityTransformerPanel } from '../components/OriginalityTransforme
 import { EvolutionLadderPanel } from '../components/EvolutionLadderPanel';
 import { TaskBoardKanban } from '../components/TaskBoardKanban';
 import { DatasetFinderPanel } from '../components/DatasetFinderPanel';
+import { NextStepPrompt } from '../components/NextStepPrompt';
+import { useViewMode } from '../context/ViewModeContext';
 import { ApiService } from '../services/api';
 
 interface ProjectStudioPageProps {
@@ -36,6 +38,7 @@ export const ProjectStudioPage: React.FC<ProjectStudioPageProps> = ({
   profile,
   navigate
 }) => {
+  const { isSimple } = useViewMode();
   const [proposal, setProposal] = useState<GroundedProposal | null>(null);
   const [driftData, setDriftData] = useState<GitHubDriftAnalysis | null>(null);
   const [isGrounding, setIsGrounding] = useState(false);
@@ -221,16 +224,25 @@ export const ProjectStudioPage: React.FC<ProjectStudioPageProps> = ({
             />
           )}
 
-          {/* RAG Grounded Problem Statement & Attributed Citations */}
+          {/* Grounded Problem Statement & Academic Background */}
           <div className="academic-card p-6 space-y-4">
             <div className="flex items-center justify-between border-b border-[#e7e2d8] pb-3">
               <h3 className="font-serif-heading font-bold text-lg text-[#1c1917] flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-[#1d6e5c]" />
-                Grounded Problem Statement & Academic Background
+                {isSimple ? "The Problem This Project Solves" : "Grounded Problem Statement & Academic Background"}
               </h3>
-              <span className="text-[10px] font-mono text-[#78716c] bg-[#faf7f2] border border-[#d6cfc4] px-2 py-0.5 rounded">
-                {proposal?.generation_mode || 'RAG Grounded Synthesis'}
-              </span>
+              {!isSimple ? (
+                <span className="text-[10px] font-mono text-[#78716c] bg-[#faf7f2] border border-[#d6cfc4] px-2 py-0.5 rounded">
+                  {proposal?.generation_mode || 'RAG Grounded Synthesis'}
+                </span>
+              ) : (
+                <details className="text-[10px] font-mono text-[#78716c] cursor-pointer">
+                  <summary className="hover:text-[#1d6e5c]">ⓘ How this works</summary>
+                  <div className="absolute right-6 mt-1 p-2.5 bg-[#faf7f2] border border-[#d6cfc4] rounded shadow-md z-20 text-[10px] max-w-xs text-[#57534e]">
+                    Synthesized by RAG Grounded Synthesis referencing recent peer-reviewed publications.
+                  </div>
+                </details>
+              )}
             </div>
 
             {isGrounding ? (
@@ -239,40 +251,62 @@ export const ProjectStudioPage: React.FC<ProjectStudioPageProps> = ({
                 <p>Retrieving recent peer-reviewed sources and grounding problem statement...</p>
               </div>
             ) : (
-              <div className="space-y-4 text-xs font-sans leading-relaxed text-[#1c1917]">
-                <p className="text-sm text-[#1c1917] leading-relaxed">
-                  {proposal?.grounded_problem_statement || idea.description}
-                </p>
+              <div className="space-y-3">
+                {/* 1 Short Plain-Language Sentence visible by default */}
+                <div className="bg-[#faf7f2] border border-[#d6cfc4] rounded-lg p-3.5 space-y-1">
+                  <span className="text-[10px] font-mono uppercase text-[#1d6e5c] font-bold block">
+                    Core Problem:
+                  </span>
+                  <p className="text-sm font-medium text-[#1c1917] leading-relaxed">
+                    {(proposal?.grounded_problem_statement || idea.description).split(/(?<=[.?!])\s+/)[0] || idea.description}
+                  </p>
+                </div>
 
-                {/* Clickable Grounded Citations Chips */}
-                {proposal?.citations && proposal.citations.length > 0 && (
-                  <div className="pt-3 border-t border-[#f5f1e8] space-y-2">
-                    <span className="text-[10px] font-mono uppercase text-[#78716c] font-bold block">
-                      Grounding Research Publications & Repositories (Last 18 Months):
+                {/* Collapsible Full Academic Framing & Citations */}
+                <details className="border border-[#e7e2d8] rounded-lg overflow-hidden bg-white text-xs group" open={!isSimple}>
+                  <summary className="px-3.5 py-2.5 bg-[#fcfbf9] hover:bg-[#ede8df] cursor-pointer flex items-center justify-between font-semibold text-[#1c1917] transition-colors">
+                    <span className="flex items-center gap-1.5">
+                      <BookOpen className="w-3.5 h-3.5 text-[#1d6e5c]" />
+                      Read full academic framing & research background
                     </span>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                      {proposal.citations.map((c, idx) => (
-                        <a
-                          key={idx}
-                          href={c.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-[#faf7f2] border border-[#d6cfc4] hover:border-[#1d6e5c] p-2.5 rounded-lg transition-all group block space-y-1"
-                        >
-                          <div className="flex items-center justify-between text-[11px] font-semibold text-[#1d6e5c]">
-                            <span className="line-clamp-1">{c.title}</span>
-                            <ExternalLink className="w-3 h-3 shrink-0 ml-1 opacity-70 group-hover:opacity-100" />
-                          </div>
-                          <p className="text-[10px] text-[#57534e] line-clamp-2">{c.summary}</p>
-                          <div className="flex justify-between text-[9px] font-mono text-[#78716c] pt-1 border-t border-[#e7e2d8]">
-                            <span>{c.authors}</span>
-                            <span className="font-bold">{c.year}</span>
-                          </div>
-                        </a>
-                      ))}
-                    </div>
+                    <span className="text-[10px] font-mono text-[#78716c]">Click to expand/collapse</span>
+                  </summary>
+                  <div className="p-4 space-y-4 text-xs font-sans leading-relaxed text-[#1c1917] border-t border-[#e7e2d8]">
+                    <p className="text-sm text-[#1c1917] leading-relaxed">
+                      {proposal?.grounded_problem_statement || idea.description}
+                    </p>
+
+                    {/* Clickable Grounded Citations Chips */}
+                    {proposal?.citations && proposal.citations.length > 0 && (
+                      <div className="pt-3 border-t border-[#f5f1e8] space-y-2">
+                        <span className="text-[10px] font-mono uppercase text-[#78716c] font-bold block">
+                          Grounding Research Publications & Repositories (Last 18 Months):
+                        </span>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                          {proposal.citations.map((c, idx) => (
+                            <a
+                              key={idx}
+                              href={c.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="bg-[#faf7f2] border border-[#d6cfc4] hover:border-[#1d6e5c] p-2.5 rounded-lg transition-all group block space-y-1"
+                            >
+                              <div className="flex items-center justify-between text-[11px] font-semibold text-[#1d6e5c]">
+                                <span className="line-clamp-1">{c.title}</span>
+                                <ExternalLink className="w-3 h-3 shrink-0 ml-1 opacity-70 group-hover:opacity-100" />
+                              </div>
+                              <p className="text-[10px] text-[#57534e] line-clamp-2">{c.summary}</p>
+                              <div className="flex justify-between text-[9px] font-mono text-[#78716c] pt-1 border-t border-[#e7e2d8]">
+                                <span>{c.authors}</span>
+                                <span className="font-bold">{c.year}</span>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
+                </details>
               </div>
             )}
           </div>
@@ -322,7 +356,7 @@ export const ProjectStudioPage: React.FC<ProjectStudioPageProps> = ({
             <div className="academic-card p-6 space-y-4">
               <h3 className="font-serif-heading font-bold text-base text-[#1c1917] flex items-center gap-2">
                 <Cpu className="w-4 h-4 text-[#1d6e5c]" />
-                Curated Tech Stack & Architectural Rationale
+                {isSimple ? "Recommended Tech Stack & Why" : "Curated Tech Stack & Architectural Rationale"}
               </h3>
 
               <div className="space-y-3 text-xs font-sans">
@@ -337,23 +371,200 @@ export const ProjectStudioPage: React.FC<ProjectStudioPageProps> = ({
                   ))}
                 </div>
 
-                <div className="pt-2 border-t border-[#f5f1e8] space-y-2">
-                  <span className="text-[10px] font-mono uppercase text-[#78716c] font-bold block">
-                    Architectural Rationale:
+                {/* 1-Line Plain Reason by Default */}
+                <div className="bg-[#faf7f2] border border-[#e7e2d8] rounded-lg p-3 space-y-1">
+                  <span className="text-[10px] font-mono uppercase text-[#1d6e5c] font-bold block">
+                    Plain-Language Rationale:
                   </span>
-                  {(proposal?.tech_stack_rationale || [
-                    "Layered separation of concerns between data ingestion and real-time inference.",
-                    "Deterministic resource quantization targeting local CPU bounds without GPU reliance.",
-                    "Production-grade ASGI microservice with OpenAPI schemas for reproducible evaluation."
-                  ]).map((rat, i) => (
-                    <div key={i} className="text-[#57534e] text-xs bg-[#faf7f2] p-2 rounded border border-[#e7e2d8]">
-                      • {rat}
-                    </div>
-                  ))}
+                  <p className="text-xs text-[#57534e]">
+                    Chosen because it is widely used in industry, fits your {profile?.hardware_constraint || 'CPU-only'} setup, and matches your team size.
+                  </p>
+                </div>
+
+                {/* Detailed Rationale with "Show full reasoning" */}
+                <details className="text-xs font-mono text-[#78716c] cursor-pointer pt-1" open={!isSimple}>
+                  <summary className="hover:text-[#1d6e5c] py-0.5">
+                    {isSimple ? "Show full reasoning" : "Architectural Rationale:"}
+                  </summary>
+                  <div className="space-y-2 mt-2 pt-1 border-t border-[#f5f1e8]">
+                    {(proposal?.tech_stack_rationale || [
+                      "Layered separation of concerns between data ingestion and real-time inference.",
+                      "Deterministic resource quantization targeting local CPU bounds without GPU reliance.",
+                      "Production-grade ASGI microservice with OpenAPI schemas for reproducible evaluation."
+                    ]).map((rat, i) => (
+                      <div key={i} className="text-[#57534e] text-xs bg-[#faf7f2] p-2 rounded border border-[#e7e2d8] font-sans">
+                        • {rat}
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Engineering Implementation Blueprint: Module Division & Week 1 Guide */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            {/* Week 1 Getting Started Guide */}
+            <div className="academic-card p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-[#e7e2d8] pb-3">
+                <h3 className="font-serif-heading font-bold text-base text-[#1c1917] flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-[#1d6e5c]" />
+                  What to Do in Week 1 (Quick-Start Roadmap)
+                </h3>
+                <span className="text-[10px] font-mono uppercase bg-[#1d6e5c]/10 text-[#1d6e5c] font-bold px-2 py-0.5 rounded">
+                  Kickoff Sprint
+                </span>
+              </div>
+
+              <div className="space-y-3 text-xs font-sans">
+                <div className="bg-[#faf7f2] p-3 rounded-lg border border-[#e7e2d8] space-y-1">
+                  <div className="flex items-center justify-between font-mono font-bold text-[11px] text-[#1d6e5c]">
+                    <span>Days 1–2: Project Setup & Toolchain</span>
+                    <span className="text-[#78716c]">Milestone 1.1</span>
+                  </div>
+                  <p className="text-xs text-[#57534e]">
+                    Create a clean Git repository with GitHub issue templates. Initialize a Python virtual environment (<code className="font-mono bg-white px-1 py-0.2 rounded border">venv</code>) or Node workspace. Install core dependencies: <span className="font-mono text-[#1c1917] font-semibold">{idea.tech_stack.slice(0, 3).join(', ')}</span>.
+                  </p>
+                </div>
+
+                <div className="bg-[#faf7f2] p-3 rounded-lg border border-[#e7e2d8] space-y-1">
+                  <div className="flex items-center justify-between font-mono font-bold text-[11px] text-[#1d6e5c]">
+                    <span>Days 3–4: Database & Entity Schemas</span>
+                    <span className="text-[#78716c]">Milestone 1.2</span>
+                  </div>
+                  <p className="text-xs text-[#57534e]">
+                    Set up your relational database tables using the schema guide below. Create an initial migration script and verify connecting to the local database with connection pooling.
+                  </p>
+                </div>
+
+                <div className="bg-[#faf7f2] p-3 rounded-lg border border-[#e7e2d8] space-y-1">
+                  <div className="flex items-center justify-between font-mono font-bold text-[11px] text-[#1d6e5c]">
+                    <span>Days 5–7: First Working Endpoint & Smoke Test</span>
+                    <span className="text-[#78716c]">Milestone 1.3</span>
+                  </div>
+                  <p className="text-xs text-[#57534e]">
+                    Implement the first service endpoint (e.g. <code className="font-mono bg-white px-1 py-0.2 rounded border">/api/v1/health</code> and data ingestion route). Write an automated pytest smoke test to confirm JSON schemas match expected payloads.
+                  </p>
                 </div>
               </div>
             </div>
 
+            {/* Relational Database Schema & ERD Specification */}
+            <div className="academic-card p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-[#e7e2d8] pb-3">
+                <h3 className="font-serif-heading font-bold text-base text-[#1c1917] flex items-center gap-2">
+                  <Database className="w-4 h-4 text-[#1d6e5c]" />
+                  Database Schema & Relational Tables
+                </h3>
+                <span className="text-[10px] font-mono text-[#78716c]">PostgreSQL / SQLite</span>
+              </div>
+
+              <div className="space-y-3 text-xs font-sans">
+                <p className="text-xs text-[#57534e]">
+                  Recommended relational tables for <strong>{idea.title.split(':')[0]}</strong>:
+                </p>
+
+                <div className="space-y-2 overflow-x-auto font-mono text-[11px]">
+                  <div className="bg-[#faf7f2] p-2.5 rounded-lg border border-[#e7e2d8] space-y-1">
+                    <div className="flex items-center justify-between text-[#1c1917] font-bold">
+                      <span className="text-[#1d6e5c]">Table: users / students</span>
+                      <span className="text-[10px] text-[#78716c]">Primary Entity</span>
+                    </div>
+                    <p className="text-[10px] text-[#57534e]">
+                      Columns: <span className="text-[#1c1917]">id (UUID PK), email (VARCHAR), branch (VARCHAR), role (VARCHAR), created_at (TIMESTAMP)</span>
+                    </p>
+                  </div>
+
+                  <div className="bg-[#faf7f2] p-2.5 rounded-lg border border-[#e7e2d8] space-y-1">
+                    <div className="flex items-center justify-between text-[#1c1917] font-bold">
+                      <span className="text-[#1d6e5c]">Table: project_records</span>
+                      <span className="text-[10px] text-[#78716c]">Core Domain</span>
+                    </div>
+                    <p className="text-[10px] text-[#57534e]">
+                      Columns: <span className="text-[#1c1917]">id (UUID PK), user_id (FK), title (TEXT), domain (VARCHAR), feature_vector (JSONB), status (VARCHAR)</span>
+                    </p>
+                  </div>
+
+                  <div className="bg-[#faf7f2] p-2.5 rounded-lg border border-[#e7e2d8] space-y-1">
+                    <div className="flex items-center justify-between text-[#1c1917] font-bold">
+                      <span className="text-[#1d6e5c]">Table: inferences_and_logs</span>
+                      <span className="text-[10px] text-[#78716c]">Inference & Audit</span>
+                    </div>
+                    <p className="text-[10px] text-[#57534e]">
+                      Columns: <span className="text-[#1c1917]">id (UUID PK), record_id (FK), prediction_score (FLOAT), latency_ms (INT), evaluated_at (TIMESTAMP)</span>
+                    </p>
+                  </div>
+                </div>
+
+                <details className="text-[11px] font-mono text-[#78716c] cursor-pointer pt-1">
+                  <summary className="hover:text-[#1d6e5c]">View SQL DDL Create Table snippet</summary>
+                  <pre className="mt-2 p-3 bg-[#1c1917] text-[#e7e2d8] rounded-lg text-[10px] overflow-x-auto">
+{`CREATE TABLE project_records (
+    id VARCHAR(64) PRIMARY KEY,
+    user_id VARCHAR(64) REFERENCES users(id),
+    title VARCHAR(255) NOT NULL,
+    domain VARCHAR(128) NOT NULL,
+    raw_payload JSONB DEFAULT '{}',
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`}
+                  </pre>
+                </details>
+              </div>
+            </div>
+
+          </div>
+
+          {/* System Module Division */}
+          <div className="academic-card p-6 space-y-4">
+            <h3 className="font-serif-heading font-bold text-base text-[#1c1917] flex items-center gap-2">
+              <Layers className="w-4 h-4 text-[#1d6e5c]" />
+              System Architecture & 4-Module Division
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-sans">
+              <div className="p-3 bg-[#faf7f2] rounded-lg border border-[#e7e2d8] space-y-1.5">
+                <span className="text-[10px] font-mono uppercase text-[#1d6e5c] font-bold block">
+                  Module 1: Ingestion
+                </span>
+                <p className="font-semibold text-[#1c1917]">Data Validation & Cleaning</p>
+                <p className="text-[11px] text-[#57534e]">
+                  Pydantic models, schema sanitization, and input file parsers with automated error handling.
+                </p>
+              </div>
+
+              <div className="p-3 bg-[#faf7f2] rounded-lg border border-[#e7e2d8] space-y-1.5">
+                <span className="text-[10px] font-mono uppercase text-[#1d6e5c] font-bold block">
+                  Module 2: Inference
+                </span>
+                <p className="font-semibold text-[#1c1917]">Processing & AI Engine</p>
+                <p className="text-[11px] text-[#57534e]">
+                  Quantized ONNX INT8 local model, statistical algorithms, or deterministic rule evaluation.
+                </p>
+              </div>
+
+              <div className="p-3 bg-[#faf7f2] rounded-lg border border-[#e7e2d8] space-y-1.5">
+                <span className="text-[10px] font-mono uppercase text-[#1d6e5c] font-bold block">
+                  Module 3: API Service
+                </span>
+                <p className="font-semibold text-[#1c1917]">REST & Async Worker</p>
+                <p className="text-[11px] text-[#57534e]">
+                  FastAPI ASGI microservice with connection pooled SQLAlchemy models and OpenAPI documentation.
+                </p>
+              </div>
+
+              <div className="p-3 bg-[#faf7f2] rounded-lg border border-[#e7e2d8] space-y-1.5">
+                <span className="text-[10px] font-mono uppercase text-[#1d6e5c] font-bold block">
+                  Module 4: Client UI
+                </span>
+                <p className="font-semibold text-[#1c1917]">Interactive Dashboard</p>
+                <p className="text-[11px] text-[#57534e]">
+                  React & TypeScript frontend with responsive layouts, metric charts, and sprint task tracking.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Deterministic Scores Grid */}
@@ -434,6 +645,31 @@ export const ProjectStudioPage: React.FC<ProjectStudioPageProps> = ({
           />
         </div>
       )}
+
+      {/* Guided Next Step Prompt */}
+      <NextStepPrompt
+        stepText={
+          activeTab === 'blueprint'
+            ? "Check the Evolution Ladder tab to see how to make this project stronger with distinction features."
+            : activeTab === 'ladder'
+            ? "Adopt an upgraded evolution level, then open Tasks Kanban to track your sprints."
+            : activeTab === 'tasks'
+            ? "Update task cards to track your sprint velocity, or launch the Mentor to practice viva questions."
+            : "Review benchmark datasets for your proposal, then open Mentor & AST Viva to test oral defense."
+        }
+        actionLabel={
+          activeTab === 'blueprint'
+            ? "Evolution Ladder"
+            : activeTab === 'ladder'
+            ? "Tasks Kanban"
+            : "Launch Mentor"
+        }
+        onAction={() => {
+          if (activeTab === 'blueprint') setActiveTab('ladder');
+          else if (activeTab === 'ladder') setActiveTab('tasks');
+          else navigate('/mentor');
+        }}
+      />
 
     </div>
   );

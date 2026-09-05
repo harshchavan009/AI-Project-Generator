@@ -306,6 +306,17 @@ export const IdeaGraphCanvas: React.FC<IdeaGraphCanvasProps> = ({
           .attr('fill', '#ffffff')
           .attr('pointer-events', 'none')
           .text(Math.round(d.score || 0));
+
+        // Plain-language readable title underneath circle
+        el.append('text')
+          .attr('text-anchor', 'middle')
+          .attr('dy', `${d.radius + 12}px`)
+          .attr('font-size', '9px')
+          .attr('font-family', 'Inter, system-ui, sans-serif')
+          .attr('font-weight', '600')
+          .attr('fill', '#44403c')
+          .attr('pointer-events', 'none')
+          .text(d.label.length > 20 ? d.label.slice(0, 18) + '…' : d.label);
       }
     });
 
@@ -407,32 +418,29 @@ export const IdeaGraphCanvas: React.FC<IdeaGraphCanvasProps> = ({
         </button>
       </div>
 
-      {/* Graph Legend & Navigation Hint */}
-      <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm border border-[#d6cfc4] rounded-lg p-3 text-xs shadow-sm max-w-xs space-y-2">
-        <div className="font-serif-heading font-bold text-[#1c1917] flex items-center justify-between">
-          <span>Discovery Node Graph</span>
-          <span className="text-[10px] font-mono text-[#78716c]">D3 Force</span>
+      {/* Prominent Graph Legend near top of graph */}
+      <div className="absolute top-4 left-4 z-20 bg-white/95 backdrop-blur-sm border border-[#d6cfc4] rounded-xl p-3 shadow-md max-w-lg space-y-1.5">
+        <div className="flex items-center justify-between text-xs">
+          <span className="font-serif-heading font-bold text-[#1c1917]">Originality Guide</span>
+          <span className="text-[10px] font-mono text-[#78716c]">Click bubbles to explore</span>
         </div>
-        <p className="text-[11px] text-[#57534e]">
-          Click any <strong>Domain circle</strong> to expand/collapse matched ideas. Click an <strong>Idea node</strong> to view complete score breakdown.
-        </p>
-        <div className="flex items-center gap-3 pt-1 border-t border-[#e7e2d8] text-[10px] font-mono">
-          <div className="flex items-center gap-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#1d6e5c]"></span>
-            <span>High Novelty (&gt;75)</span>
+        <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-xs">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#1d6e5c] shrink-0"></span>
+            <span className="text-[#1c1917] font-medium text-[11px]">Green = highly original idea</span>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#c2703d]"></span>
-            <span>Moderate (50-75)</span>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#c2703d] shrink-0"></span>
+            <span className="text-[#1c1917] font-medium text-[11px]">Amber = somewhat common</span>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#991b1b]"></span>
-            <span>Overlap Risk</span>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#991b1b] shrink-0"></span>
+            <span className="text-[#1c1917] font-medium text-[11px]">Red = very similar to existing projects</span>
           </div>
         </div>
       </div>
 
-      {/* Hover Tooltip */}
+      {/* Hover Tooltip with Plain-Language Guidance */}
       {hoveredNode && (
         <div
           className="absolute pointer-events-none z-50 bg-[#1c1917] text-white p-3 rounded-lg shadow-xl max-w-sm text-xs font-sans space-y-1.5"
@@ -448,9 +456,11 @@ export const IdeaGraphCanvas: React.FC<IdeaGraphCanvasProps> = ({
             </div>
           ) : (
             <div>
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center justify-between gap-2 border-b border-[#383533] pb-1 mb-1">
                 <span className="text-[10px] font-mono uppercase text-[#e7e2d8] font-semibold">{hoveredNode.domain}</span>
-                <span className="font-mono text-emerald-400 font-bold">Match: {Math.round(hoveredNode.score || 0)}%</span>
+                <span className="font-mono text-emerald-400 font-bold text-xs">
+                  {Math.round(hoveredNode.score || 0)}% match — {(hoveredNode.score || 0) >= 80 ? 'strongly fits your skills' : (hoveredNode.score || 0) >= 60 ? 'good fit with your skills' : 'manageable skill gap'}
+                </span>
               </div>
               <h4 className="font-serif-heading font-bold text-sm text-white mt-0.5">{hoveredNode.label}</h4>
               {hoveredNode.ideaData && (
@@ -473,7 +483,7 @@ export const IdeaGraphCanvas: React.FC<IdeaGraphCanvasProps> = ({
                     </div>
                   </div>
                   <div className="text-[10px] text-teal-400 font-mono pt-1 text-right">
-                    Click to open full blueprint →
+                    Click bubble to view blueprint & breakdown →
                   </div>
                 </>
               )}

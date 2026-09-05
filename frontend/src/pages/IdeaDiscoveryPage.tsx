@@ -9,14 +9,18 @@ import {
   CheckCircle2, 
   Sliders,
   ChevronRight,
-  X
+  X,
+  HelpCircle,
+  Cpu
 } from 'lucide-react';
 import { ProjectIdea, StudentProfile } from '../types';
 import { IdeaGraphCanvas } from '../components/IdeaGraphCanvas';
 import { ScoreBreakdownCard } from '../components/ScoreBreakdownCard';
 import { IdeaSanityCheckCard } from '../components/IdeaSanityCheckCard';
 import { OriginalityTransformerPanel } from '../components/OriginalityTransformerPanel';
-
+import { NextStepPrompt } from '../components/NextStepPrompt';
+import { SevenParameterScorecard } from '../components/SevenParameterScorecard';
+import { useViewMode } from '../context/ViewModeContext';
 
 interface IdeaDiscoveryPageProps {
   ideas: ProjectIdea[];
@@ -35,10 +39,21 @@ export const IdeaDiscoveryPage: React.FC<IdeaDiscoveryPageProps> = ({
   navigate,
   activeProfile
 }) => {
+  const { isSimple } = useViewMode();
   const [searchQuery, setSearchQuery] = useState('');
   const [domainFilter, setDomainFilter] = useState('ALL');
   const [minScore, setMinScore] = useState(40);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // First-run dismissible banner state stored in localStorage
+  const [showFirstRunBanner, setShowFirstRunBanner] = useState<boolean>(() => {
+    return localStorage.getItem('capstoneforge_dismiss_graph_banner') !== 'true';
+  });
+
+  const handleDismissBanner = () => {
+    localStorage.setItem('capstoneforge_dismiss_graph_banner', 'true');
+    setShowFirstRunBanner(false);
+  };
 
   // Filter ideas based on user controls
   const filteredIdeas = ideas.filter((idea) => {
@@ -63,21 +78,75 @@ export const IdeaDiscoveryPage: React.FC<IdeaDiscoveryPageProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       
+      {/* First-Run Plain-Language Instruction Banner */}
+      {showFirstRunBanner && (
+        <div className="bg-[#1d6e5c]/10 border border-[#1d6e5c]/30 rounded-xl p-4 flex items-center justify-between gap-3 shadow-xs animate-in fade-in duration-300">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#1d6e5c] text-white shrink-0 shadow-xs">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-[#1c1917]">
+                Click a topic bubble below to see matching project ideas. The number shows how well it fits your skills.
+              </p>
+              <p className="text-[11px] text-[#57534e] mt-0.5">
+                Bubbles closer to 100% fit your declared skills best. Green circles represent original, non-duplicate ideas.
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={handleDismissBanner}
+            className="text-xs font-semibold text-[#1d6e5c] hover:text-[#165849] bg-white border border-[#d6cfc4] hover:border-[#1d6e5c] px-3 py-1.5 rounded-lg transition-colors shrink-0 shadow-xs"
+          >
+            Got it
+          </button>
+        </div>
+      )}
+
       {/* Header with Title and Filtering Bar */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#e7e2d8] pb-5">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono text-[#78716c] uppercase mb-1">
-            <span>Deterministic Matching Engine</span>
-            <span>•</span>
-            <span className="text-[#1d6e5c] font-bold">FastEmbed ONNX INT8 Local Vector Space</span>
-          </div>
-          <h1 className="font-serif-heading font-bold text-3xl sm:text-4xl text-[#1c1917]">
-            Interactive Capstone Discovery
-          </h1>
-          <p className="text-sm text-[#57534e] mt-1 max-w-2xl">
-            Explore 100+ curated engineering projects in a zoomable topological force-graph. 
-            All match ratios, feasibility constraints, and novelty indices are computed deterministically on your local backend.
-          </p>
+          {isSimple ? (
+            /* Simple Mode Header */
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-mono text-[#1d6e5c] font-semibold bg-[#1d6e5c]/10 px-2 py-0.5 rounded">
+                  Personalized Recommendations
+                </span>
+                <details className="text-[11px] font-mono text-[#78716c] cursor-pointer group">
+                  <summary className="hover:text-[#1d6e5c] list-none flex items-center gap-1 font-sans">
+                    <span>ⓘ How this works</span>
+                  </summary>
+                  <div className="absolute z-20 mt-1.5 p-3 bg-[#faf7f2] border border-[#d6cfc4] rounded-lg shadow-lg text-[11px] text-[#57534e] max-w-sm space-y-1">
+                    <p className="font-semibold text-[#1c1917]">Deterministic Matching Engine</p>
+                    <p>Powered by local FastEmbed ONNX INT8 embeddings and topological skill gap graphs. No black-box LLM guessing.</p>
+                  </div>
+                </details>
+              </div>
+              <h1 className="font-serif-heading font-bold text-3xl sm:text-4xl text-[#1c1917]">
+                Find Your Project — pick a topic below to see ideas matched to you
+              </h1>
+              <p className="text-sm text-[#57534e] mt-1 max-w-2xl">
+                Browse project ideas tailored to your team size, hardware constraints, and skills. Click any bubble to review what it takes to build.
+              </p>
+            </div>
+          ) : (
+            /* Technical Mode Header */
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#78716c] uppercase mb-1">
+                <span>Deterministic Matching Engine</span>
+                <span>•</span>
+                <span className="text-[#1d6e5c] font-bold">FastEmbed ONNX INT8 Local Vector Space</span>
+              </div>
+              <h1 className="font-serif-heading font-bold text-3xl sm:text-4xl text-[#1c1917]">
+                Interactive Capstone Discovery
+              </h1>
+              <p className="text-sm text-[#57534e] mt-1 max-w-2xl">
+                Explore 100+ curated engineering projects in a zoomable topological force-graph. 
+                All match ratios, feasibility constraints, and novelty indices are computed deterministically on your local backend.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Action button to modify profile */}
@@ -216,6 +285,12 @@ export const IdeaDiscoveryPage: React.FC<IdeaDiscoveryPageProps> = ({
                 />
               )}
 
+              {/* Feature 5: 7-Parameter Scorecard & Why Recommended Box */}
+              <SevenParameterScorecard
+                idea={selectedIdea}
+                profile={activeProfile}
+              />
+
               {/* All 4 Deterministic Score Breakdown Cards */}
               <div className="space-y-3 pt-2">
 
@@ -259,6 +334,17 @@ export const IdeaDiscoveryPage: React.FC<IdeaDiscoveryPageProps> = ({
           </div>
         )}
       </div>
+
+      {/* Guided Next Step Prompt */}
+      <NextStepPrompt
+        stepText={
+          selectedIdea
+            ? `Click "Adopt & Open Studio" in the drawer to open the blueprint and roadmap for "${selectedIdea.title.split(':')[0]}".`
+            : "Click a project bubble on the graph to inspect its skill match, feasibility, and required stack."
+        }
+        actionLabel={selectedIdea ? "Adopt Project" : undefined}
+        onAction={selectedIdea ? () => onAdoptProject(selectedIdea) : undefined}
+      />
 
     </div>
   );

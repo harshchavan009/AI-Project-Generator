@@ -6,10 +6,13 @@ import {
   HelpCircle,
   LogIn,
   LogOut,
-  User
+  User,
+  Sparkles,
+  Cpu
 } from 'lucide-react';
 import { StudentProfile } from '../types';
 import { UserAccount } from '../services/api';
+import { useViewMode } from '../context/ViewModeContext';
 
 interface NavbarProps {
   currentRoute: string;
@@ -36,6 +39,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenTourModal,
   onLogout
 }) => {
+  const { viewMode, setViewMode, isSimple } = useViewMode();
+
+  // Multi-role capability check: faculty and admin accounts can switch roles
+  const canSwitchRole = currentUser && (currentUser.role === 'faculty' || currentUser.role === 'admin');
+
   return (
     <header role="banner" className="sticky top-0 z-40 bg-[#fbf9f5]/95 backdrop-blur-md border-b border-[#e7e2d8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,22 +54,22 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center space-x-3 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1d6e5c] rounded-lg p-1"
             tabIndex={0}
             role="link"
-            aria-label="CapstoneForge Home"
+            aria-label="Meridian Home"
             onClick={() => navigate('/')}
             onKeyDown={(e) => { if (e.key === 'Enter') navigate('/'); }}
           >
             <div className="w-10 h-10 rounded-lg bg-[#1d6e5c] flex items-center justify-center shadow-xs text-white font-serif-heading font-bold text-lg">
-              CF
+              M
             </div>
             <div>
               <span className="font-serif-heading font-bold text-xl tracking-tight text-[#1c1917] flex items-center gap-1.5">
-                CapstoneForge
+                Meridian
                 <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-[#1d6e5c]/10 text-[#1d6e5c] font-semibold">
                   v2.0
                 </span>
               </span>
               <p className="text-[11px] font-sans text-[#78716c] -mt-0.5">
-                Production-Hardened Capstone Architect & Oversight
+                {isSimple ? 'AI Final-Year Project Mentor & Roadmap Architect' : 'Production-Hardened Capstone Mentor & Oversight'}
               </p>
             </div>
           </div>
@@ -79,7 +87,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       : 'text-[#44403c] hover:text-[#1c1917] hover:bg-[#ede8df]'
                   }`}
                 >
-                  Idea Discovery (Graph)
+                  {isSimple ? 'Find Projects' : 'Idea Discovery (Graph)'}
                 </button>
                 <button
                   onClick={() => navigate('/profile')}
@@ -90,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       : 'text-[#44403c] hover:text-[#1c1917] hover:bg-[#ede8df]'
                   }`}
                 >
-                  Skill Taxonomy
+                  {isSimple ? 'Your Skills' : 'Skill Taxonomy'}
                 </button>
                 <button
                   onClick={() => navigate('/project')}
@@ -101,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       : 'text-[#44403c] hover:text-[#1c1917] hover:bg-[#ede8df]'
                   }`}
                 >
-                  Project Studio & Roadmap
+                  {isSimple ? 'Project Studio' : 'Project Studio & Roadmap'}
                 </button>
                 <button
                   onClick={() => navigate('/mentor')}
@@ -112,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       : 'text-[#44403c] hover:text-[#1c1917] hover:bg-[#ede8df]'
                   }`}
                 >
-                  Mentor & AST Viva
+                  {isSimple ? 'AI Mentor & Viva' : 'Mentor & AST Viva'}
                 </button>
               </>
             ) : (
@@ -154,9 +162,39 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </nav>
 
-          {/* Right Action: Presets, Tour, Auth & Role Switcher */}
+          {/* Right Action: View Mode Toggle, Presets, Tour, Auth & Role Switcher */}
           <div className="flex items-center space-x-2.5">
             
+            {/* Global Simple / Technical View Toggle */}
+            <div className="flex items-center bg-[#ede8df] p-0.5 rounded-lg border border-[#d6cfc4]" role="group" aria-label="Simple or Technical View Toggle">
+              <button
+                onClick={() => setViewMode('simple')}
+                aria-pressed={isSimple}
+                title="Simple view: easy-to-understand explanations and clean summaries"
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold transition-all ${
+                  isSimple
+                    ? 'bg-white text-[#1d6e5c] shadow-xs'
+                    : 'text-[#57534e] hover:text-[#1c1917]'
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5 text-[#1d6e5c]" />
+                <span className="hidden sm:inline">Simple</span>
+              </button>
+              <button
+                onClick={() => setViewMode('technical')}
+                aria-pressed={!isSimple}
+                title="Technical view: full engineering badges, vector spaces, and AST models"
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold transition-all ${
+                  !isSimple
+                    ? 'bg-[#1d6e5c] text-white shadow-xs'
+                    : 'text-[#57534e] hover:text-[#1c1917]'
+                }`}
+              >
+                <Cpu className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Technical</span>
+              </button>
+            </div>
+
             {/* Guided Tour Trigger */}
             <button
               onClick={onOpenTourModal}
@@ -167,84 +205,95 @@ export const Navbar: React.FC<NavbarProps> = ({
               <HelpCircle className="w-4 h-4" />
             </button>
 
-            {/* Quick Demo Presets Dropdown */}
-            <div className="hidden sm:block">
-              <select
-                onChange={(e) => onLoadPreset(e.target.value)}
-                defaultValue=""
-                aria-label="Quick Demo Student Profile Presets"
-                className="bg-[#faf7f2] border border-[#d6cfc4] text-[#1c1917] text-xs font-mono rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1d6e5c]"
-              >
-                <option value="" disabled>Student Presets</option>
-                <option value="priya">Priya (AI Healthcare)</option>
-                <option value="rohan">Rohan (TinyML IoT)</option>
-                <option value="ananya">Ananya (SecOps eBPF)</option>
-                <option value="vikram">Vikram (FinTech GNN)</option>
-              </select>
-            </div>
-
-            {/* Role Switcher Pill */}
-            <div className="flex items-center bg-[#ede8df] p-0.5 rounded-lg border border-[#d6cfc4]" role="group" aria-label="Role Switcher">
-              <button
-                onClick={() => {
-                  setUserRole('student');
-                  navigate('/');
-                }}
-                aria-pressed={userRole === 'student'}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold transition-all ${
-                  userRole === 'student'
-                    ? 'bg-white text-[#1d6e5c] shadow-xs'
-                    : 'text-[#57534e] hover:text-[#1c1917]'
-                }`}
-              >
-                <GraduationCap className="w-3.5 h-3.5" />
-                Student
-              </button>
-              <button
-                onClick={() => {
-                  setUserRole('faculty');
-                  navigate('/faculty');
-                }}
-                aria-pressed={userRole === 'faculty'}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold transition-all ${
-                  userRole === 'faculty'
-                    ? 'bg-[#1d6e5c] text-white shadow-xs'
-                    : 'text-[#57534e] hover:text-[#1c1917]'
-                }`}
-              >
-                <Users className="w-3.5 h-3.5" />
-                Faculty
-              </button>
-            </div>
-
-            {/* User Account / Auth Button */}
+            {/* Authenticated Controls: Presets, Role Switcher, and User Profile */}
             {currentUser ? (
-              <div className="flex items-center gap-2">
-                <div className="hidden md:flex flex-col text-right">
-                  <span className="text-xs font-semibold text-[#1c1917] flex items-center justify-end gap-1">
-                    {currentUser.name}
-                    <span className="text-[9px] font-mono uppercase bg-[#1d6e5c]/10 text-[#1d6e5c] font-bold px-1.5 py-0.2 rounded">
-                      {currentUser.role}
-                    </span>
-                  </span>
-                  <span className="text-[10px] text-[#78716c] truncate max-w-[120px]">{currentUser.email}</span>
+              <>
+                {/* Quick Demo Presets Dropdown (only when authenticated) */}
+                <div className="hidden sm:block">
+                  <select
+                    onChange={(e) => onLoadPreset(e.target.value)}
+                    defaultValue=""
+                    aria-label="Quick Demo Student Profile Presets"
+                    className="bg-[#faf7f2] border border-[#d6cfc4] text-[#1c1917] text-xs font-mono rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1d6e5c]"
+                  >
+                    <option value="" disabled>Student Presets</option>
+                    <option value="priya">Priya (AI Healthcare)</option>
+                    <option value="rohan">Rohan (TinyML IoT)</option>
+                    <option value="ananya">Ananya (SecOps eBPF)</option>
+                    <option value="vikram">Vikram (FinTech GNN)</option>
+                  </select>
                 </div>
-                <button
-                  onClick={onLogout}
-                  title="Sign Out"
-                  aria-label="Sign Out"
-                  className="p-1.5 rounded-lg border border-[#d6cfc4] bg-[#faf7f2] text-[#78716c] hover:text-rose-600 hover:border-rose-300 transition-colors"
-                >
-                  <LogOut className="w-4 h-4" />
-                </button>
-              </div>
+
+                {/* Role Switcher Pill - ONLY shown if account has multi-role authorization (faculty / admin) */}
+                {canSwitchRole ? (
+                  <div className="flex items-center bg-[#ede8df] p-0.5 rounded-lg border border-[#d6cfc4]" role="group" aria-label="Role Switcher">
+                    <button
+                      onClick={() => {
+                        setUserRole('student');
+                        navigate('/');
+                      }}
+                      aria-pressed={userRole === 'student'}
+                      className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold transition-all ${
+                        userRole === 'student'
+                          ? 'bg-white text-[#1d6e5c] shadow-xs'
+                          : 'text-[#57534e] hover:text-[#1c1917]'
+                      }`}
+                    >
+                      <GraduationCap className="w-3.5 h-3.5" />
+                      Student
+                    </button>
+                    <button
+                      onClick={() => {
+                        setUserRole('faculty');
+                        navigate('/faculty');
+                      }}
+                      aria-pressed={userRole === 'faculty'}
+                      className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold transition-all ${
+                        userRole === 'faculty'
+                          ? 'bg-[#1d6e5c] text-white shadow-xs'
+                          : 'text-[#57534e] hover:text-[#1c1917]'
+                      }`}
+                    >
+                      <Users className="w-3.5 h-3.5" />
+                      Faculty
+                    </button>
+                  </div>
+                ) : (
+                  <span className="hidden md:inline-flex items-center gap-1 text-[11px] font-mono uppercase bg-[#1d6e5c]/10 text-[#1d6e5c] font-bold px-2 py-1 rounded-md">
+                    <GraduationCap className="w-3.5 h-3.5" />
+                    Student
+                  </span>
+                )}
+
+                {/* Identity element + Sign Out */}
+                <div className="flex items-center gap-2">
+                  <div className="hidden md:flex flex-col text-right">
+                    <span className="text-xs font-semibold text-[#1c1917] flex items-center justify-end gap-1">
+                      {currentUser.name}
+                      <span className="text-[9px] font-mono uppercase bg-[#1d6e5c]/10 text-[#1d6e5c] font-bold px-1.5 py-0.2 rounded">
+                        {currentUser.role}
+                      </span>
+                    </span>
+                    <span className="text-[10px] text-[#78716c] truncate max-w-[120px]">{currentUser.email}</span>
+                  </div>
+                  <button
+                    onClick={onLogout}
+                    title="Sign Out"
+                    aria-label="Sign Out"
+                    className="p-1.5 rounded-lg border border-[#d6cfc4] bg-[#faf7f2] text-[#78716c] hover:text-rose-600 hover:border-rose-300 transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </div>
+              </>
             ) : (
+              /* If NOT logged in, show ONLY a "Sign In" / "Get Started" button — hide role switcher & presets */
               <button
                 onClick={onOpenAuthModal}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1d6e5c] text-white text-xs font-semibold hover:bg-[#165849] transition-all shadow-xs"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#1d6e5c] text-white text-xs font-semibold hover:bg-[#165849] transition-all shadow-xs"
               >
                 <LogIn className="w-3.5 h-3.5" />
-                <span>Sign In</span>
+                <span>Sign In / Get Started</span>
               </button>
             )}
 
