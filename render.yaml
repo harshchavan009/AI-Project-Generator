@@ -7,7 +7,7 @@ services:
     startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHON_VERSION
-        value: 3.12.0
+        value: "3.12.0"
       - key: DATABASE_URL
         fromDatabase:
           name: meridian-db
@@ -36,7 +36,7 @@ services:
         fromService:
           type: web
           name: meridian-api
-          property: host
+          property: hostWithScheme
 
 databases:
   - name: meridian-db
