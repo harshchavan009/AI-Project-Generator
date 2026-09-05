@@ -208,11 +208,11 @@ class RagGroundingService:
         api_key: str = ""
     ) -> AsyncGenerator[str, None]:
         """
-        Streams mentor advice via SSE format:
-        Restricted strictly to the student's project context and research grounding.
-        Deterministically evaluates top-k retrieval similarity before generation to prevent hallucinations.
+        Streams mentor advice via SSE format.
+        Citations MUST be pre-computed by the caller via asyncio.to_thread
+        to avoid blocking the event loop.
         """
-        # 1. Compute deterministic grounding confidence from retrieval cosine similarity
+        # Citations should already be provided; compute only if missing (fallback safety net)
         if not citations:
             citations = self.retrieve_sources(user_message, domain=project_domain, top_k=2)
 

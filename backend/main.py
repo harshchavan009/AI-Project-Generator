@@ -20,6 +20,7 @@ if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
 if _CURRENT_DIR not in sys.path:
     sys.path.insert(0, _CURRENT_DIR)
+import asyncio
 import json
 import time
 import uuid
@@ -753,15 +754,18 @@ async def mentor_chat_endpoint(request: Request, payload: MentorChatPayload):
 
     clean_message = sanitize_text(payload.message)
 
-    # 2. Record message in database
-    await save_mentor_message(payload.project_id, "user", clean_message)
+    # 2. Record message in database (fire-and-forget, don't block stream start)
+    asyncio.create_task(save_mentor_message(payload.project_id, "user", clean_message))
 
-    # 3. Retrieve query-specific grounding sources for confidence estimation
-    citations = rag_service.retrieve_sources(clean_message, domain=payload.project_domain, top_k=2)
+    # 3. Retrieve grounding sources in thread pool — embedding inference is CPU-bound
+    #    and must not block the async event loop.
+    citations = await asyncio.to_thread(
+        rag_service.retrieve_sources, clean_message, payload.project_domain, 2
+    )
     if not citations and payload.citations:
         citations = payload.citations
 
-    # 4. Stream response wrapped with resilient fallback
+    # 4. Stream response — citations already computed, no second retrieval inside stream
     raw_stream = rag_service.stream_mentor_response(
         project_title=payload.project_title,
         project_domain=payload.project_domain,
@@ -779,6 +783,7 @@ async def mentor_chat_endpoint(request: Request, payload: MentorChatPayload):
         headers={
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
             "Content-Type": "text/event-stream"
         }
     )

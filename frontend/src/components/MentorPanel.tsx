@@ -117,7 +117,7 @@ class PathologyInferenceEngine:
 
     try {
       const apiBase = getApiBase();
-      const response = await fetch(`${apiBase}/mentor/chat`, {
+      const response = await fetch(`${apiBase}/api/mentor/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -140,6 +140,25 @@ class PathologyInferenceEngine:
       let collectedConfidenceScore: number | undefined;
       let collectedIsGrounded: boolean | undefined;
       let collectedSourceCount: number | undefined;
+      let tokenCount = 0;
+
+      const flushUpdate = () => {
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantMsgId
+              ? {
+                  ...m,
+                  text: accumulatedText,
+                  citations: collectedCitations,
+                  confidence_label: collectedConfidenceLabel,
+                  confidence_score: collectedConfidenceScore,
+                  is_grounded: collectedIsGrounded,
+                  source_count: collectedSourceCount
+                }
+              : m
+          )
+        );
+      };
 
       while (true) {
         const { value, done } = await reader.read();
@@ -154,38 +173,18 @@ class PathologyInferenceEngine:
               const data = JSON.parse(line.slice(6));
               if (data.token) {
                 accumulatedText += data.token;
+                tokenCount++;
               }
-              if (data.citations) {
-                collectedCitations = data.citations;
-              }
-              if (data.confidence_label) {
-                collectedConfidenceLabel = data.confidence_label;
-              }
-              if (data.confidence_score !== undefined) {
-                collectedConfidenceScore = data.confidence_score;
-              }
-              if (data.is_grounded !== undefined) {
-                collectedIsGrounded = data.is_grounded;
-              }
-              if (data.source_count !== undefined) {
-                collectedSourceCount = data.source_count;
-              }
+              if (data.citations) collectedCitations = data.citations;
+              if (data.confidence_label) collectedConfidenceLabel = data.confidence_label;
+              if (data.confidence_score !== undefined) collectedConfidenceScore = data.confidence_score;
+              if (data.is_grounded !== undefined) collectedIsGrounded = data.is_grounded;
+              if (data.source_count !== undefined) collectedSourceCount = data.source_count;
 
-              setMessages((prev) =>
-                prev.map((m) =>
-                  m.id === assistantMsgId
-                    ? {
-                        ...m,
-                        text: accumulatedText,
-                        citations: collectedCitations,
-                        confidence_label: collectedConfidenceLabel,
-                        confidence_score: collectedConfidenceScore,
-                        is_grounded: collectedIsGrounded,
-                        source_count: collectedSourceCount
-                      }
-                    : m
-                )
-              );
+              // Batch: update React state every 3 tokens to reduce renders, always on done
+              if (data.done || tokenCount % 3 === 0) {
+                flushUpdate();
+              }
             } catch (e) {
               // Non-fatal parse error in chunk stream
             }
