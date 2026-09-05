@@ -754,18 +754,12 @@ async def mentor_chat_endpoint(request: Request, payload: MentorChatPayload):
 
     clean_message = sanitize_text(payload.message)
 
-    # 2. Record message in database (fire-and-forget, don't block stream start)
+    # 2. Record message in database (fire-and-forget)
     asyncio.create_task(save_mentor_message(payload.project_id, "user", clean_message))
 
-    # 3. Retrieve grounding sources in thread pool — embedding inference is CPU-bound
-    #    and must not block the async event loop.
-    citations = await asyncio.to_thread(
-        rag_service.retrieve_sources, clean_message, payload.project_domain, 2
-    )
-    if not citations and payload.citations:
-        citations = payload.citations
-
-    # 4. Stream response — citations already computed, no second retrieval inside stream
+    # 3. Stream response — LLM provider selection happens inside stream_mentor_response
+    #    No embedding/retrieval in the hot path.
+    citations = payload.citations or []
     raw_stream = rag_service.stream_mentor_response(
         project_title=payload.project_title,
         project_domain=payload.project_domain,
