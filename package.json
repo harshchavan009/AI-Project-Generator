@@ -1,0 +1,8 @@
+{
+  "name": "meridian-root",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix frontend install && npm --prefix frontend run build"
+  }
+}
